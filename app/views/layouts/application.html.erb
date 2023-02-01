@@ -15,10 +15,15 @@
   </head>
 
   <body>
-  <div class="window" id="main_window">
-    <div class="bookend" id="header">Heavy Night</div> <!-- header -->
-    <%= yield %>
-    <div class="bookend" id="footer">Heavy Night</div> <!-- footer -->
-  </div><!-- main_window -->
+    <div class="bookend" id="header">
+      <h1 id="logo">HEAVY NIGHT</h1>
+    </div> <!-- header -->
+    <div class="window" id="main_window">
+      <div class="window" id="content_window">
+              <%= yield %>
+      </div><!-- content_window -->
+      <div class="menu" id="sidebar"></div><!-- sidebar -->
+    </div><!-- main_window -->
+    <div class="bookend" id="footer">Contact us</div> <!-- footer -->
   </body>
 </html>

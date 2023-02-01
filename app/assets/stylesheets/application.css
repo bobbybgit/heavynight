@@ -18,18 +18,20 @@
  /* Colour variables */
 
  :root {
-    --main: #D6F3FF;
-    --mainDark: #ADE7FF;
+    --main: #EBF9FF;
+    --mainDark: #D6F3FF;
     --mainLight: #FFFFFF;
     --secondary: #20221B;
     --secondaryDark: #0B0B09;
     --secondaryLight: #35392B;
+    --tertiary: #007EA7;
     --highlight: #E8C4D8;
     --highlightDark: #DDA7C4;
     --highlightLight: #F4E2EB;
     --textMain: #000000;
     --textSecondary: #FFFFFF;
     --textHighlight: #FFFFFF;
+    --textTertiary: #FFFFFF;
   }
 
  
@@ -43,7 +45,13 @@
      background-color: var(--main);
      font-family: 'Lato', sans-serif;
      margin: 0;
-     justify-content: flex-start;
+     justify-content: space-between;
+ }
+
+ 
+ h1{
+   font-weight: 900;
+   margin: 0;
  }
 
  /* Generic Classes  */
@@ -58,6 +66,54 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
  }
 
+ .menu{
+   display: flex;
+   background-color: var(--tertiary);
+   color: var(--textTertiary);
+ }
+
+
  /* Specific Classes */
 
+ .bookend{
+   background-color: var(--secondary);
+   color: var(--textSecondary);
+   display: flex;
+   flex: 0;
+   min-height: 20px;
+   min-width: 100vw;
+   align-items: center;
+   padding: 10px;
+ }
+
  /* IDs */
+
+ #header{
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+ }
+
+ #main_window{
+   flex: 1;
+ }
+
+ #content_window{
+   flex: 1;
+   flex-direction: column;
+   padding-top: 70px
+ }
+
+ #sidebar{
+   min-width: 350px;
+   max-width: 350px;
+   flex: 0;
+   padding-top: 70px
+ }
+
+ #footer{
+   justify-content: center;
+ }
+
