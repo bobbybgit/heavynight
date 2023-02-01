@@ -12,17 +12,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body>
     <div class="bookend" id="header">
       <h1 id="logo">HEAVY NIGHT</h1>
+      <div class="container mobile" id="mobile_burger">
+        menu
+      </div><!-- mobile_burger -->
     </div> <!-- header -->
     <div class="window" id="main_window">
       <div class="window" id="content_window">
               <%= yield %>
       </div><!-- content_window -->
-      <div class="menu" id="sidebar"></div><!-- sidebar -->
+      <div class="menu desktop" id="sidebar"></div><!-- sidebar -->
     </div><!-- main_window -->
     <div class="bookend" id="footer">Contact us</div> <!-- footer -->
   </body>
