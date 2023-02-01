@@ -27,6 +27,21 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "carrierwave" #Image Upload
+
+gem "mini_magick" #Image resizing within carrierwave
+
+gem "devise" #User login/authentication etc
+
+gem "bgg" #Interacts with Boardgame Geek API
+
+#gems for google & fb login
+gem "dotenv-rails"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -69,4 +84,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
+
+group :production do
+  gem 'pg'
 end
