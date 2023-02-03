@@ -17,8 +17,8 @@ document.addEventListener("turbo:load", function() {
         function menuToggle() {
             if (menuOpen) {
                 menuBar.style.display = "none";
-                menuBar.style.maxWidth = "350px";
-                menuBar.style.minWidth = "350px";
+                menuBar.style.maxWidth = "300px";
+                menuBar.style.minWidth = "300px";
                 contWindow.style.display = "flex";
                 menuOpen = false;
                 console.log("menuOpen")

@@ -1,6 +1,18 @@
 <p style="color: green"><%= notice %></p>
-
-<h2 class="page_title" id="groups_title">Groups</h1>
+<div class="section window" id="groups_section">
+  <div class="section_header" id="groups_section_header">
+    <h2 class="section_title" id="groups_title">Groups</h1>
+    <h2 class="icon down_arrow" id="groups_down">expand_more</h2>
+  </div><!-- groups_section_header -->
+  <div class="section_contents container" id="groups_content">
+    <% @groups.each do |group| %>
+      <%= render group %>
+      <p>
+        <%= link_to "Show this group", group %>
+      </p>
+    <% end %>
+  </div><!--groups_content -->
+</div><!-- groups_section -->
 
 <div id="groups">
   <% @groups.each do |group| %>

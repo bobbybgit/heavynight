@@ -75,7 +75,24 @@
    background-color: var(--tertiary);
    color: var(--textTertiary);
  }
-
+ 
+ .icon{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  flex: auto;
+  padding:0;
+  max-width: 20px;
+}
 
  /* Specific Classes */
 
@@ -88,6 +105,30 @@
    align-items: center;
    padding: 10px;
  }
+
+ .section{
+  background-color: var(--main);
+  color: var(--textMain);
+  border: var(--tertiary) 2px solid;
+  border-top: none;
+  flex-direction: column;
+  width: 100%;
+ }
+
+ .section_header{
+  background-color: var(--tertiary);
+  color: var(--textTertiary);
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+
+ .section_contents{
+  min-height: 250px;
+ }
+
+
 
  /* IDs */
 
@@ -105,39 +146,24 @@
  }
 
  #mobile_burger{
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
   color: var(--textSecondary);
   background-color: var(--secondary);
-  flex: auto;
-  padding:0;
-  max-width: 20px;
-}
+ }
 
- #main_window{
+  #main_window{
    flex: 1;
  }
 
  #content_window{
-   padding: 70px 0;
+   padding: 70px 40px;
    flex: 1;
    flex-direction: column;
    align-items: center;
  }
 
  #sidebar{
-   min-width: 350px;
-   max-width: 350px;
+   min-width: 300px;
+   max-width: 300px;
    flex: 0;
    padding-top: 70px
  }
