@@ -57,6 +57,15 @@
    font-weight: 900;
  }
 
+ button{
+  background-color: var(--highlight);
+  color: var(--textHighlight);
+ }
+
+ a{
+  text-decoration: none;
+ }
+
 
  /* Generic Classes  */
 
@@ -128,6 +137,24 @@
   min-height: 250px;
  }
 
+ .square_button{
+  padding: 12px 30px;
+  margin: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  border-radius: 25px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+
+ }
+
+ .square_button:hover {
+  background-color: var(--highlightDark);
+}
+
 
 
  /* IDs */
@@ -170,6 +197,10 @@
 
  #footer{
    justify-content: center;
+ }
+
+ #new_group_icon{
+  padding-right: 10px;
  }
 
  /* Conditional */

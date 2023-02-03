@@ -23,4 +23,7 @@
   <% end %>
 </div>
 
-<%= link_to "New group", new_group_path %>
+<%= link_to new_group_path, :method => :get do%>
+<Button class="square_button" id="new_group_button">
+<i class="icon" id="new_group_icon">group_add</i>   New Group</Button>
+<% end %>
