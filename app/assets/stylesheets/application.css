@@ -18,20 +18,20 @@
  /* Colour variables */
 
  :root {
-    --main: #EBF9FF;
-    --mainDark: #D6F3FF;
+    --main: #FFFFFF;
+    --mainDark: #D5D5D5;
     --mainLight: #FFFFFF;
     --secondary: #20221B;
     --secondaryDark: #0B0B09;
     --secondaryLight: #35392B;
-    --tertiary: #007EA7;
-    --highlight: #E8C4D8;
+    --tertiary: #FFFFFF;
+    --highlight: #1D8807;
     --highlightDark: #DDA7C4;
     --highlightLight: #F4E2EB;
     --textMain: #000000;
-    --textSecondary: #FFFFFF;
+    --textSecondary: #1D8807;
     --textHighlight: #FFFFFF;
-    --textTertiary: #FFFFFF;
+    --textTertiary: #000000;
   }
 
  
@@ -40,13 +40,14 @@
  body{
      display:flex;
      min-height: 100vh;
+     max-width: 100vw;
      min-width: 100vw;
-     max-width: 100vw;;
      flex-direction: column;
      background-color: var(--main);
      font-family: 'Lato', sans-serif;
      margin: 0;
      justify-content: space-between;
+     box-sizing: border-box;
  }
 
  h1, h2, h3, h4, h5, h6{
@@ -106,7 +107,7 @@
  /* Specific Classes */
 
  .bookend{
-   background-color: var(--secondary);
+   background-color: var(--main);
    color: var(--textSecondary);
    display: flex;
    flex: 0;
@@ -114,6 +115,15 @@
    align-items: center;
    padding: 10px;
  }
+
+ .tab_bar{
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  padding: 80px 40px 40px 40px;
+  box-sizing: border-box;
+ }
+
 
  .section{
   background-color: var(--main);
@@ -173,8 +183,8 @@
  }
 
  #mobile_burger{
-  color: var(--textSecondary);
-  background-color: var(--secondary);
+  color: var(--textMain);
+  background-color: var(--main);
  }
 
   #main_window{
@@ -182,7 +192,7 @@
  }
 
  #content_window{
-   padding: 70px 40px;
+   padding: 40px 40px;
    flex: 1;
    flex-direction: column;
    align-items: center;
@@ -204,9 +214,3 @@
  }
 
  /* Conditional */
-
- @media screen and (max-width: 750px) {
-  .desktop{display: none;}}
-
-  @media screen and (min-width: 750px) {
-  .mobile{display: none;}}
