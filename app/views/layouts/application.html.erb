@@ -21,6 +21,9 @@
       <%= link_to root_path, :class => "strip_link" do %>
         <h1 id="logo">HEAVY NIGHT</h1>
       <% end %>
+      <div class="container">
+        <%= image_tag "pp_icon.gif", :id => "pp_icon" %>
+      </div> <!-- pp_icon -->
     </div> <!-- header -->
     <div class="tab_bar" id="layout_tab_bar">
       <%= link_to groups_path, :class => "tab tab_1 strip_link" do %>
@@ -32,7 +35,13 @@
     </div><!-- layout_tab_bar -->
     <div class="window" id="main_window">
       <div class="window" id="content_window">
-              <%= yield %>
+        <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+        <%= yield %>
       </div><!-- content_window -->
     </div><!-- main_window -->
     <div class="bookend" id="footer">Contact us</div> <!-- footer -->

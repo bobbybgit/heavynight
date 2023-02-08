@@ -21,7 +21,7 @@
     --main: #FFFFFF;
     --mainDark: #D5D5D5;
     --mainLight: #FFFFFF;
-    --secondary: #20221B;
+    --secondary: #1D8807;
     --secondaryDark: #0B0B09;
     --secondaryLight: #35392B;
     --tertiary: #FFFFFF;
@@ -29,7 +29,7 @@
     --highlightDark: #0B6605;
     --highlightLight: #F4E2EB;
     --textMain: #000000;
-    --textSecondary: #1D8807;
+    --textSecondary: #FFFFFF;
     --textHighlight: #FFFFFF;
     --textTertiary: #000000;
   }
@@ -76,7 +76,7 @@
 
  .window, .card, .container{
     padding:0;
-    background-color: var(--main);
+    background-color: inherit;
     display: flex;
  }
 
@@ -111,18 +111,21 @@
  /* Specific Classes */
 
  .bookend{
-   background-color: var(--main);
+   background-color: var(--secondary);
    color: var(--textSecondary);
    display: flex;
    flex: 0;
    min-height: 20px;
    align-items: center;
+   min-width: 100vw;
+   padding: 0;
+   margin: 0;
  }
 
  .tab_bar{
   display: flex;
-  width: 90vw;
-  padding: 70px 0 40px 0;
+  width: 80vw;
+  padding: 90px 0 40px 0;
   box-sizing: border-box;
   gap: 20px;
  }
@@ -197,12 +200,15 @@
 
  #logo{
   flex: auto;
-  padding: 10px;
+  padding: 20px;
  }
 
- #mobile_burger{
-  color: var(--textMain);
-  background-color: var(--main);
+ #pp_icon{
+  max-width: 2.5rem;
+  min-width: 2.5rem;
+  height: auto;
+  width: auto;
+  padding: 20px;
  }
 
   #main_window{
