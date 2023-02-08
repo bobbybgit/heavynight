@@ -11,37 +11,39 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form_section">
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
+  <div class="form_section">
     <%= form.label :city, style: "display: block" %>
     <%= form.text_field :city %>
   </div>
 
-  <div>
+  <div class="form_section">
     <%= form.label :location_id, style: "display: block" %>
     <%= form.text_field :location_id %>
   </div>
 
-  <div>
+  <div class="form_section">
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 
-  <div>
+  <div class="form_section" id="private_group_form_section">
     <%= form.label :private, style: "display: block" %>
-    <%= form.check_box :private %>
+    <div class="check_wrapper">
+    <%= form.check_box :private, :class => "check", :id => "private_group_switch" %><label for="private_group_switch"></label>
+    </div> <!-- check wrapper -->
   </div>
 
-  <div>
+  <div class="form_section">
     <%= form.label :event_setting_id, style: "display: block" %>
     <%= form.text_field :event_setting_id %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit :class => "square_button" %>
   </div>
 <% end %>
