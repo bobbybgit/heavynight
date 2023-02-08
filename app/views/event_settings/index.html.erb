@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Event settings</h1>
+
+<div id="event_settings">
+  <% @event_settings.each do |event_setting| %>
+    <%= render event_setting %>
+    <p>
+      <%= link_to "Show this event setting", event_setting %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New event setting", new_event_setting_path %>

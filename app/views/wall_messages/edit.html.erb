@@ -1,0 +1,10 @@
+<h1>Editing wall message</h1>
+
+<%= render "form", wall_message: @wall_message %>
+
+<br>
+
+<div>
+  <%= link_to "Show this wall message", @wall_message %> |
+  <%= link_to "Back to wall messages", wall_messages_path %>
+</div>

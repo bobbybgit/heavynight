@@ -12,6 +12,19 @@ document.addEventListener("turbo:load", function(){
         console.log(activeTabStorage)
     }
 
+    let newGroupBtn = document.querySelector("#new_group_button");
+
+    newGroupBtn.addEventListener("click", function(){
+        tabs.forEach((tab, pos, tabsPassed) => {
+            if (pos === 0){
+                tabs[pos].style.borderBottomColor = "var(--highlight)";
+                localStorage.setItem('currentTab', pos);
+            }else{
+                tabs[pos].style.borderBottomColor = "var(--mainDark)";
+            }
+        })
+    })
+
     console.log(tabs)
 
     tabs.forEach((tab, pos, tabsPassed) => {

@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bgg_id: 1
+  min_player_count: 1
+  max_player_count: 1
+  min_rec_player_count: 1
+  max_rec_player_count: 1
+  image: MyString
+  weight: 1.5
+  rating: 1.5
+  description: MyText
+  user: one
+  venue: one
+
+two:
+  bgg_id: 1
+  min_player_count: 1
+  max_player_count: 1
+  min_rec_player_count: 1
+  max_rec_player_count: 1
+  image: MyString
+  weight: 1.5
+  rating: 1.5
+  description: MyText
+  user: two
+  venue: two

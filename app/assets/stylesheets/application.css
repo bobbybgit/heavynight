@@ -65,6 +65,11 @@
   color: var(--textHighlight);
  }
 
+ form input[type=text]{
+  height: 1.5rem;
+  border: solid var(--mainDark) 2px;
+ }
+
  
  /* Generic Classes  */
 

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Wall messages</h1>
+
+<div id="wall_messages">
+  <% @wall_messages.each do |wall_message| %>
+    <%= render wall_message %>
+    <p>
+      <%= link_to "Show this wall message", wall_message %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New wall message", new_wall_message_path %>

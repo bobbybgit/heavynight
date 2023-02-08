@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group: one
+  event: one
+  min_per_session: 1
+  max_per_session: 1
+  max_weight: 1.5
+  min_weight: 1.5
+  max_length: 1
+  min_length: 1
+  use_rec_count: false
+
+two:
+  group: two
+  event: two
+  min_per_session: 1
+  max_per_session: 1
+  max_weight: 1.5
+  min_weight: 1.5
+  max_length: 1
+  min_length: 1
+  use_rec_count: false

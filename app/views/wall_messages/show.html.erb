@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @wall_message %>
+
+<div>
+  <%= link_to "Edit this wall message", edit_wall_message_path(@wall_message) %> |
+  <%= link_to "Back to wall messages", wall_messages_path %>
+
+  <%= button_to "Destroy this wall message", @wall_message, method: :delete %>
+</div>
