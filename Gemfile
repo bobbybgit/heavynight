@@ -35,6 +35,12 @@ gem "devise" #User login/authentication etc
 
 gem "bgg" #Interacts with Boardgame Geek API
 
+gem "geocoder" #for locations
+
+gem "cities" #for listing cities by country
+
+gem "country_select" #for listing countries
+
 #gems for google & fb login
 gem "dotenv-rails"
 gem "omniauth"

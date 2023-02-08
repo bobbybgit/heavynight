@@ -17,13 +17,13 @@
   </div>
 
   <div class="form_section">
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
+    <%= form.label :country, style: "display: block" %>
+    <%= form.country_select :country, priority_countries: ["GB", "US", "FR", "DE"] %>
   </div>
 
   <div class="form_section">
-    <%= form.label :location_id, style: "display: block" %>
-    <%= form.text_field :location_id %>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
   </div>
 
   <div class="form_section">
@@ -38,12 +38,7 @@
     </div> <!-- check wrapper -->
   </div>
 
-  <div class="form_section">
-    <%= form.label :event_setting_id, style: "display: block" %>
-    <%= form.text_field :event_setting_id %>
-  </div>
-
   <div>
-    <%= form.submit :class => "square_button" %>
+    <%= form.submit :class => "strip_link square_button" %>
   </div>
 <% end %>
