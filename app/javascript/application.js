@@ -2,17 +2,21 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+// require("/controllers/dropdown_controller.js")
+
 document.addEventListener("turbo:load", function(){
 
     const activeTabStorage = localStorage.getItem('currentTab')
     let tabs = document.querySelectorAll(".tab");
+
+    let country = document.getElementById("country")
 
     if(activeTabStorage){
         tabs[activeTabStorage].style.borderBottomColor = "var(--highlight)"
         console.log(activeTabStorage)
     }
 
-    let newGroupBtn = document.querySelector("#new_group_button");
+    let newGroupBtn = document.getElementById("new_group_button");
 
     newGroupBtn.addEventListener("click", function(){
         tabs.forEach((tab, pos, tabsPassed) => {

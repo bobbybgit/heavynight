@@ -66,18 +66,36 @@
  }
 
  form input[type=text]{
-  height: 1.5rem;
+  height: 2rem;
   border: solid var(--mainDark) 2px;
+  width: 100%;
+  box-sizing: border-box;
  }
 
  textarea{
   border: solid var(--mainDark) 2px;
+  width: 100%;
+  box-sizing: border-box;
  }
 
  form input[type=checkbox]{
   height: 0;
   width: 0;
   visibility: hidden;
+  user-select: none;
+ }
+
+ select{
+  height: 2rem;
+  border: var(--mainDark) solid 2px;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+ }
+
+ form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
  }
  
  
@@ -207,6 +225,9 @@
   display: flex;
   flex-direction:column;
   padding-top: 5px;
+  user-select: none;
+  width:100%;
+  max-width: 80vw;
 
 }
 
@@ -214,6 +235,7 @@
   display: flex;
   align-items: center;
   margin-top: 6px;
+  user-select: none;
 }
 
 .check_wrapper label{
@@ -231,7 +253,7 @@
 content: '';
 position: absolute;
 top: 9%;
-left: 2.5%;
+left: 5%;
 width: calc(50% - 8%);
 height: calc(100% - 16%);
 background: var(--main);
@@ -268,6 +290,7 @@ width: 55%;
  #logo{
   flex: auto;
   padding: 20px;
+  user-select: none;
  }
 
  #pp_icon{
@@ -287,6 +310,7 @@ width: 55%;
    flex: 1;
    flex-direction: column;
    align-items: center;
+   box-sizing: border-box;
  }
 
  #sidebar{

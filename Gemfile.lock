@@ -95,6 +95,8 @@ GEM
       ssrf_filter (~> 1.0)
     cities (0.3.1)
       multi_json (~> 1.8)
+    city-state (0.1.0)
+      rubyzip (>= 1.1)
     concurrent-ruby (1.2.0)
     countries (5.3.1)
       unaccent (~> 0.3)
@@ -303,6 +305,7 @@ DEPENDENCIES
   capybara
   carrierwave
   cities
+  city-state
   country_select
   debug
   devise

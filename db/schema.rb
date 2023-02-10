@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_151318) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_084315) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -75,13 +75,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_151318) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "city"
-    t.integer "location_id", null: false
+    t.integer "location_id"
     t.text "description"
     t.boolean "private"
-    t.integer "event_setting_id", null: false
+    t.integer "event_setting_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "country"
+    t.string "region"
     t.index ["event_setting_id"], name: "index_groups_on_event_setting_id"
     t.index ["location_id"], name: "index_groups_on_location_id"
   end

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :events
   devise_for :users
   resources :groups
+
+  get 'cities/:region/:country', to: 'application#cities'
+  get 'regions/:country', to: 'application#regions'
   
 
   # Defines the root path route ("/")

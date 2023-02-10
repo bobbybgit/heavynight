@@ -41,6 +41,8 @@ gem "cities" #for listing cities by country
 
 gem "country_select" #for listing countries
 
+gem "city-state"
+
 #gems for google & fb login
 gem "dotenv-rails"
 gem "omniauth"

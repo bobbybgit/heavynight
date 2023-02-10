@@ -1,4 +1,4 @@
-<%= form_with(model: group) do |form| %>
+<%= form_with(model: group, data: { controller: "dropdown", action: "change->dropdown#submit" }) do |form| %>
   <% if group.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -18,12 +18,17 @@
 
   <div class="form_section">
     <%= form.label :country, style: "display: block" %>
-    <%= form.country_select :country, priority_countries: ["GB", "US", "FR", "DE"] %>
+    <%= form.select :country, CS.countries.values %>
+  </div>
+
+  <div class="form_section">
+    <%= form.label :region, style: "display: block" %>
+    <%= form.select :region, :prompt => "Select country first" %>
   </div>
 
   <div class="form_section">
     <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
+    <%= form.select :city, :prompt => "Select region first" %>
   </div>
 
   <div class="form_section">
@@ -38,7 +43,34 @@
     </div> <!-- check wrapper -->
   </div>
 
-  <div>
-    <%= form.submit :class => "strip_link square_button" %>
-  </div>
+  <%= form.submit "Submit", :class => "strip_link square_button", :name => "final_submit", :value => "Submit" %>
+
+  <!-- AJAX that loads "City" according to the selected state -->
+<script>
+
+$('select[name="group[country]"]').change(function () {
+  var input_country = $(this);
+  $.getJSON('/regions/' + $(this).val(), function (data) {
+    var input_region = $('select[name="group[region]"]')
+    console.log(input_region)
+    input_region.empty();
+    $.each(data, function (i,region) {
+      var opt = '<option value='+ region +'>' + region + '</option>';
+      input_region.append(opt);
+    });
+  });
+});
+
+$('select[name="group[region]"]').change(function () {
+  var input_region = $('select[name="group[region]"]');
+  $.getJSON('/cities/' + $(this).val() + '/' + $('select[name="group[country]"]').val(), function (data) {
+    var input_city = $('select[name="group[city]"]')
+    input_city.empty();
+    $.each(data, function (i, city) {
+      var opt = '<option value='+ i +'>' + city + '</option>';
+      input_city.append(opt);
+    });
+  });
+});
+</script>
 <% end %>
