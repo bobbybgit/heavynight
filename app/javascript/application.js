@@ -2,9 +2,12 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-// require("/controllers/dropdown_controller.js")
+window.initMap = () => {
+    console.log("map loaded")
+}
 
-document.addEventListener("turbo:load", function(){
+document.addEventListener('turbo:load',function(){
+    console.log('load')
 
     const activeTabStorage = localStorage.getItem('currentTab')
     let tabs = document.querySelectorAll(".tab");
@@ -17,8 +20,8 @@ document.addEventListener("turbo:load", function(){
     }
 
     let newGroupBtn = document.getElementById("new_group_button");
-
-    newGroupBtn.addEventListener("click", function(){
+    console.log(newGroupBtn)
+    if (newGroupBtn){newGroupBtn.addEventListener("click", function(){
         tabs.forEach((tab, pos, tabsPassed) => {
             if (pos === 0){
                 tabs[pos].style.borderBottomColor = "var(--highlight)";
@@ -28,11 +31,10 @@ document.addEventListener("turbo:load", function(){
             }
         })
     })
+    }
 
-    console.log(tabs)
 
     tabs.forEach((tab, pos, tabsPassed) => {
-        console.log(tabsPassed[pos]);
         tab.addEventListener("click", function(){
             tabs.forEach((tabStyle) => {
                 if (tabStyle === tab) {
@@ -47,9 +49,10 @@ document.addEventListener("turbo:load", function(){
     })
     
 
-})
 
+}
 
+)
 
 
 

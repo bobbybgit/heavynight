@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_10_084315) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_200917) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -75,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_084315) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "city"
-    t.integer "location_id"
     t.text "description"
     t.boolean "private"
     t.integer "event_setting_id"
@@ -83,20 +82,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_084315) do
     t.datetime "updated_at", null: false
     t.string "country"
     t.string "region"
+    t.string "location"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
     t.index ["event_setting_id"], name: "index_groups_on_event_setting_id"
-    t.index ["location_id"], name: "index_groups_on_location_id"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string "street"
-    t.string "city"
-    t.string "region"
-    t.string "country"
-    t.string "code"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -139,11 +128,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_084315) do
 
   create_table "venues", force: :cascade do |t|
     t.integer "capacity"
-    t.integer "location_id", null: false
     t.boolean "private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_venues_on_location_id"
   end
 
   create_table "wall_messages", force: :cascade do |t|
@@ -167,13 +154,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_084315) do
   add_foreign_key "games", "users"
   add_foreign_key "games", "venues"
   add_foreign_key "groups", "event_settings"
-  add_foreign_key "groups", "locations"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "sessions", "events"
   add_foreign_key "sessions", "games"
   add_foreign_key "sessions", "users"
-  add_foreign_key "venues", "locations"
   add_foreign_key "wall_messages", "groups"
   add_foreign_key "wall_messages", "users"
 end
