@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
     "stimulus-places-autocomplete": "^0.5.0"
   }
 }

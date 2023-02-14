@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@hotwired/stimulus@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz#e3de23623b0c52c247aba4cd5d530d257008676b"
+  integrity sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==
+
 stimulus-places-autocomplete@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/stimulus-places-autocomplete/-/stimulus-places-autocomplete-0.5.0.tgz#a18603ee629ec0944c4adae6b76b3fed515e1e1a"

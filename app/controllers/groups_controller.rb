@@ -12,22 +12,19 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    params[:final_submit] = "NoSub"
     @group = Group.new
-    # collect_form_data
   end
 
   # GET /groups/1/edit
   def edit
-    params[:final_submit] = "NoSub"
-    ##collect_form_data
+  
+   
   end
 
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
-    # collect_form_data
-
+   
     respond_to do |format|
       if @group.save && params[:final_submit] == "Submit"
         format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
@@ -67,20 +64,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  # def collect_form_data
-  #  if @group.country
-  #    @country = @group.country
-  #  else
-  #    @group.country = "GB"
-  #    @country = @group.country
-  #  end
-  #  @regions = CS.states(@group.country)
-  #  @cities = CS.cities(@group.country, @group.city) if @group.city || @cities = @CS.cities(@)
-
-  # end
-
-
-  private
+   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])

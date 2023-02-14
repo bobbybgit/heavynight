@@ -1,4 +1,5 @@
-<%= form_with(model: group, data: { controller: "address"}) do |form| %>
+
+<%= form_with model: group do |form| %>
   <% if group.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -16,9 +17,9 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="form_section">
+  <div class="form_section" data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
     <%= form.label :location, style: "display: block" %>
-    <%= form.text_field(:location,  'data-action': "keydown->places#preventSubmit", 'data-places-target': "address", placeholder:"Search a location") %>
+    <%= form.text_field(:location,  'data-action': "keydown->places#preventSubmit", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
   </div>
   <input type="hidden" data-places-target="city" />
   <input type="hidden" data-places-target="streetNumber" />

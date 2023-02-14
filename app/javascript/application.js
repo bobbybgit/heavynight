@@ -2,9 +2,15 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-window.initMap = () => {
-    console.log("map loaded")
-}
+window.initMap = function () {
+    console.log("Init map running")
+    const event = new Event('google-maps-callback', {
+      bubbles: true,
+      cancelable: true,
+    })
+    window.dispatchEvent(event)
+    console.log("event dispatched")
+  }
 
 document.addEventListener('turbo:load',function(){
     console.log('load')
