@@ -52,6 +52,11 @@
      align-items: center;
  }
 
+ p{
+  margin: 0;
+  font-size: 14px;
+ }
+
  h1, h2, h3, h4, h5, h6{
   margin: 0;
  }
@@ -98,6 +103,9 @@
   align-items: center;
  }
  
+ label{
+  margin-bottom: 2px;
+ }
  
  
  /* Generic Classes  */
@@ -275,6 +283,25 @@ transform: translateX(-100%);
 width: 55%;
 }
 
+.group_card{
+
+}
+
+.input_container{
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+ }
+
+ .explanation{
+  margin-top: 5px;
+  font-weight: 300px;
+ }
+
+ .form_file_field{
+  align-self: flex-start;
+ }
+
 
 
  /* IDs */
@@ -312,6 +339,7 @@ width: 55%;
    flex-direction: column;
    align-items: center;
    box-sizing: border-box;
+   max-width: 100vw;
  }
 
  #sidebar{
@@ -338,5 +366,10 @@ width: 55%;
   justify-content: space-between;
   align-items: center;
  }
+
+
+
+
+ 
 
  /* Conditional */

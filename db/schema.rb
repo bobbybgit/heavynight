@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_200917) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_16_202437) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_200917) do
     t.string "location"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
+    t.string "image"
     t.index ["event_setting_id"], name: "index_groups_on_event_setting_id"
   end
 

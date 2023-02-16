@@ -19,7 +19,9 @@
 
   <div class="form_section" data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
     <%= form.label :location, style: "display: block" %>
-    <%= form.text_field(:location,  'data-action': "keydown->places#preventSubmit", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
+    <%= form.text_field(:location,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
+    <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
+    <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
   </div>
   <input type="hidden" data-places-target="city" />
   <input type="hidden" data-places-target="streetNumber" />
@@ -29,13 +31,15 @@
   <input type="hidden" data-places-target="postalCode" />
   <input type="hidden" data-places-target="country" />
 
-  <input type="hidden" data-places-target="longitude" />
-  <input type="hidden" data-places-target="latitude" />
-
   <div class="form_section">
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
+  <div class="input_container">
+  <h4>Select Group Profile Image:</h4>
+  <p class="explanation">Image will resize and then crop to 250x250px, for best results please use a square image</p>
+  </div>
+  <%= form.file_field :image, :class => "form_file_field" %>
 
   <div class="form_section" id="private_group_form_section">
     <%= form.label :private, style: "display: block" %>

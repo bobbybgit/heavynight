@@ -1,20 +1,16 @@
  <div class="section_contents container" id="groups_content">
     <% @groups.each do |group| %>
-      <%= render group %>
-      <p>
-        <%= link_to "Show this group", group %>
-      </p>
-    <% end %>
+      <%if !group.private %>
+        <%= link_to group, :class => "strip_link" do %>
+          <div class="card group_card">
+            <h4><%= group.name %></h4>
+            <h5><%= group.location %></h5>
+            <p><%= group.description.length < 50 ? group.description: group.description[0,51]+" ..." %></p>   
+          </div><!-- group_card -->
+        <% end %><!-- link_to do -->
+      <% end %><!-- if private -->
+    <% end %><!-- groups.each do -->
   </div><!--groups_content -->
-
-<div id="groups">
-  <% @groups.each do |group| %>
-    <%= render group %>
-    <p>
-      <%= link_to "Show this group", group %>
-    </p>
-  <% end %>
-</div>
 
 <%= button_to new_group_path, :class => "square_button strip_link",  :id => "new_group_button", :method => :get do %>
 <i class="icon" id="new_group_icon">group_add</i> New Group

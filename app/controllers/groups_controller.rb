@@ -26,14 +26,12 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
    
     respond_to do |format|
-      if @group.save && params[:final_submit] == "Submit"
+      if @group.save 
         format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
-      elsif !@group.save
+      else 
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
-      else
-        format.html {redirect_to edit_group_url(@group)}
       end
 
     end
@@ -42,14 +40,12 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1 or /groups/1.json
   def update
     respond_to do |format|
-      if @group.update(group_params) && params[:final_submit] == "Submit"
+      if @group.update(group_params)
         format.html { redirect_to group_url(@group), notice: "Group was successfully updated." }
         format.json { render :show, status: :ok, location: @group }
-      elsif !@group.save
+      else 
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
-      else
-        format.html {redirect_to edit_group_url(@group)}
       end
     end
   end
@@ -72,7 +68,7 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:name,:country, :city, :location_id, :description, :private, :event_setting_id)
+      params.require(:group).permit(:name,:location, :longitude, :latitude, :description, :private)
     end
 end
 
