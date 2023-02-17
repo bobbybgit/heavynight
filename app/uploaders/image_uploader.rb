@@ -15,7 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url(*args)
-   ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+   ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default_group_pp.svg"].compact.join('_'))
   end
 
   process resize_to_fill: [250, 250]

@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
 
-  
+  mount_uploader :image, ImageUploader
   belongs_to :event_setting, optional:true
   validates :name, presence:true
   validates :location, presence:true

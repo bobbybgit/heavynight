@@ -284,7 +284,9 @@ width: 55%;
 }
 
 .group_card{
-
+  width: 350px;
+  max-width: 100%;
+  max-height: 100px;
 }
 
 .input_container{
@@ -300,6 +302,23 @@ width: 55%;
 
  .form_file_field{
   align-self: flex-start;
+ }
+
+ .image_100{
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  flex: 0;
+
+ }
+
+ .group_card_details{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px;
+
  }
 
 
@@ -365,6 +384,13 @@ width: 55%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+ }
+
+ #groups_content{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 100%
  }
 
 
