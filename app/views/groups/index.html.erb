@@ -5,7 +5,7 @@
           <div class="card group_card">
             <div class="container profile_image group_profile_image"><%= image_tag(group.image_url.to_s, :class => "image_100") %></div>
             <div class="container group_card_details">
-              <h4><%= group.name %></h4>
+              <h4 class="group_name"><%= group.name.upcase %></h4>
               <h5><%= group.location.length < 25 ? group.location : group.location[0,26]+"..." %></h5>
               <p><%= group.description.length < 50 ? group.description: group.description[0,51]+" ..." %></p> 
             </div><!-- group_card_details -->  

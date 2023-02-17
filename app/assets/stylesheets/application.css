@@ -321,6 +321,16 @@ width: 55%;
 
  }
 
+ .group_name{
+  margin-bottom: 2px;
+ }
+
+ .flat_button_group{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+ }
+
 
 
  /* IDs */
@@ -372,7 +382,7 @@ width: 55%;
    justify-content: center;
  }
 
- #new_group_icon{
+ #new_group_icon, #delete_group_icon, #edit_group_icon{
   padding-right: 10px;
  }
 
@@ -391,6 +401,12 @@ width: 55%;
   flex-wrap: wrap;
   gap: 10px;
   max-width: 100%
+ }
+
+ #show_group_card{
+  display: flex;
+  box-sizing: border-box;
+  padding: 10px;
  }
 
 

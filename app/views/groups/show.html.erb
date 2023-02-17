@@ -1,8 +1,12 @@
+<div class="card" id="show_group_card">
 <%= render @group %>
+</div><!--show_group_card-->
 
-<div>
-  <%= link_to "Edit this group", edit_group_path(@group) %> |
-  <%= link_to "Back to groups", groups_path %>
-
-  <%= button_to "Destroy this group", @group, method: :delete %>
+<div class="flat_button_group">
+ <%= button_to edit_group_path, :class => "square_button strip_link",  :id => "edit_group_button", :method => :get do %>
+<i class="icon" id="edit_group_icon">mode_edit</i> Edit
+<% end %>
+<%= button_to group_path, :class => "square_button strip_link",  :id => "new_group_button", :method => :destroy do %>
+<i class="icon" id="delete_group_icon">delete</i> Delete
+<% end %>
 </div>
