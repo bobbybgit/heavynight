@@ -1,0 +1,35 @@
+<h1 class="page_title">Dashboard</h1>
+
+<div id="groups">
+  <% @groups.each do |group| %>
+  <%if !group.private %>
+  <%= link_to group do%>
+  <div class="group_card card">
+  <%= image_tag(group.image_url.to_s, :class => "image_250") %>
+  <div id="<%= dom_id group %>">
+  <div class="card_header">
+    
+    <%= group.name %>
+  </div>
+  <div class="card_contents">
+  <p>
+    <%= group.location %>
+  </p>
+
+  <p>
+    <%= group.description.length < 50 ? group.description: group.description[0,51]+" ..." %>
+  </p>
+
+  </div>
+
+</div>
+  </div>
+    <% end %>
+    <% end %>
+  <% end %>
+  
+  
+</div>
+
+<%= button_to "Edit Profile", edit_user_registration_path, :class => "square_button", :method => :get %>
+<%= button_to "Log Out", destroy_user_session_path, :class => "square_button", :method => :delete %>

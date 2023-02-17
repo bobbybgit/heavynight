@@ -6,10 +6,24 @@ Rails.application.routes.draw do
   resources :games
   resources :venues
   resources :events
-  devise_for :users
   resources :groups
 
+  resources :groups do
+    resources :memberships do
+    end
+  end
 
-  # Defines the root path route ("/")
-  root "groups#index"
+  
+  devise_for :users, controllers: { 
+  sessions: 'users/sessions',
+  confirmations: 'users/confirmations',
+  unlocks: 'users/unlocks',
+  passwords: 'users/passwords',
+  onmniauth_callbacks: 'users/omniauth_callbacks'
+  }
+
+  get "pages/dashboard", to: "pages#dashboard"
+
+  root "pages#dashboard"
+
 end

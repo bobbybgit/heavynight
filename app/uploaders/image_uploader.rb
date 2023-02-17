@@ -18,7 +18,7 @@ class ImageUploader < CarrierWave::Uploader::Base
    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default_group_pp.svg"].compact.join('_'))
   end
 
-  process resize_to_fill: [250, 250]
+  process resize_to_fill: [300, 300]
   #
   # def scale(width, height)
   #   # do something

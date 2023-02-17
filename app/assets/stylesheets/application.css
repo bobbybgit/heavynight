@@ -212,7 +212,7 @@
 
 .square_button{
   padding: 12px 30px;
-  margin: 20px;
+  margin: 10px;
   border: none;
   display: flex;
   align-items: center;
@@ -313,6 +313,16 @@ width: 55%;
 
  }
 
+ .image_300{
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 300px;
+  min-height: 300px;
+  flex: 0;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
  .group_card_details{
   display: flex;
   flex-direction: column;
@@ -329,8 +339,23 @@ width: 55%;
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  max-width: 100%;
  }
 
+ .group_display{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.group_display .profile_pic{
+  margin: 5px;
+}
 
 
  /* IDs */
@@ -358,12 +383,8 @@ width: 55%;
   padding: 20px;
  }
 
-  #main_window{
-   flex: 1;
- }
-
  #content_window{
-   padding: 40px 40px;
+   padding: 5px;
    flex: 1;
    flex-direction: column;
    align-items: center;
@@ -380,6 +401,8 @@ width: 55%;
 
  #footer{
    justify-content: center;
+   box-sizing: border-box;
+   padding: 10px;
  }
 
  #new_group_icon, #delete_group_icon, #edit_group_icon{
@@ -403,15 +426,45 @@ width: 55%;
   max-width: 100%
  }
 
- #show_group_card{
+ #show_group_page{
   display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   padding: 10px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
  }
 
+ #group_container{
+  padding: 10px;
+  border: 2px solid var(--highlight);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 0;
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 300px;
+  min-height: 300px;
+  flex: 0;
+  box-sizing: border-box;
+  margin: 5px;
+}
 
+#group_container h1{
+  margin:0;
+}
 
+#group_details{
+  display: flex;
+  flex: 1;
+}
 
- 
+#member_title{
+  padding: 5px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
 
  /* Conditional */

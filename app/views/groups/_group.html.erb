@@ -1,32 +1,52 @@
 <div id="<%= dom_id group %>">
-  <p>
-    <strong>Name:</strong>
+    
+  <div class="group_display">
+  <%= image_tag(group.image_url.to_s, :class => "image_300") %>
+  <div class="container" id="group_container">
+  <h2 class ="item_header" id="group_item_header">
     <%= group.name %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
+    </h2>
+    <br>
+  <p class="location">
     <%= group.location %>
   </p>
+  <br>
 
-  <p>
-    <strong>Latitude:</strong>
-    <%= group.latitude %>
-  </p>
-
-  <p>
-    <strong>Longitude:</strong>
-    <%= group.longitude %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
+  <p class="description">
     <%= group.description %>
   </p>
+  
 
-  <p>
-    <strong>Private:</strong>
-    <%= group.private %>
-  </p>
+  </div><!-- group_container -->
 
 </div>
+<h4 id="member_title">
+    Members
+  </h4>
+  <div class="member_list">
+  <% group.users.each do |user| %>
+    <div class="user_box">
+    <%= image_tag("defaultpp", :class =>"user_pp") %>
+    <div class="user_name">
+    <%= user.name %>
+    </div>
+    </div>
+  <% end %>
+  </div>
+  </div>
+  </div><!-- group ID -->
+  <div class="flat_button_group" id="group_buttons">
+    <%= button_to edit_group_path, :class => "square_button strip_link",  :id => "edit_group_button", :method => :get do %>
+      <i class="icon" id="edit_group_icon">mode_edit</i> Edit
+    <% end %> 
+    <%= button_to group_path, :class => "square_button strip_link",  :id => "new_group_button", :method => :destroy do %>
+      <i class="icon" id="delete_group_icon">delete</i> Delete
+    <% end %>
+    <% if !current_user.member?(group) %>
+      <%= button_to "Join", new_group_membership_path(group), :class => "square_button", :id => "group_join_leave_button", :method => :get %>
+    <% else %>
+      <% membership = Membership.find_by group_id: group.id, user_id: current_user.id %>
+      <%= button_to "Leave", group_membership_path(group, membership), :class => "square_button", :id => "group_join_leave_button", :method => :delete %>
+    <% end %>
+    <%= button_to "All Groups", groups_path, :class => "square_button", :method => :get %>
+  </div><!-- button group -->
