@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :venues
   resources :events
   resources :groups
+  devise_for :users
+
+  devise_scope :user do
+    match '/sessions/user', to: 'devise/sessions#create', via: :post
+  end
 
   resources :groups do
     resources :memberships do
@@ -14,15 +19,7 @@ Rails.application.routes.draw do
   end
 
   
-  devise_for :users, controllers: { 
-  sessions: 'users/sessions',
-  confirmations: 'users/confirmations',
-  unlocks: 'users/unlocks',
-  passwords: 'users/passwords',
-  onmniauth_callbacks: 'users/omniauth_callbacks'
-  }
-
-  get "pages/dashboard", to: "pages#dashboard"
+    get "pages/dashboard", to: "pages#dashboard"
 
   root "pages#dashboard"
 

@@ -21,12 +21,12 @@
     --main: #FFFFFF;
     --mainDark: #D5D5D5;
     --mainLight: #FFFFFF;
-    --secondary: #1D8807;
+    --secondary: #3C6997;
     --secondaryDark: #0B0B09;
     --secondaryLight: #35392B;
-    --tertiary: #FFFFFF;
-    --highlight: #1D8807;
-    --highlightDark: #0B6605;
+    --tertiary: #FAF8EF;
+    --highlight: #F06449;
+    --highlightDark: #BD2C0F;
     --highlightLight: #F4E2EB;
     --textMain: #000000;
     --textSecondary: #FFFFFF;
@@ -59,6 +59,8 @@
 
  h1, h2, h3, h4, h5, h6{
   margin: 0;
+  text-transform: uppercase;
+  color: var(--secondary);
  }
 
  h1{
@@ -70,11 +72,20 @@
   color: var(--textHighlight);
  }
 
- form input[type=text]{
+  form input[type=email], form input[type=text], form input[type=password]{
+  outline:none;
   height: 2rem;
-  border: solid var(--mainDark) 2px;
-  width: 100%;
+  border: none var(--highlight) 2px;
+  border-bottom: solid var(--highlight) 2px;
+  max-width: 100%;
   box-sizing: border-box;
+  background-color: var(--tertiary);
+  margin: 3px 0;
+  width: 300px;
+ }
+
+ form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus{
+  border: solid var(--highlightDark) 2px;
  }
 
  textarea{
@@ -105,6 +116,7 @@
  
  label{
   margin-bottom: 2px;
+  user-select: none;
  }
  
  
@@ -287,6 +299,7 @@ width: 55%;
   width: 350px;
   max-width: 100%;
   max-height: 100px;
+  user-select: none;
 }
 
 .input_container{
@@ -302,6 +315,12 @@ width: 55%;
 
  .form_file_field{
   align-self: flex-start;
+ }
+
+ .form_group{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
  }
 
  .image_100{
@@ -357,6 +376,17 @@ width: 55%;
   margin: 5px;
 }
 
+.login_window{
+  background-color: var(--main);
+  color: var(--text);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
 
  /* IDs */
 
@@ -373,6 +403,7 @@ width: 55%;
   flex: auto;
   padding: 20px;
   user-select: none;
+  color: var(--textSecondary)
  }
 
  #pp_icon{
