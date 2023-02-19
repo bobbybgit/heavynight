@@ -20,6 +20,26 @@ document.addEventListener('turbo:load',function(){
 
     let country = document.getElementById("country")
 
+    let groupExpand = document.getElementById("member_title")
+
+    function expandMembers(){
+        let membersWindow = document.getElementById("member_list")
+        let membersArrow = document.getElementById("member_expand")
+
+        console.log(getComputedStyle(membersWindow).display)
+        if (getComputedStyle(membersWindow).display == "flex"){
+            membersWindow.style.display = "none";
+            membersArrow.innerHTML = "expand_more";
+        }else{
+            membersWindow.style.display = "flex";
+            membersArrow.innerHTML = "expand_less";
+        }
+    }
+    if (groupExpand){
+        console.log(groupExpand)
+        groupExpand.addEventListener("click", expandMembers)
+    }
+
     if(activeTabStorage){
         tabs[activeTabStorage].style.borderBottomColor = "var(--highlight)"
         console.log(activeTabStorage)

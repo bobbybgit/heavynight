@@ -1,11 +1,13 @@
-<div id="<%= dom_id group %>">
+<div class="show_group_container" id="<%= dom_id group %>">
     
   <div class="group_display">
   <%= image_tag(group.image_url.to_s, :class => "image_300") %>
   <div class="container" id="group_container">
+  <div class="window_header">
   <h2 class ="item_header" id="group_item_header">
     <%= group.name %>
     </h2>
+    </div><!-- window_header -->
     <br>
   <p class="location">
     <%= group.location %>
@@ -19,18 +21,18 @@
 
   </div><!-- group_container -->
 
-</div>
-<h4 id="member_title">
-    Members
-  </h4>
-  <div class="member_list">
+</div><!-- show_group_container -->
+<div id="member_title">
+<h3>Members<i class="icon" id="member_expand">expand_less</i></h3>
+</div><!-- member_title -->
+  <div id="member_list">
   <% group.users.each do |user| %>
-    <div class="user_box">
-    <%= image_tag("defaultpp", :class =>"user_pp") %>
+    <div class="user_card card">
+    <%= image_tag("default_group_pp", :class =>"user_pp") %>
     <div class="user_name">
-    <%= user.name %>
-    </div>
-    </div>
+    <%= "#{user.first_name} #{user.surname}" %>
+    </div><!-- user_name -->
+    </div><!-- user_card -->
   <% end %>
   </div>
   </div>

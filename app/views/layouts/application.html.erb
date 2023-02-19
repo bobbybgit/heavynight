@@ -22,9 +22,14 @@
       <%= link_to root_path, :class => "strip_link" do %>
         <h1 id="logo">HEAVY NIGHT</h1>
       <% end %>
-      <div class="container">
+      <div class="container" id="user_header">
         <%= image_tag "pp_icon.gif", :id => "pp_icon" %>
-      </div> <!-- pp_icon -->
+        <% if user_signed_in? %>
+        <h1><nobr>
+        <%= "#{current_user.first_name.capitalize()[0]}#{current_user.surname.capitalize()[0]}" %>
+        </nobr></h1>
+        <% end %>
+      </div> <!-- user_header -->
     </div> <!-- header -->
     <div class="tab_bar" id="layout_tab_bar">
       <%= link_to groups_path, :class => "tab tab_1 strip_link" do %>

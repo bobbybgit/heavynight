@@ -61,6 +61,7 @@
   margin: 0;
   text-transform: uppercase;
   color: var(--secondary);
+  user-select: none;
  }
 
  h1{
@@ -89,9 +90,14 @@
  }
 
  textarea{
-  border: solid var(--mainDark) 2px;
-  width: 100%;
+  outline:none;
+  height: 3rem;
+  border: solid var(--highlight) 2px;
+  max-width: 100%;
   box-sizing: border-box;
+  background-color: var(--tertiary);
+  margin: 3px 0;
+  width: 300px;
  }
 
  form input[type=checkbox]{
@@ -132,10 +138,11 @@
     padding:0;
     background-color: inherit;
     display: flex;
+    user-select: none;
  }
 
  .card{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.09);
  }
 
  .menu{
@@ -300,17 +307,21 @@ width: 55%;
   max-width: 100%;
   max-height: 100px;
   user-select: none;
+  flex: auto;
 }
 
 .input_container{
   margin: 10px 0;
   display: flex;
   flex-direction: column;
+  width:100%;
+  max-width: 80vw;
  }
 
  .explanation{
-  margin-top: 5px;
+  margin: 5px 0;
   font-weight: 300px;
+  
  }
 
  .form_file_field{
@@ -387,6 +398,39 @@ width: 55%;
   box-sizing: border-box;
 }
 
+.window_header{
+  background-color: var(--highlight);
+  display: flex;
+  justify-content: center;
+  margin: -11px;
+  padding: 11px;
+}
+
+.show_group_container{
+  display: flex;
+  flex-wrap:wrap;
+  max-width: 620px;
+}
+
+.user_card{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 225px;
+  min-width: 225px;
+}
+
+.user_name{
+  margin: 5px;
+}
+
+.user_pp{
+  max-width: 75px;
+  min-width: 75px;
+  max-height: 75px;
+  min-height: 75px;
+}
+
 
  /* IDs */
 
@@ -454,7 +498,24 @@ width: 55%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 100%
+  max-width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+ }
+
+ #user_header{
+  flex: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 10px 0 5px;
+ }
+
+ #user_header h1{
+  color: var(--textSecondary);
+  margin-left: -5px;
  }
 
  #show_group_page{
@@ -481,6 +542,7 @@ width: 55%;
   flex: 0;
   box-sizing: border-box;
   margin: 5px;
+  user-select: none;
 }
 
 #group_container h1{
@@ -490,12 +552,37 @@ width: 55%;
 #group_details{
   display: flex;
   flex: 1;
+  user-select: none;
 }
 
 #member_title{
-  padding: 5px;
+  padding: 10px;
   box-sizing: border-box;
-  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#group_item_header{
+  background-color: var(--highlight);
+  color: var(--textHighlight);
+  align-self: center;
+}
+
+#member_title{
+  align-self: center;
+}
+
+#member_expand{
+  vertical-align: text-bottom;
+}
+
+#member_list{
+  display: flex;
+  margin: 10px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
  /* Conditional */
