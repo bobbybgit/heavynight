@@ -1,6 +1,11 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: %i[ show edit update destroy ]
 
+  def calendar
+    @today = Date.today
+    @date = Date.new(today.year, today.month, 1)
+  end 
+
   # GET /groups or /groups.json
   def index
     @groups = Group.all.order(:name)
@@ -8,6 +13,8 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
+    @today = Date.today
+    @date = Date.new(@today.year, @today.month, 1)
   end
 
   # GET /groups/new

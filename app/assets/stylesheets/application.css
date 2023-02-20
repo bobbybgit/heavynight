@@ -409,7 +409,34 @@ width: 55%;
 .show_group_container{
   display: flex;
   flex-wrap:wrap;
-  max-width: 620px;
+  max-width: 930px;
+}
+
+.week_days{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cal_days{
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.cal_day, .non_day, .day_header{
+  min-height: 35px;
+  max-height: 35px;
+  min-width: 35px;
+  max-width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .user_card{
@@ -433,6 +460,23 @@ width: 55%;
 
 .page_title{
   margin: 0 0 20px 0;
+}
+
+.calendar_window{
+  padding: 10px;
+  border: 2px solid var(--highlight);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 0;
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 300px;
+  min-height: 300px;
+  flex: 0;
+  box-sizing: border-box;
+  margin: 5px;
+  user-select: none;
 }
 
 
@@ -565,15 +609,12 @@ width: 55%;
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-#group_item_header{
-  background-color: var(--highlight);
-  color: var(--textHighlight);
   align-self: center;
 }
 
-#member_title{
+#group_item_header, #calendar_header{
+  background-color: var(--highlight);
+  color: var(--textHighlight);
   align-self: center;
 }
 

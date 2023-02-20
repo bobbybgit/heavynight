@@ -18,10 +18,10 @@
     <%= group.description %>
   </p>
   
-
   </div><!-- group_container -->
-
-</div><!-- show_group_container -->
+  <div class="container calendar_window">
+    <%= render 'calendars/calendar', date: @date %>
+  </div>
 <div id="member_title">
 <h3>Members<i class="icon" id="member_expand">expand_less</i></h3>
 </div><!-- member_title -->
