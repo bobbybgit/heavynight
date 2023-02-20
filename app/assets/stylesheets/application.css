@@ -431,6 +431,10 @@ width: 55%;
   min-height: 75px;
 }
 
+.page_title{
+  margin: 0 0 20px 0;
+}
+
 
  /* IDs */
 
@@ -445,7 +449,7 @@ width: 55%;
 
  #logo{
   flex: auto;
-  padding: 20px;
+  padding: 20px 0 20px 20px;
   user-select: none;
   color: var(--textSecondary)
  }
@@ -583,6 +587,7 @@ width: 55%;
   box-sizing: border-box;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%
 }
 
  /* Conditional */

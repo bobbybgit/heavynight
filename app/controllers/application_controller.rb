@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def generateCal
+    currentDate = Time.now 
+  end
+
   protected
   
   def configure_permitted_parameters
