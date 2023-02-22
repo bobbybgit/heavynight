@@ -1,11 +1,8 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: %i[ show edit update destroy ]
+  # helper_method :get_memberships
 
-  def calendar
-    @today = Date.today
-    @date = Date.new(today.year, today.month, 1)
-  end 
-
+  
   # GET /groups or /groups.json
   def index
     @groups = Group.all.order(:name)
@@ -35,6 +32,8 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save 
         membership = current_user.memberships.new(:group_id => @group.id)
+        puts "THE COUNT IS #{@group.users.count}"
+        @group.users.count == 0? membership[:admin] = true : membership[:admin] = false
         membership.save
         format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }

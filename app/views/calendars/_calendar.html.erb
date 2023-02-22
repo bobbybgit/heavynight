@@ -1,13 +1,28 @@
 <% @date = date %>
 
 <div class="window_header">
-    <h2 class ="item_header" id="calendar_header">
-        <%= Date::MONTHNAMES[@date.month] %>
-    </h2>
+    <div class="icon container cal_prev">chevron_left</div>
+    <div class="container calendar_title">
+        <h3 class ="item_header" id="calendar_header">
+            <%= Date::MONTHNAMES[@date.month] %>
+        </h3>
+        <h4 class = "item_header" id="calendar_year">
+            <%= @date.year %>
+        </h4>
+    </div>
+    <div class="icon container cal_next">chevron_right</div>
+
 </div>
 <div class="cal_days">
+<div class="day_header">Su</div>
+<div class="day_header">Mo</div>
+<div class="day_header">Tu</div>
+<div class="day_header">We</div>
+<div class="day_header">Th</div>
+<div class="day_header">Fr</div>
+<div class="day_header">Sa</div>
 
-<% (0..@date.beginning_of_month.wday).each do |nonDay| %>
+<% (0..(@date.beginning_of_month.wday-1)).each do |nonDay| %>
 <div class="non_day">
 </div>
 <% end %>
@@ -16,8 +31,9 @@
     <%= day.day %>
 </div>
 <% end %>
-<% (@date.end_of_month.wday..6).each do | nonDay | %>
+<% (@date.end_of_month.wday..7).each do | nonDay | %>
 <div class="non_day">
 </div>
-</div>
 <% end %>
+</div>
+

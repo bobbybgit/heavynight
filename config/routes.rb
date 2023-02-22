@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+   
+
 
     get '/calendars/increase/:date', to: 'calendar#increase', as: 'calendar_increase'
     get '/calendars/decrease/:date', to: 'calendar#decrease', as: 'calendar_decrease'

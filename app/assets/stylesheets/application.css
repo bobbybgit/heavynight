@@ -401,9 +401,22 @@ width: 55%;
 .window_header{
   background-color: var(--highlight);
   display: flex;
-  justify-content: center;
-  margin: -11px;
+  justify-content: space-evenly;
+  margin: -11px -11px 0 -11px;
   padding: 11px;
+}
+
+.calendar_title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cal_prev, .cal_next{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--textHighlight);
 }
 
 .show_group_container{
@@ -452,10 +465,10 @@ width: 55%;
 }
 
 .user_pp{
-  max-width: 75px;
-  min-width: 75px;
-  max-height: 75px;
-  min-height: 75px;
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px;
 }
 
 .page_title{
@@ -467,7 +480,6 @@ width: 55%;
   border: 2px solid var(--highlight);
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   flex: 0;
   max-width: 300px;
   min-width: 300px;
@@ -593,8 +605,9 @@ width: 55%;
   user-select: none;
 }
 
-#group_container h1{
+#group_container h2{
   margin:0;
+  padding: 6px;
 }
 
 #group_details{
@@ -612,11 +625,12 @@ width: 55%;
   align-self: center;
 }
 
-#group_item_header, #calendar_header{
+#group_item_header, #calendar_header, #calendar_year{
   background-color: var(--highlight);
   color: var(--textHighlight);
   align-self: center;
 }
+
 
 #member_expand{
   vertical-align: text-bottom;

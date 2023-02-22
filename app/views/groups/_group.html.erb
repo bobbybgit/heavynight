@@ -31,6 +31,10 @@
     <%= image_tag("default_group_pp", :class =>"user_pp") %>
     <div class="user_name">
     <%= "#{user.first_name} #{user.surname}" %>
+    <%= puts group.admin_status(user) %>
+    <% if (group.admin_status(user)) %>
+    admin
+    <% end %>
     </div><!-- user_name -->
     </div><!-- user_card -->
   <% end %>

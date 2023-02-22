@@ -1,10 +1,8 @@
 class MembershipsController < ApplicationController
 
     def new 
-        @membership = current_user.memberships.new(:group_id => params[:group_id])
-        group = Group.find_by id: params[:group_id]
-    
-        respond_to do |format|
+            
+          respond_to do |format|
           if @membership.save
             format.html { redirect_to group_url(group), notice: "You have joined #{group.name}." }
             format.json { render "groups/#{params[:group_id]}", status: :created, location: @group }
@@ -14,6 +12,7 @@ class MembershipsController < ApplicationController
           end
         end
       end
+    end
 
       def destroy
         @membership = Membership.find_by id: params[:id]
@@ -26,5 +25,10 @@ class MembershipsController < ApplicationController
           format.json { head :no_content }
         end
       end
+
+      def membership_params
+        params.require(:membership).permit(:group_id, :user_id, :admin)
+      end
+
 
 end
