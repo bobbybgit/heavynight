@@ -18,16 +18,13 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/calendars/_calendar', to: 'calendars#new', as: 'calendar_new'
    
+  get "pages/dashboard", to: "pages#dashboard"
 
+  get "groups/memberships/remove_admin/:id", to: 'memberships#remove_admin', as: 'remove_admin'
 
-    get '/calendars/increase/:date', to: 'calendar#increase', as: 'calendar_increase'
-    get '/calendars/decrease/:date', to: 'calendar#decrease', as: 'calendar_decrease'
-    get '/calendars/_calendar', to: 'calendars#new', as: 'calendar_new'
-  
-
-  
-    get "pages/dashboard", to: "pages#dashboard"
+  get "groups/memberships/add_admin/:id", to: 'memberships#add_admin', as: 'add_admin'
 
   root "pages#dashboard"
 

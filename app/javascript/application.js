@@ -13,12 +13,12 @@ window.initMap = function () {
   }
 
 document.addEventListener('turbo:load',function(){
-    console.log('load')
 
-    const activeTabStorage = localStorage.getItem('currentTab')
+    console.log("load");
+
+    let activeTabStorage = parseInt(localStorage.getItem('currentTab'));
+
     let tabs = document.querySelectorAll(".tab");
-
-    let country = document.getElementById("country")
 
     let groupExpand = document.getElementById("member_title")
 
@@ -35,18 +35,19 @@ document.addEventListener('turbo:load',function(){
             membersArrow.innerHTML = "expand_less";
         }
     }
+
     if (groupExpand){
         console.log(groupExpand)
         groupExpand.addEventListener("click", expandMembers)
     }
-
-    if(activeTabStorage){
+    
+    if(!activeTabStorage.isNaN){
         tabs[activeTabStorage].style.borderBottomColor = "var(--highlight)"
         console.log(activeTabStorage)
     }
 
     let newGroupBtn = document.getElementById("new_group_button");
-    console.log(newGroupBtn)
+    
     if (newGroupBtn){newGroupBtn.addEventListener("click", function(){
         tabs.forEach((tab, pos, tabsPassed) => {
             if (pos === 0){
@@ -59,7 +60,7 @@ document.addEventListener('turbo:load',function(){
     })
     }
 
-
+    
     tabs.forEach((tab, pos, tabsPassed) => {
         tab.addEventListener("click", function(){
             tabs.forEach((tabStyle) => {

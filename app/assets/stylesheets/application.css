@@ -642,7 +642,8 @@ width: 55%;
   box-sizing: border-box;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%
+  width: 100%;
+  gap: 10px;
 }
 
  /* Conditional */
