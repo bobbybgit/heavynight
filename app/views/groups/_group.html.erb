@@ -28,7 +28,7 @@
   <div id="member_list">
   <% group.users.each do |user| %>
     <div class="user_card card">
-    <%= image_tag("default_group_pp", :class =>"user_pp") %>
+    <%= image_tag(user.user_image.to_s, :class =>"user_pp") %>
     <div class="user_name">
     <%= "#{user.first_name} #{user.surname}" %>
     <% if (group.admin_status(current_user)) %>

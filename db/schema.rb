@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_074718) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_073047) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -124,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_074718) do
     t.string "surname"
     t.string "profile_image"
     t.boolean "site_admin"
+    t.string "user_image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
