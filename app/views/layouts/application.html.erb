@@ -36,7 +36,9 @@
         <div id="layout_tab_1">Groups</div>
       <% end %>
       <div class="tab tab_2" id="layout_tab_2">Events</div>
-      <div class="tab tab_3" id="layout_tab_3">Games</div>
+      <%= link_to games_path, :class => "tab tab_3 strip_link" do %>
+        <div id="layout_tab_3">Games</div>
+      <% end %>
       <div class="tab tab_4" id="layout_tab_4">Venues</div>
     </div><!-- layout_tab_bar -->
       <div class="window" id="content_window">

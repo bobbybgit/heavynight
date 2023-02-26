@@ -2,14 +2,14 @@ class MembershipsController < ApplicationController
 
     def remove_admin
       @membership = Membership.find_by id: params[:id]
-      @membership[:admin] == false
+      @membership[:admin] = false
       @membership.save
       redirect_to group_url(Group.find_by_id(@membership[:group_id]))
     end
 
     def add_admin
       @membership = Membership.find_by id: params[:id]
-      @membership[:admin] == true
+      @membership[:admin] = true
       @membership.save
       redirect_to group_url(Group.find_by_id(@membership[:group_id]))
     end

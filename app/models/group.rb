@@ -19,7 +19,7 @@ class Group < ApplicationRecord
   end
 
   def admin_status(user)
-    if (membership = Membership.where(user_id: user.id).first)
+    if (membership = memberships.where(user_id: user.id).first)
       puts "USER ID #{membership[:user_id]}"
       membership[:admin]
     else

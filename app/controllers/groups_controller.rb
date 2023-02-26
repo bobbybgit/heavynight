@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   
   # GET /groups or /groups.json
   def index
-    @groups = Group.all.order(:name)
+    @groups = Group.all.order('LOWER(name)')
   end
 
   # GET /groups/1 or /groups/1.json
@@ -32,7 +32,6 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save 
         membership = current_user.memberships.new(:group_id => @group.id)
-        puts "THE COUNT IS #{@group.users.count}"
         @group.users.count == 0? membership[:admin] = true : membership[:admin] = false
         membership.save
         format.html { redirect_to group_url(@group), notice: "Group was successfully created." }

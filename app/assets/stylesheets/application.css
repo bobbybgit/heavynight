@@ -568,6 +568,17 @@ width: 55%;
   margin-bottom: 20px;
  }
 
+ #games_content{
+  display: flex;
+  flex-wrap: none;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+ }
+
  #user_header{
   flex: 0;
   box-sizing: border-box;

@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Games</h1>
+<div class="section_contents container" id="games_content">
+<h2 id="games_header">My Games</h2>
 
 <div id="games">
   <% @games.each do |game| %>
@@ -11,4 +11,5 @@
   <% end %>
 </div>
 
-<%= link_to "New game", new_game_path %>
+<%= button_to "Add game", new_game_path, :class => "strip_link square_button", :method => :get %>
+</div>

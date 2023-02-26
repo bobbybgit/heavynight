@@ -23,7 +23,15 @@
     <%= render 'calendars/calendar', date: @date %>
   </div>
 <div id="member_title">
-<h3>Members<i class="icon" id="member_expand">expand_less</i></h3>
+<h3>
+  <%= group.member_count %>
+   <% if group.member_count != 1 %>
+    Members
+    <% else %>
+    Member
+   <% end %>
+   <i class="icon" id="member_expand">expand_less</i>
+</h3>
 </div><!-- member_title -->
   <div id="member_list">
   <% group.users.each do |user| %>
@@ -34,11 +42,11 @@
     <% if (group.admin_status(current_user)) %>
       <% if (group.admin_status(user) && user.id != current_user.id) %>
         <div class="admin_add_remove">
-          <%= link_to "Remove as admin", remove_admin_path(user) %>
+          <%= link_to "Remove as admin", remove_admin_path(group.get_membership(user)) %>
         </div> <!-- admin_add_remove -->
       <% elsif (!group.admin_status(user)) %>
         <div class="admin_add_remove">
-          <%= link_to "Make admin", add_admin_path(user) %>
+          <%= link_to "Make admin", add_admin_path(group.get_membership(user)) %>
         </div> <!-- admin_add_remove-->
       <% end %>
     <% end %>
