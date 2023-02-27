@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+    require 'bgg'
+
     before_action :authenticate_user!
     before_action :configure_permitted_parameters, if: :devise_controller?
      # Overwriting the sign_out redirect path method

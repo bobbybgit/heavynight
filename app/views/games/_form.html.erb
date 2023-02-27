@@ -1,72 +1,21 @@
-<%= form_with(model: game) do |form| %>
-  <% if game.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
-
-      <ul>
-        <% game.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<div class="container section_contents" id="new_game_container">
+    <div class="container search_results">
+        <% @search_results_games.each_with_index do |game, i| %>
+        <div class="game_card card">
+            <div class="game_image">
+            <% puts game.name; puts game.id %>
+                <%= image_tag game.game.image %>
+            </div>
+            <div class="container game_name">
+               <h4> <%= game.name %></h4>
+            </div>
+            <div class="game_year">
+            <% puts game.name; puts game.id; puts game.type %>
+                <%= game.game.year_published %>
+            </div>
+        </div>
         <% end %>
-      </ul>
     </div>
-  <% end %>
+</div>
 
-  <div>
-    <%= form.label :bgg_id, style: "display: block" %>
-    <%= form.number_field :bgg_id %>
-  </div>
-
-  <div>
-    <%= form.label :min_player_count, style: "display: block" %>
-    <%= form.number_field :min_player_count %>
-  </div>
-
-  <div>
-    <%= form.label :max_player_count, style: "display: block" %>
-    <%= form.number_field :max_player_count %>
-  </div>
-
-  <div>
-    <%= form.label :min_rec_player_count, style: "display: block" %>
-    <%= form.number_field :min_rec_player_count %>
-  </div>
-
-  <div>
-    <%= form.label :max_rec_player_count, style: "display: block" %>
-    <%= form.number_field :max_rec_player_count %>
-  </div>
-
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div>
-    <%= form.label :weight, style: "display: block" %>
-    <%= form.text_field :weight %>
-  </div>
-
-  <div>
-    <%= form.label :rating, style: "display: block" %>
-    <%= form.text_field :rating %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :venue_id, style: "display: block" %>
-    <%= form.text_field :venue_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+ 

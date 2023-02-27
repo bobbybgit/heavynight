@@ -1,0 +1,11 @@
+<h2>Add Game</h2>
+
+<div class = "search_bar" id="games_search">
+<%= form_with url: new_game_path, :method => :get do |form| %>
+<%= form.text_field :search_string, :class => "search_input", :placeholder =>"Search..." %>
+<%= form.submit :class => "search_button strip_link square_button" do %>
+ <i class="icon">search</i>
+ <% end %>
+<% end %>
+
+ </div>

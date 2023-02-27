@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   resources :event_settings
   resources :sessions
   resources :locations
-  resources :games
+  resources :games do
+    collection do
+      get 'add'
+    end
+  end
+
   resources :venues
   resources :events
   resources :groups
@@ -20,6 +25,8 @@ Rails.application.routes.draw do
     resources :memberships do
     end
   end
+
+  
 
   get '/calendars/_calendar', to: 'calendars#new', as: 'calendar_new'
    

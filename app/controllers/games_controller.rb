@@ -1,5 +1,10 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
+  require 'bgg'
+
+
+  def add
+  end 
 
   # GET /games or /games.json
   def index
@@ -13,6 +18,17 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @search_results =  Bgg::Search.query(params[:search_string])
+    @search_results_games = @search_results
+    @search_results.reverse_each do |result|
+      if result.type != "boardgame"
+        @search_results_games.reverse_each do |game|
+          if game.id == result.id
+             @search_results_games.delete(game)
+          end
+        end
+      end
+    end
   end
 
   # GET /games/1/edit
