@@ -3,15 +3,13 @@
         <% @search_results_games.each_with_index do |game, i| %>
         <div class="game_card card">
             <div class="game_image">
-            <% puts game.name; puts game.id %>
                 <%= image_tag game.game.image %>
             </div>
             <div class="container game_name">
-               <h4> <%= game.name %></h4>
+               <h5> <%= "#{game.name} (#{game.year_published})" %></h5>
             </div>
             <div class="game_year">
-            <% puts game.name; puts game.id; puts game.type %>
-                <%= game.game.year_published %>
+            <%= button_to "Add Game", :class => "strip_link square_button" %>
             </div>
         </div>
         <% end %>

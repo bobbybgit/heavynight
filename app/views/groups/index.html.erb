@@ -1,15 +1,23 @@
- <h2 class="page_title">Groups</h2>
- <div class="section_contents container" id="groups_content">
+ 
+ <div class="card_contents container" id="groups_content">
     <% @groups.each do |group| %>
       <%if !group.private %>
         <%= link_to group, :class => "strip_link" do %>
           <div class="card group_card">
-            <div class="container profile_image group_profile_image"><%= image_tag(group.image_url.to_s, :class => "image_100") %></div>
-            <div class="container group_card_details">
+            <div class="container profile_image group_profile_image">
+              <%= image_tag(group.image_url.to_s, :class => "image_150") %>
+            </div><!-- group_profile_image -->
+            <div class="container group_card_title">
               <h4 class="group_name"><%= group.name.upcase %></h4>
-              <h5><%= group.location.length < 25 ? group.location : group.location[0,26]+"..." %></h5>
-              <p><%= group.description.length < 50 ? group.description: group.description[0,51]+" ..." %></p> 
-            </div><!-- group_card_details -->  
+              <div class="member_number_container container">
+                <%= image_tag "meep_icon.gif", :class => "meep_icon" %>
+                <%= group.member_count %>
+              </div><!-- member_number_container -->
+            </div> <!-- group_card_title -->
+            <div class="group_card_loc_container">
+              <i class="icon group_card_loc">place</i>
+              <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
+            </div><!-- grou_card_loc_container -->
           </div><!-- group_card -->
         <% end %><!-- link_to do -->
       <% end %><!-- if private -->
