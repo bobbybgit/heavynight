@@ -18,6 +18,10 @@ class Group < ApplicationRecord
     member = memberships.where(user_id: user.id).first
   end
 
+  def check_groups_shown(user)
+    memberships.any? {|member| member.user_id = user.id} 
+  end
+
   def admin_status(user)
     if (membership = memberships.where(user_id: user.id).first)
       puts "USER ID #{membership[:user_id]}"

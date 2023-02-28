@@ -1,4 +1,35 @@
- 
+ <div class = "filter_box container" id = "group_filter_box">
+  <div class = "filter_box_top">
+    Currently showing
+    <% check = 0 %>
+    <% @groups.each do |group| %>
+      <% check = check + 1 if !group.check_groups_shown(current_user) %>
+    <% end %>
+    <% if check == @groups.count %>
+      all groups
+      <%= button_to "Show My Groups", :class => "square_button strip_link" %>
+    <% else %>
+        my groups 
+      <%= button_to "Show All Groups", :class => "square_button strip_link" %>
+    <% end %>
+  </div><!-- filter_box_top -->
+  <div class="filter_box_bottom">
+  Show all groups within
+  <select name="distance">
+    <option value="2">2 miles</option>
+    <option value="5">5 miles</option>
+    <option value="10">10 miles</option>
+    <option value="15">15 miles</option>
+    <option value="20">20 miles</option>
+    <option value="25">25 miles</option>
+    <option value="50">50 miles</option>
+    <option value="100">100 miles</option>
+  </select>
+    of 
+   <input type="text" placeholder="Choose location">
+   <%= button_to "Search", :class => "square_button strip_link" %>
+  </div><!--filter_box_bottom-->
+</div> <!-- group_filter_box -->
  <div class="card_contents container" id="groups_content">
     <% @groups.each do |group| %>
       <%if !group.private %>
