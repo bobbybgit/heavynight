@@ -3,15 +3,16 @@ Rails.application.routes.draw do
   resources :event_settings
   resources :sessions
   resources :locations
+  resources :venues
+  resources :events
+  resources :groups
+
   resources :games do
     collection do
       get 'add'
     end
   end
 
-  resources :venues
-  resources :events
-  resources :groups
   devise_for :users
 
   devise_scope :user do

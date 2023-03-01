@@ -19,7 +19,7 @@ class Group < ApplicationRecord
   end
 
   def check_groups_shown(user)
-    memberships.any? {|member| member.user_id = user.id} 
+    memberships.any? {|member| member.user_id == user.id} 
   end
 
   def admin_status(user)

@@ -1,19 +1,26 @@
+ <div class="container" id="group_index">
  <div class = "filter_box container" id = "group_filter_box">
   <div class = "filter_box_top">
+  <div>
     Currently showing
     <% check = 0 %>
     <% @groups.each do |group| %>
       <% check = check + 1 if !group.check_groups_shown(current_user) %>
+      <% puts group.name %>
+      <% puts check %>
     <% end %>
-    <% if check == @groups.count %>
+    <% if check != 0 %>
       all groups
-      <%= button_to "Show My Groups", :class => "square_button strip_link" %>
+      </div>
+          <%= button_to "Show My Groups", groups_path, params: {all: false}, :method => :get, :class => "square_button strip_link" %>
     <% else %>
         my groups 
-      <%= button_to "Show All Groups", :class => "square_button strip_link" %>
+        </div>
+          <%= button_to "Show All Groups", groups_path, params: {all: true}, :method => :get, :class => "square_button strip_link" %>
     <% end %>
   </div><!-- filter_box_top -->
   <div class="filter_box_bottom">
+  <div>
   Show all groups within
   <select name="distance">
     <option value="2">2 miles</option>
@@ -27,6 +34,7 @@
   </select>
     of 
    <input type="text" placeholder="Choose location">
+   </div>
    <%= button_to "Search", :class => "square_button strip_link" %>
   </div><!--filter_box_bottom-->
 </div> <!-- group_filter_box -->
@@ -58,3 +66,4 @@
 <%= button_to new_group_path, :class => "square_button strip_link",  :id => "new_group_button", :method => :get do %>
 <i class="icon" id="new_group_icon">group_add</i> New Group
 <% end %>
+</div>

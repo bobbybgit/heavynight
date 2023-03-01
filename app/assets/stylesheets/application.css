@@ -25,6 +25,7 @@
     --secondaryhighlight: #3772FF;
     --tertiary: #EFEFEF;
     --highlight: #FF703C;
+    --highlightDark: #DD501A;
     --textMain: #000000;
     --textSecondary: #FFFFFF;
     --textHighlight: #FFFFFF;
@@ -33,6 +34,7 @@
 
   *{
     box-sizing: border-box;
+    /* border: solid 2px red; */
   }
 
  
@@ -136,12 +138,13 @@
     background-color: inherit;
     display: flex;
     user-select: none;
+    margin: 0;
  }
 
  .card_container{
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 100%;
+  max-width: 90%;
   justify-content: center;
  }
  
@@ -197,6 +200,7 @@
    min-height: 20px;
    align-items: center;
    min-width: 100%;
+   max-width: 100%;
    padding: 0;
    margin: 0;
    user-select: none;
@@ -217,7 +221,6 @@
    display: flex;
    justify-content: center;
    user-select: none;
-   box-sizing: border-box;
    min-width: 0;
  }
  .tab:active{
@@ -254,7 +257,6 @@
   display: flex;
   align-items: center;
   font-size: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
   background-color: var(--highlight);
@@ -499,18 +501,26 @@ width: 55%;
 
 .filter_box_top, .filter_box_bottom{
   display: flex;
-  margin: 5px;
+  margin: 10px;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%
+}
+
+.filter_box_top div, .filter_box_bottom div{
+  flex: auto;
 }
 .filter_box{
-  min-height: 75px;
+  border-radius: 5px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: var(--tertiary);
-  padding: 10px;
+  padding: 30px 10%;
   margin: 0 5px 20px 5px;
+  width: 95%
 }
 
 .calendar_window{
@@ -624,27 +634,20 @@ width: 55%;
  }
 
  #content_window{
-   padding: 5px;
+   padding: 0;
    flex: 1;
    flex-direction: column;
    align-items: center;
    max-width: 100%;
  }
 
- #sidebar{
-   min-width: 300px;
-   max-width: 300px;
-   flex: 0;
-   padding-top: 70px
- }
-
  #footer{
    justify-content: center;
-   box-sizing: border-box;
-   padding: 10px;
+   padding: 10px 0;
  }
 
  #new_group_icon, #delete_group_icon, #edit_group_icon{
+  box-sizing: content-box;
   padding-right: 10px;
  }
 
@@ -662,7 +665,7 @@ width: 55%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 100%;
+  max-width: 95%;
   justify-content: center;
   margin-bottom: 20px;
  }
@@ -762,6 +765,12 @@ width: 55%;
 
 #delete_profile_button{
   background-color: black;
+}
+
+#group_index{
+  flex-direction: column;
+  max-width:100%;
+  align-items: center;
 }
 
  /* Conditional */

@@ -5,7 +5,16 @@ class GroupsController < ApplicationController
   
   # GET /groups or /groups.json
   def index
-    @groups = Group.all.order('LOWER(name)')
+    pp params
+    if params[:all] == "true"
+      @groups = Group.all.order('LOWER(name)')
+      puts "all groups"
+      puts @groups.count
+    else
+      @groups = User.find_by(id:current_user.id).groups
+      puts "my groups"
+      puts @groups.count
+    end
   end
 
   # GET /groups/1 or /groups/1.json
@@ -77,7 +86,7 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:name,:location, :longitude, :latitude, :description, :private, :image)
+      params.require(:group).permit(:name,:location, :longitude, :latitude, :description, :private, :image, :all)
     end
 end
 
