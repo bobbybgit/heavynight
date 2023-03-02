@@ -35,7 +35,7 @@
     <%= link_to root_path, :class => "tab tab_1 strip_link" do %>
         <div id="layout_tab_1">Home</div>
       <% end %>
-      <%= link_to groups_path, :class => "tab tab_2 strip_link" do %>
+      <%= link_to groups_path(all:true), :method => :get, :class => "tab tab_2 strip_link" do %>
         <div id="layout_tab_2">Groups</div>
       <% end %>
       <div class="tab tab_3" id="layout_tab_3">Events</div>

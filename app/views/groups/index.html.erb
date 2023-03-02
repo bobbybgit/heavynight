@@ -1,4 +1,5 @@
  <div class="container" id="group_index">
+
  <div class = "filter_box container" id = "group_filter_box">
   <div class = "filter_box_top">
   <div>
@@ -38,7 +39,9 @@
    <%= button_to "Search", :class => "square_button strip_link" %>
   </div><!--filter_box_bottom-->
 </div> <!-- group_filter_box -->
- <div class="card_contents container" id="groups_content">
+ 
+ <div class="card_container container" id="groups_content">
+ 
     <% @groups.each do |group| %>
       <%if !group.private %>
         <%= link_to group, :class => "strip_link" do %>

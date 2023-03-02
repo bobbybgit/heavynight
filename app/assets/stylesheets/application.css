@@ -138,14 +138,16 @@
     background-color: inherit;
     display: flex;
     user-select: none;
-    margin: 0;
+    margin: 0 10px;
  }
 
  .card_container{
   flex-wrap: wrap;
-  gap: 10px;
   max-width: 90%;
-  justify-content: center;
+  justify-content: flex-start;
+  max-width: 95%;
+  margin: 0 -10px 20px -10px
+  
  }
  
  .icon{
@@ -176,20 +178,25 @@
  .group_card_title{
   display: flex;
   justify-content: space-between;
-  padding: 0px 3px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  align-items: flex-start;
  }
 
  .group_card_loc_container{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0px 3px;
+  padding: 0;
+  width: 100%
  }
 
  .group_card_loc_container .group_card_location_text{
   color: var(--mainDark);
   font-size: 12px;
   margin-left: -4px;
+  align-items: center;
  }
 
  .bookend{
@@ -326,7 +333,7 @@ width: 55%;
   height: 250px;
   flex-direction: column;
   user-select: none;
-  flex: auto;
+  align-items: center;
 }
 
 .input_container{
@@ -505,7 +512,8 @@ width: 55%;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%
+  width: 100%;
+  max-width: 650px;
 }
 
 .filter_box_top div, .filter_box_bottom div{
@@ -516,11 +524,11 @@ width: 55%;
   min-height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   background-color: var(--tertiary);
   padding: 30px 10%;
   margin: 0 5px 20px 5px;
-  width: 95%
+  width: 100%
 }
 
 .calendar_window{
@@ -595,6 +603,7 @@ width: 55%;
 .member_number_container{
   display: flex;
   align-items:center;
+  margin: 0 2px;
 }
 
 .game_year{
@@ -662,12 +671,7 @@ width: 55%;
  }
 
  #groups_content{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 95%;
-  justify-content: center;
-  margin-bottom: 20px;
+  
  }
 
  #games_content{
@@ -771,6 +775,7 @@ width: 55%;
   flex-direction: column;
   max-width:100%;
   align-items: center;
+  margin-bottom: 20px;
 }
 
  /* Conditional */
