@@ -34,7 +34,7 @@
 
   *{
     box-sizing: border-box;
-    border: solid 2px red;
+    /* border: solid 2px red; */
   }
 
  
@@ -43,8 +43,7 @@
  body{
      display:flex;
      min-height: 100vh;
-     max-width: 100vw;
-     min-width: 100vw;
+     width: 100%;
      flex-direction: column;
      background-color: var(--main);
      font-family: 'Lato', sans-serif;
@@ -138,21 +137,16 @@
     background-color: inherit;
     display: flex;
     user-select: none;
+    margin: 0;
  }
 
- .window, .container{
-  margin: 0;
- }
-
- .card{
-  margin: 1px;
- }
-
+ 
  .card_container{
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 175px);
   justify-content: space-between;
+  grid-gap: 5px;
   width: 100%;
-  margin: 0 0 20px 0;
   
  }
  
@@ -265,7 +259,6 @@
 
 .square_button{
   padding: 12px 30px;
-  margin: 10px;
   border: none;
   display: flex;
   align-items: center;
@@ -387,7 +380,6 @@ width: 55%;
   min-height: 300px;
   flex: 0;
   box-sizing: border-box;
-  margin: 5px;
 }
 
  .group_card_details{
@@ -514,25 +506,27 @@ width: 55%;
 
 .filter_box_top, .filter_box_bottom{
   display: flex;
-  margin: 10px;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  padding: 10px;
   max-width: 650px;
 }
 
 .filter_box_top div, .filter_box_bottom div{
   flex: auto;
 }
+
 .filter_box{
   border-radius: 5px;
   min-height: 100px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   background-color: var(--tertiary);
   padding: 30px 10%;
-  margin: 0 5px 20px 5px;
+  margin-bottom: 20px;
   width: 100%;
 }
 
@@ -553,9 +547,9 @@ width: 55%;
 }
 
 .meep_icon{
-  height: 0.85rem;
+  height: 1.3rem;
   width: auto;
-  margin: 2px;
+  padding: 2px;
 }
 
 .search_results{
@@ -568,8 +562,7 @@ width: 55%;
 }
 
 .search_input{
-  margin: 10px;
-  box-sizing: border-box;;
+  padding: 10px;
 }
 
 .search_bar{
@@ -608,7 +601,7 @@ width: 55%;
 .member_number_container{
   display: flex;
   align-items:center;
-  margin: 0 2px;
+  padding: 0 2px;
 }
 
 .game_year{
@@ -648,11 +641,12 @@ width: 55%;
  }
 
  #content_window{
-   padding: 0;
+   padding: 0 2%;
    flex: 1;
    flex-direction: column;
    align-items: center;
-   width: 95%;
+   max-width: 100%;
+   width: 100%;
  }
 
  #footer{
@@ -711,7 +705,7 @@ width: 55%;
  }
 
  #group_container{
-  padding: 10px;
+  padding: 15px;
   border: 2px solid var(--highlight);
   display: flex;
   flex-direction: column;
@@ -723,7 +717,6 @@ width: 55%;
   min-height: 300px;
   flex: 0;
   box-sizing: border-box;
-  margin: 5px;
   user-select: none;
 }
 
@@ -776,7 +769,16 @@ width: 55%;
   flex-direction: column;
   width:100%;
   align-items: center;
-  margin: 5px 3% 20px 3%;
+  
+}
+
+#content{
+  padding: 0 2%;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
 }
 
  /* Conditional */

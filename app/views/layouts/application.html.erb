@@ -35,24 +35,26 @@
     <%= link_to root_path, :class => "tab tab_1 strip_link" do %>
         <div id="layout_tab_1">Home</div>
       <% end %>
-      <%= link_to groups_path(all:true), :method => :get, :class => "tab tab_2 strip_link" do %>
+      <%= link_to groups_path(all:true), :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link" do %>
         <div id="layout_tab_2">Groups</div>
       <% end %>
       <div class="tab tab_3" id="layout_tab_3">Events</div>
-      <%= link_to games_path, :class => "tab tab_4 strip_link" do %>
+      <%= link_to games_path, :class => "tab tab_4 strip_link", data: {turbo_frame: "content"} do %>
         <div id="layout_tab_4">Games</div>
       <% end %>
       
     </div><!-- layout_tab_bar -->
-      <div class="window" id="content_window">
-        <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-        <% end %>
-        <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
-        <%= yield %>
-      </div><!-- content_window -->
+    <%= turbo_frame_tag "content" do %>
+        <div class="window" id="content_window">
+          <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div><!-- content_window -->
+      <% end %> <!-- content turbo frame -->
     <div class="bookend" id="footer">Contact us</div> <!-- footer -->
   </body>
 </html>
