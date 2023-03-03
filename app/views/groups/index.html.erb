@@ -22,22 +22,28 @@
     <% end %>
   </div><!-- filter_box_top -->
   <div class="filter_box_bottom">
-  <div>
+  <%= form_with url: games_path, :method => :get, data:{turbo_frame: "content"} do |form| %>
   Show all groups within
-  <select name="distance">
-    <option value="2">2 miles</option>
-    <option value="5">5 miles</option>
-    <option value="10">10 miles</option>
-    <option value="15">15 miles</option>
-    <option value="20">20 miles</option>
-    <option value="25">25 miles</option>
-    <option value="50">50 miles</option>
-    <option value="100">100 miles</option>
-  </select>
+  <%= form.select :distance, options_for_select(['2 miles', '5 miles', '10 miles', '20 miles', '50 miles', '100 miles']) %>
+  
     of 
-   <input type="text" placeholder="Choose location">
-   </div>
-   <%= button_to "Search", :class => "square_button strip_link" %>
+
+    <div class="form_section" data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field(:location,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
+    <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
+    <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
+  </div>
+  <input type="hidden" data-places-target="city" />
+  <input type="hidden" data-places-target="streetNumber" />
+  <input type="hidden" data-places-target="route" />
+  <input type="hidden" data-places-target="county" />
+  <input type="hidden" data-places-target="state" />
+  <input type="hidden" data-places-target="postalCode" />
+  <input type="hidden" data-places-target="country" />
+
+   <%= form.submit "Search", :class => "square_button strip_link" %>
+   <% end %>
   </div><!--filter_box_bottom-->
 </div> <!-- group_filter_box -->
  
