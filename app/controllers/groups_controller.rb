@@ -5,15 +5,15 @@ class GroupsController < ApplicationController
   
   # GET /groups or /groups.json
   def index
+
     pp params
-    if params[:all] == "true"
-      @groups = Group.all.order('LOWER(name)')
-      puts "all groups"
-      puts @groups.count
+    @all_groups = Group.all.order('LOWER(name)')
+    if params[:all] == "1"
+      pp "SHOW MY"
+      @groups = Group.mine(current_user.id).order('LOWER(name)')
     else
-      @groups = User.find_by(id:current_user.id).groups
-      puts "my groups"
-      puts @groups.count
+      @groups = Group.all.order('LOWER(name)')
+      @groups = @groups.where(private: false)
     end
   end
 

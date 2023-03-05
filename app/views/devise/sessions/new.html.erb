@@ -14,9 +14,12 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="form_section" id="remember_me_form_section">
+    <%= f.label :remember_me, style: "display:block" %>
+      <div class="check_wrapper">
+      <%= f.check_box :remember_me, :class => "check", :id => "remember_me_switch" %>
+      <label for="remember_me_switch"></label>
+      </div> <!-- check wrapper -->
     </div>
   <% end %>
 

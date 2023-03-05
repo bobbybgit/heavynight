@@ -4,53 +4,56 @@
  <div class = "filter_box container" id = "group_filter_box">
   <div class = "filter_box_top">
   <div>
-    Currently showing
-    <% check = 0 %>
-    <% @groups.each do |group| %>
-      <% check = check + 1 if !group.check_groups_shown(current_user) %>
-      <% puts group.name %>
-      <% puts check %>
-    <% end %>
-    <% if check != 0 %>
-      all groups
-      </div>
-          <%= button_to "Show My Groups", groups_path, params: {all: false}, :method => :get, :class => "square_button strip_link" %>
-    <% else %>
-        my groups 
+    Showing
+    
+    <% if @groups == @all_groups.mine(current_user.id) %>
+     <i class="colour">my</i> groups 
         </div>
-          <%= button_to "Show All Groups", groups_path, params: {all: true}, :method => :get, :class => "square_button strip_link" %>
+          <%= button_to "All Groups", groups_path, params: {all: 0}, :method => :get, :class => "square_button strip_link my_all_groups_btn" %>
+    <% else %>
+        <i class="colour">all</i> groups
+      </div>
+          <%= button_to "My Groups", groups_path, params: {all: 1}, :method => :get, :class => "square_button strip_link my_all_groups_btn" %>
     <% end %>
   </div><!-- filter_box_top -->
-  <div class="filter_box_bottom">
-  <%= form_with url: games_path, :method => :get, data:{turbo_frame: "content"} do |form| %>
-  Show all groups within
-  <%= form.select :distance, options_for_select(['2 miles', '5 miles', '10 miles', '20 miles', '50 miles', '100 miles']) %>
-  
-    of 
-
-    <div class="form_section" data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field(:location,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
-    <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
-    <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
-  </div>
-  <input type="hidden" data-places-target="city" />
-  <input type="hidden" data-places-target="streetNumber" />
-  <input type="hidden" data-places-target="route" />
-  <input type="hidden" data-places-target="county" />
-  <input type="hidden" data-places-target="state" />
-  <input type="hidden" data-places-target="postalCode" />
-  <input type="hidden" data-places-target="country" />
-
-   <%= form.submit "Search", :class => "square_button strip_link" %>
-   <% end %>
-  </div><!--filter_box_bottom-->
+  <%= form_with url: games_path, :id => "filter_form_groups", :method => :get, data:{turbo_frame: "content"} do |form| %>
+    
+    Show all groups within
+    <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>
+     
+      
+    of
+    <div class="filter_section", :id = "form_section_loc_filter", data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
+        <%= form.text_field(:loc_filter,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
+        <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
+        <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
+      </div><!-- form_section_loc_filter -->
+    <input type="hidden" data-places-target="city" />
+    <input type="hidden" data-places-target="streetNumber" />
+    <input type="hidden" data-places-target="route" />
+    <input type="hidden" data-places-target="county" />
+    <input type="hidden" data-places-target="state" />
+    <input type="hidden" data-places-target="postalCode" />
+    <input type="hidden" data-places-target="country" />
+    <%= form.button nil, :class => "square_button strip_link", :id => "group_filter_search_btn" do%>
+      <i class="icon">search</i>
+    <% end %><!-- search button -->
+   <% end %><!-- form -->
+    <%= form_with url: groups_path, :class => "filter_box_bottom", :id => "search_form_groups", :method => :get, data:{turbo_frame: "content"} do |search_form| %>
+   Search for groups:
+   <%= search_form.text_field :search_string, :placeholder => "Enter name", :id => "group_search_box" %>
+   <%= search_form.button nil, :class => "square_button strip_link", :id => "group_search_btn" do %>
+      <i class="icon">search</i>
+    <% end %><!-- search button -->
+    <% end %><!-- form -->
+   
 </div> <!-- group_filter_box -->
  
  <div class="card_container container" id="groups_content">
+ <%= simple_format("No groups to show") if @groups.empty? %>
+ 
  
     <% @groups.each do |group| %>
-      <%if !group.private %>
         <%= link_to group, :class => "strip_link" do %>
           <div class="card group_card">
             <div class="container profile_image group_profile_image">
@@ -69,12 +72,11 @@
             </div><!-- grou_card_loc_container -->
           </div><!-- group_card -->
         <% end %><!-- link_to do -->
-      <% end %><!-- if private -->
     <% end %><!-- groups.each do -->
   </div><!--groups_content -->
 
-<%= button_to new_group_path, :class => "square_button strip_link",  :id => "new_group_button", :method => :get do %>
-<i class="icon" id="new_group_icon">group_add</i> New Group
+<%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get do %>
+<i class="icon" id="new_group_icon">add</i>
 <% end %>
 </div>
 <% end %> <!-- content turbo_frame -->

@@ -76,10 +76,9 @@
   form input[type=email], form input[type=text], form input[type=password]{
   outline:none;
   height: 2rem;
-  border: none var(--highlight) 2px;
-  border-bottom: solid var(--highlight) 2px;
+  border: solid var(--secondary) 2px;
   max-width: 100%;
-  background-color: var(--tertiary);
+  background-color: var(--main);
   margin: 3px 0;
   width: 300px;
  }
@@ -107,7 +106,7 @@
 
  select{
   height: 2rem;
-  border: var(--mainDark) solid 2px;
+  border: var(--secondary) solid 2px;
   font-size: 14px;
   font-family: 'Lato', sans-serif;
  }
@@ -132,6 +131,11 @@
   color: inherit;
  }
 
+ .colour{
+  color: var(--secondaryhighlight);
+  font-style: normal;
+ }
+
  .window, .card, .container{
     padding:0;
     background-color: inherit;
@@ -143,7 +147,7 @@
  
  .card_container{
   display: grid;
-  grid-template-columns: repeat(auto-fill, 175px);
+  grid-template-columns: repeat(auto-fill, 150px);
   justify-content: space-between;
   grid-gap: 5px;
   width: 100%;
@@ -165,7 +169,7 @@
   -webkit-font-smoothing: antialiased;
   flex: auto;
   padding:0;
-  max-width: 20px;
+  max-width: 100%;
 }
 
  /* Specific Classes */
@@ -259,6 +263,8 @@
 
 .square_button{
   padding: 12px 30px;
+  margin: 10px 0;
+  height: 48px;
   border: none;
   display: flex;
   align-items: center;
@@ -328,7 +334,7 @@ width: 55%;
 }
 
 .group_card{
-  width: 175px;
+  width: 150px;
   height: 250px;
   flex-direction: column;
   user-select: none;
@@ -365,10 +371,10 @@ width: 55%;
  }
 
  .image_150{
-  min-width: 175px;
-  max-width: 175px;
-  min-height: 175px;
-  max-height: 175px;
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 150px;
+  max-height: 150px;
   flex: 0;
 
  }
@@ -507,15 +513,17 @@ width: 55%;
 .filter_box_top, .filter_box_bottom{
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: space-between;
   width: 100%;
-  padding: 10px;
-  max-width: 650px;
+  padding: 10px 0;
+  max-width: 600px;
 }
 
-.filter_box_top div, .filter_box_bottom div{
+
+.filter_box_top div{
   flex: auto;
+  margin-bottom: 10px;
 }
 
 .filter_box{
@@ -611,6 +619,31 @@ width: 55%;
   display: flex;
 }
 
+.my_all_groups_btn {
+  margin: 0;
+  height: 2rem;
+  padding: 20px 16px;
+}
+
+.new_button{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--highlight);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 0;
+  padding: 10px;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  color: var(--textHighlight);  
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+}
+
 
  /* IDs */
 
@@ -654,16 +687,16 @@ width: 55%;
    padding: 10px 0;
  }
 
- #new_group_icon, #delete_group_icon, #edit_group_icon{
+#delete_group_icon, #edit_group_icon{
   box-sizing: content-box;
   padding-right: 10px;
  }
 
- #new_group_button{
-  color: var(--textHighlight);
+ #new_group_icon{
+  text-align: center;
  }
 
- #private_group_form_section{
+ #private_group_form_section, #remember_me_form_section{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -779,6 +812,46 @@ width: 55%;
   align-items: center;
   max-width: 100%;
   width: 100%;
+}
+
+#form_section_loc_filter{
+  display: inline-flex;
+  flex-direction: row;
+}
+
+#groups_within_filter{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+}
+
+
+#loc_filter, #group_search_box{
+  width:225px;
+}
+
+#distance, #loc_filter{
+  margin: 5px 0;
+}
+
+#distance{
+  width: 80px;
+}
+
+#filter_form_groups{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+}
+
+#group_filter_search_btn, #group_search_btn{
+  height: 2rem;
+  margin: 5px 0;
+  padding: 0 5px;
 }
 
  /* Conditional */

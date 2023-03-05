@@ -38,7 +38,7 @@ class MembershipsController < ApplicationController
         group.destroy if group.member_count == 0
 
         respond_to do |format|
-          format.html { redirect_to groups_url, notice: "You have left #{group.name}." }
+          format.html { redirect_to groups_url, params: {all: true}, notice: "You have left #{group.name}."  }
           format.json { head :no_content }
         end
       end

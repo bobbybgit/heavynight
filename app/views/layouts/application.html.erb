@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HeavyNight</title>
+    <title>Heavy Night - Board Game Event Planning</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -35,7 +35,7 @@
     <%= link_to root_path, :class => "tab tab_1 strip_link" do %>
         <div id="layout_tab_1">Home</div>
       <% end %>
-      <%= link_to groups_path(all:true), :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link" do %>
+      <%= link_to groups_path(all:0), :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link" do %>
         <div id="layout_tab_2">Groups</div>
       <% end %>
       <div class="tab tab_3" id="layout_tab_3">Events</div>
@@ -52,6 +52,7 @@
           <% if alert %>
           <p class="alert alert-danger"><%= alert %></p>
           <% end %>
+          <br>
           <%= yield %>
         </div><!-- content_window -->
       <% end %> <!-- content turbo frame -->
