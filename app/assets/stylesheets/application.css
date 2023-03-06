@@ -537,6 +537,29 @@ width: 55%;
   margin-bottom: 20px;
   width: 100%;
 }
+.filter_box_header{
+  border-radius: 5px 5px 0 0;
+  min-width: 100%;
+  background-color: var(--tertiary);
+  color: var(--textMain);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: solid 2px var(--tertiary);
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.filter_box_header .icon{
+  position: relative;
+  top: 3px; 
+}
+
+.filter_box_header h4{
+  color: var(--textMain);
+  display: inline-block;
+}
 
 .calendar_window{
   padding: 10px;
@@ -644,6 +667,14 @@ width: 55%;
   right: 2rem;
 }
 
+.card_container_header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 10px 0;
+}
+
 
  /* IDs */
 
@@ -674,7 +705,7 @@ width: 55%;
  }
 
  #content_window{
-   padding: 0 2%;
+   padding: 0 4%;
    flex: 1;
    flex-direction: column;
    align-items: center;
@@ -806,7 +837,7 @@ width: 55%;
 }
 
 #content{
-  padding: 0 2%;
+  padding: 0 8%;
   flex: 1;
   flex-direction: column;
   align-items: center;
