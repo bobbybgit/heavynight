@@ -18,9 +18,11 @@ document.addEventListener('turbo:load',function(){
 
     let activeTabStorage = parseInt(localStorage.getItem('currentTab'));
 
-    let tabs = document.querySelectorAll(".tab");
+    let groupExpand = document.getElementById("member_title");
 
-    let groupExpand = document.getElementById("member_title")
+    let groupFiltersExpand = document.getElementById("groups_filter_header");
+
+    console.log(groupFiltersExpand)
 
     function expandMembers(){
         let membersWindow = document.getElementById("member_list")
@@ -36,44 +38,32 @@ document.addEventListener('turbo:load',function(){
         }
     }
 
+    function expandGroupFilters(){
+        let groupFiltersWindow = document.getElementById("filter_form_groups")
+        let groupFiltersArrow = document.getElementById("expand_group_filters")
+
+        console.log(getComputedStyle(groupFiltersWindow).display)
+        if (getComputedStyle(groupFiltersWindow).display == "flex"){
+            groupFiltersWindow.style.display = "none";
+            groupFiltersArrow.innerHTML = "expand_more";
+        }else{
+            groupFiltersWindow.style.display = "flex";
+            groupFiltersArrow.innerHTML = "expand_less";
+        }
+    }
+
     if (groupExpand){
         console.log(groupExpand)
         groupExpand.addEventListener("click", expandMembers)
     }
-    
-    if(!activeTabStorage.isNaN){
-        tabs[activeTabStorage].style.borderBottomColor = "var(--highlight)"
-        console.log(activeTabStorage)
-    }
 
-    let newGroupBtn = document.getElementById("new_group_button");
-    
-    if (newGroupBtn){newGroupBtn.addEventListener("click", function(){
-        tabs.forEach((tab, pos, tabsPassed) => {
-            if (pos === 0){
-                tabs[pos].style.borderBottomColor = "var(--highlight)";
-                localStorage.setItem('currentTab', pos);
-            }else{
-                tabs[pos].style.borderBottomColor = "var(--mainDark)";
-            }
-        })
-    })
+    if (groupFiltersExpand){
+        console.log(groupFiltersExpand)
+        groupFiltersExpand.addEventListener("click", expandGroupFilters)
     }
+    
 
     
-    tabs.forEach((tab, pos, tabsPassed) => {
-        tab.addEventListener("click", function(){
-            tabs.forEach((tabStyle) => {
-                if (tabStyle === tab) {
-                    tabStyle.style.borderBottomColor = "var(--highlight)";
-                    localStorage.setItem('currentTab', pos)
-                } else {
-                    tabStyle.style.borderBottomColor = "var(--mainDark)";
-                }
-                console.log(`set ${tabStyle}`)
-            }) 
-        })
-    })
     
 
 

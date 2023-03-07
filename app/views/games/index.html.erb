@@ -1,6 +1,4 @@
-<p style="color: green"><%= notice %></p>
-<div class="section_contents container" id="games_content">
-<h2 id="games_header">My Games</h2>
+<%= turbo_frame_tag :content do %>
 
 <div id="games">
   <% @games.each do |game| %>
@@ -13,3 +11,5 @@
 
 <%= button_to "Add game", add_games_path, :class => "strip_link square_button", :method => :get %>
 </div>
+
+<% end %>
