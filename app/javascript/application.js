@@ -38,28 +38,11 @@ document.addEventListener('turbo:load',function(){
         }
     }
 
-    function expandGroupFilters(){
-        let groupFiltersWindow = document.getElementById("filter_form_groups")
-        let groupFiltersArrow = document.getElementById("expand_group_filters")
-
-        console.log(getComputedStyle(groupFiltersWindow).display)
-        if (getComputedStyle(groupFiltersWindow).display == "flex"){
-            groupFiltersWindow.style.display = "none";
-            groupFiltersArrow.innerHTML = "expand_more";
-        }else{
-            groupFiltersWindow.style.display = "flex";
-            groupFiltersArrow.innerHTML = "expand_less";
-        }
-    }
+   
 
     if (groupExpand){
         console.log(groupExpand)
         groupExpand.addEventListener("click", expandMembers)
-    }
-
-    if (groupFiltersExpand){
-        console.log(groupFiltersExpand)
-        groupFiltersExpand.addEventListener("click", expandGroupFilters)
     }
     
 

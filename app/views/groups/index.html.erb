@@ -2,8 +2,8 @@
  <div class="container" id="group_index">
 
  <div class = "filter_box container" id = "group_filter_box">
- <div class="filter_box_header" id="groups_filter_header">
- <h4>Filters</h4><i class="icon" id="expand_group_filters">expand_more</i>
+ <div class="filter_box_header" id="groups_filter_header" data-controller="expand">
+ <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_more</i>
  </div>
    <%= form_with url: games_path, :id => "filter_form_groups", :method => :get, data:{turbo_frame: "content"} do |form| %>
     

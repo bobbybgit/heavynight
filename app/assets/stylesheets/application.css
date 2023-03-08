@@ -182,7 +182,7 @@
  .group_card_title{
   display: flex;
   justify-content: space-between;
-  padding: 0;
+  padding: 2px;
   margin: 0;
   width: 100%;
   align-items: flex-start;
@@ -192,7 +192,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0;
+  padding: 0 2px;
   width: 100%
  }
 
@@ -222,7 +222,7 @@
   width: 80vw;
   padding: 90px 0 40px 0;
   box-sizing: border-box;
-  gap: 20px;
+  gap: 30px;
  }
 
  .tab{
