@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   
   
-  
   resources :groups do
     resources :memberships do
     end
@@ -36,6 +35,8 @@ Rails.application.routes.draw do
   get "groups/memberships/:id/remove_admin/", to: 'memberships#remove_admin', as: 'remove_admin'
 
   get "groups/memberships/:id/add_admin/", to: 'memberships#add_admin', as: 'add_admin'
+
+  get "groups/_list", to: "groups#list", as: 'list'
 
   root "pages#dashboard"
 

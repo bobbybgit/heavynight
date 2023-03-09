@@ -13,7 +13,7 @@ static targets = [];
     console.log(this.element)
     let expandee = this.element.nextElementSibling;
     let icon = event.target;
-    if (getComputedStyle(expandee).display == "flex"){
+    if (getComputedStyle(expandee).display != "none"){
       expandee.style.display = "none";
       icon.innerHTML = "expand_more";
     }else{

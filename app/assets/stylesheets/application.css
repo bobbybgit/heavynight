@@ -136,12 +136,13 @@
   font-style: normal;
  }
 
- .window, .card, .container{
+ .window, .card, .container, #groups{
     padding:0;
     background-color: inherit;
     display: flex;
     user-select: none;
     margin: 0;
+    width: 100%;
  }
 
  
@@ -528,7 +529,6 @@ width: 55%;
 
 .filter_box{
   border-radius: 5px;
-  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -549,11 +549,13 @@ width: 55%;
   position: relative;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .filter_box_header .icon{
   position: relative;
   top: 3px; 
+  z-index: 1;
 }
 
 .filter_box_header h4{
@@ -633,6 +635,7 @@ width: 55%;
   display: flex;
   align-items:center;
   padding: 0 2px;
+  flex: 0\;
 }
 
 .game_year{
@@ -685,6 +688,7 @@ width: 55%;
    right: 0;
    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
    justify-content: space-between;
+   z-index: 2;
  }
 
  #logo{
@@ -837,7 +841,7 @@ width: 55%;
 }
 
 #content{
-  padding: 0 8%;
+  padding: 0;
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -860,6 +864,8 @@ width: 55%;
 
 #loc_filter, #group_search_box{
   width:225px;
+  flex: auto;
+  max-width: 225px;
 }
 
 #distance, #loc_filter{
@@ -871,18 +877,25 @@ width: 55%;
 }
 
 #filter_form_groups{
-  display: none;
+  display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   max-width: 600px;
 }
 
-#group_filter_search_btn, #group_search_btn{
-  height: 2rem;
-  margin: 5px 0;
-  padding: 0 5px;
+
+#group_search_container{
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#group_search_btn{
+  margin-top: 2px;
 }
 
  /* Conditional */

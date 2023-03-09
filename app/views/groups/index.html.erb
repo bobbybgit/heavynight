@@ -5,14 +5,15 @@
  <div class="filter_box_header" id="groups_filter_header" data-controller="expand">
  <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_more</i>
  </div>
-   <%= form_with url: games_path, :id => "filter_form_groups", :method => :get, data:{turbo_frame: "content"} do |form| %>
+ <div class = "filter_box">
+   <%= form_with url: games_path, :id => "filter_form_groups", :method => :get, data:{controller: "filter", filter_target: "form", turbo_frame: "groups"} do |form| %>
     
-    Show all groups within
-    <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>
-     
-      
-    of
+    <div>Maximum distance from location:</div>
+  
+   
     <div class="filter_section", :id = "form_section_loc_filter", data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
+     <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>   
+    from
         <%= form.text_field(:loc_filter,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
         <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
         <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
@@ -24,17 +25,15 @@
     <input type="hidden" data-places-target="state" />
     <input type="hidden" data-places-target="postalCode" />
     <input type="hidden" data-places-target="country" />
-    <%= form.button nil, :class => "square_button strip_link", :id => "group_filter_search_btn" do%>
-      <i class="icon">search</i>
-    <% end %><!-- search button -->
-   <% end %><!-- form -->
-    <%= form_with url: groups_path, :class => "filter_box_bottom", :id => "search_form_groups", :method => :get, data:{turbo_frame: "content"} do |search_form| %>
-   Search for groups:
-   <%= search_form.text_field :search_string, :placeholder => "Enter name", :id => "group_search_box" %>
-   <%= search_form.button nil, :class => "square_button strip_link", :id => "group_search_btn" do %>
-      <i class="icon">search</i>
+   Name:
+   <div class = "container" id="group_search_container">
+   <%= form.text_field :search_string, :placeholder => "Enter name", :id => "group_search_box" %>
+   <%= form.button nil, :class => "square_button strip_link", :id => "group_search_btn" do %>
+      <i class="icon">search</i>&nbsp;Search
+      </div>
     <% end %><!-- search button -->
     <% end %><!-- form -->
+    </div>
    
 </div> <!-- group_filter_box -->
   <div class="card_container_header">
@@ -51,35 +50,8 @@
           <%= button_to "Show My Groups", groups_path, params: {all: 1}, :method => :get, :class => "square_button strip_link my_all_groups_btn" %>
     <% end %>
     </div><!-- card_container_header -->
- <div class="card_container container" id="groups_content">
-
- <%= simple_format("No groups to show") if @groups.empty? %>
+    <%= turbo_frame_tag :groups do %>
+    <%= render "list", groups: @groups  %>
+    <% end %>
  
- 
-    <% @groups.each do |group| %>
-        <%= link_to group, :class => "strip_link" do %>
-          <div class="card group_card">
-            <div class="container profile_image group_profile_image">
-              <%= image_tag(group.image_url.to_s, :class => "image_150") %>
-            </div><!-- group_profile_image -->
-            <div class="container group_card_title">
-              <h4 class="group_name"><%= group.name.upcase %></h4>
-              <div class="member_number_container container">
-                <%= image_tag "meep_icon.gif", :class => "meep_icon" %>
-                <%= group.member_count %>
-              </div><!-- member_number_container -->
-            </div> <!-- group_card_title -->
-            <div class="group_card_loc_container">
-              <i class="icon group_card_loc">place</i>
-              <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
-            </div><!-- grou_card_loc_container -->
-          </div><!-- group_card -->
-        <% end %><!-- link_to do -->
-    <% end %><!-- groups.each do -->
-  </div><!--groups_content -->
-
-<%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get do %>
-<i class="icon" id="new_group_icon">add</i>
-<% end %>
-</div>
 <% end %> <!-- content turbo_frame -->
