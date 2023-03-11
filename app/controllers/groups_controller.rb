@@ -1,20 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: %i[ show edit update destroy ]
-  # helper_method :get_memberships
 
   
   # GET /groups or /groups.json
   def index
-
-    pp params
     @all_groups = Group.all.order('LOWER(name)')
-    if params[:all] == "1"
-      pp "SHOW MY"
-      @groups = Group.mine(current_user.id).order('LOWER(name)')
-    else
-      @groups = Group.all.order('LOWER(name)')
-      @groups = @groups.where(private: false)
-    end
+    @groups = Group.name_search(params[:search_string])
+    @groups = @groups.joins(:users).where(users:{id: current_user.id}) if params[:my] == "1"
   end
 
   # GET /groups/1 or /groups/1.json

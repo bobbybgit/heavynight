@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get "groups/list", to: "groups#list", as: 'list'
+  
   resources :wall_messages
   resources :event_settings
   resources :sessions
@@ -32,11 +35,9 @@ Rails.application.routes.draw do
    
   get "pages/dashboard", to: "pages#dashboard"
 
-  get "groups/memberships/:id/remove_admin/", to: 'memberships#remove_admin', as: 'remove_admin'
+  get "groups/memberships/:id/remove_admin", to: 'memberships#remove_admin', as: 'remove_admin'
 
-  get "groups/memberships/:id/add_admin/", to: 'memberships#add_admin', as: 'add_admin'
-
-  get "groups/_list", to: "groups#list", as: 'list'
+  get "groups/memberships/:id/add_admin", to: 'memberships#add_admin', as: 'add_admin'
 
   root "pages#dashboard"
 

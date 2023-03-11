@@ -13,7 +13,7 @@ class Group < ApplicationRecord
   validates :name, length: { maximum: 50 }
 
   scope :mine, -> (current_user_id){joins(:users).where(users:{id: current_user_id})}
-  scope :name_search, -> (search_string){name.where(name: "*#{search_string.to_s}*")}
+  scope :name_search, -> (search_string){where("name LIKE ?", "%#{search_string.to_s}%")}
 
   def latitude_require
     errors.add(:base, 'Please select a location from the autocomplete. Group locations can be as broad as you like and do not require a street address') unless latitude.present?

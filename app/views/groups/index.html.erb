@@ -1,18 +1,26 @@
-<%= turbo_frame_tag :content do %>
+<%= turbo_frame_tag "content" do %>
  <div class="container" id="group_index">
 
  <div class = "filter_box container" id = "group_filter_box">
  <div class="filter_box_header" id="groups_filter_header" data-controller="expand">
- <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_more</i>
+ <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_less</i>
  </div>
  <div class = "filter_box">
-   <%= form_with url: games_path, :id => "filter_form_groups", :method => :get, data:{controller: "filter", filter_target: "form", turbo_frame: "groups"} do |form| %>
+ 
+   <%= form_with url: groups_path, :id => "filter_form_groups", :method => :get, data:{controller: "filter", filter_target: "form", turbo_frame: "groups"} do |form| %>
+   <div class="container">
+    Show only my groups 
+    <div class="check_wrapper">
+    <%= form.check_box :my, :class => "check", :id => "my_groups_switch" %><label for = "my_groups_switch"></label>
+    </div>
+    </div>
     
     <div>Maximum distance from location:</div>
   
    
     <div class="filter_section", :id = "form_section_loc_filter", data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
-     <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>   
+     <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>  
+      
     from
         <%= form.text_field(:loc_filter,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
         <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
@@ -38,20 +46,11 @@
 </div> <!-- group_filter_box -->
   <div class="card_container_header">
  <div class="card_container_header_desc">
-    Showing
     
-    <% if @groups == @all_groups.mine(current_user.id) %>
-     <i class="colour">my</i> groups 
-        </div>
-          <%= button_to "Show All Groups", groups_path, params: {all: 0}, :method => :get, :class => "square_button strip_link my_all_groups_btn" %>
-    <% else %>
-        <i class="colour">all</i> groups
-      </div>
-          <%= button_to "Show My Groups", groups_path, params: {all: 1}, :method => :get, :class => "square_button strip_link my_all_groups_btn" %>
-    <% end %>
     </div><!-- card_container_header -->
-    <%= turbo_frame_tag :groups do %>
-    <%= render "list", groups: @groups  %>
+    <%= turbo_frame_tag :groups, :class => "t_frame" do %>
+
+    <%= render "list", groups: @groups %>
     <% end %>
  
 <% end %> <!-- content turbo_frame -->
