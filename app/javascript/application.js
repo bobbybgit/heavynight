@@ -11,48 +11,5 @@ window.initMap = function () {
     window.dispatchEvent(event)
     console.log("event dispatched")
   }
-
-document.addEventListener('turbo:load',function(){
-
-    console.log("load");
-
-    let activeTabStorage = parseInt(localStorage.getItem('currentTab'));
-
-    let groupExpand = document.getElementById("member_title");
-
-    let groupFiltersExpand = document.getElementById("groups_filter_header");
-
-    console.log(groupFiltersExpand)
-
-    function expandMembers(){
-        let membersWindow = document.getElementById("member_list")
-        let membersArrow = document.getElementById("member_expand")
-
-        console.log(getComputedStyle(membersWindow).display)
-        if (getComputedStyle(membersWindow).display == "flex"){
-            membersWindow.style.display = "none";
-            membersArrow.innerHTML = "expand_more";
-        }else{
-            membersWindow.style.display = "flex";
-            membersArrow.innerHTML = "expand_less";
-        }
-    }
-
-   
-
-    if (groupExpand){
-        console.log(groupExpand)
-        groupExpand.addEventListener("click", expandMembers)
-    }
-    
-
-    
-    
-
-
-}
-
-)
-
-
+  
 

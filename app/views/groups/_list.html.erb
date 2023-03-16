@@ -28,8 +28,8 @@
     <% end %><!-- groups.each do -->
   </div><!--groups_content -->
 
-<%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get do %>
-<i class="icon" id="new_group_icon">add</i>
+<%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get, data:{turbo_frame: "content"} do %>
+  <i class="icon" id="new_group_icon">add</i>
 <% end %>
 </div>
 

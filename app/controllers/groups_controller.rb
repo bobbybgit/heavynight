@@ -1,12 +1,18 @@
 class GroupsController < ApplicationController
+include GeoDistance
+require 'bigdecimal'
+require 'bigdecimal/util'
+
   before_action :set_group, only: %i[ show edit update destroy ]
 
   
   # GET /groups or /groups.json
   def index
-    @all_groups = Group.all.order('LOWER(name)')
     @groups = Group.name_search(params[:search_string])
-    @groups = @groups.joins(:users).where(users:{id: current_user.id}) if params[:my] == "1"
+    @groups = @groups.joins(:users).where(users:{id: current_user.id}) if params[:my] == "My Groups"
+    if ((params[:loc_filter] != "") && params[:loc_filter])
+      @groups = @groups.select{|group| (distance(group.latitude, group.longitude, params[:latitude].to_d, params[:longitude].to_d, "miles") <= params[:distance].to_d)} 
+    end
   end
 
   # GET /groups/1 or /groups/1.json

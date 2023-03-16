@@ -84,17 +84,21 @@
  }
 
  form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus{
-  border: solid var(--highlightDark) 2px;
+  border: solid var(--highlight) 2px;
  }
 
  textarea{
   outline:none;
   height: 3rem;
-  border: solid var(--highlight) 2px;
+  border: solid var(--secondary) 2px;
   max-width: 100%;
-  background-color: var(--tertiary);
+  background-color: var(--main);
   margin: 3px 0;
   width: 300px;
+ }
+
+textarea:focus{
+  border: solid var(--highlight) 2px;
  }
 
  form input[type=checkbox]{
@@ -174,6 +178,25 @@
   max-width: 100%;
 }
 
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 600px; /* Full width */
+  max-width: 80%;
+  max-height: 60%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
  /* Specific Classes */
 
  .group_card_loc{
@@ -183,13 +206,18 @@
   padding-top: 2px;
  }
 
- .group_card_title{
+ .group_card_title, game_card_title{
   display: flex;
   justify-content: space-between;
   padding: 2px;
   margin: 0;
   width: 100%;
   align-items: flex-start;
+ }
+
+ .game_card_title{
+  flex-direction: column;
+  height: 100px
  }
 
  .group_card_loc_container{
@@ -336,7 +364,7 @@ transform: translateX(-100%);
 width: 55%;
 }
 
-.group_card{
+.group_card, .game_card{
   width: 150px;
   height: 250px;
   flex-direction: column;
@@ -513,41 +541,22 @@ width: 55%;
   margin: 0 0 20px 0;
 }
 
-.filter_box_top, .filter_box_bottom{
-  display: flex;
-  align-items: center;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 0;
-  max-width: 600px;
-}
-
-
-.filter_box_top div{
-  flex: auto;
-  margin-bottom: 10px;
-}
-
 .filter_box{
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--tertiary);
-  padding: 5px 15px;
+  background-color: var(--main);
   margin-bottom: 20px;
   width: 100%;
 }
+
 .filter_box_header{
-  border-radius: 5px 5px 0 0;
   min-width: 100%;
-  background-color: var(--tertiary);
+  background-color: var(--main);
   color: var(--textMain);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border: solid 2px var(--tertiary);
   position: relative;
   top: 0;
   left: 0;
@@ -612,15 +621,6 @@ width: 55%;
   align-items: center;
 }
 
-.game_image{
-  max-width: 150px;
-  max-height: 150px;
-  min-width: 150px;
-  min-height: 150px;
-  display: flex;
-  flex: 0;
-  box-sizing: border-box;
-}
 
 .game_name{
   display: block;
@@ -658,8 +658,8 @@ width: 55%;
   justify-content: center;
   align-items: center;
   background-color: var(--highlight);
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   border: 0;
   padding: 10px;
@@ -668,8 +668,9 @@ width: 55%;
   font-size: 24px;
   color: var(--textHighlight);  
   position: fixed;
-  bottom: 3rem;
-  right: 2rem;
+  bottom: 3.5rem;
+  right: 3rem;
+  cursor: pointer;
 }
 
 .card_container_header{
@@ -679,6 +680,47 @@ width: 55%;
   align-items: center;
   padding: 0 0 10px 0;
 }
+
+.filter_item{
+  background-color: var(--tertiary);
+  color: var(--textMain);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 5px 0;
+  padding: 2px 20px 10px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--mainDark);
+  max-width: 100%;
+}
+
+.filter_item_content select{
+  margin: 5px 0;
+}
+
+
+.filter_item_content{
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+
+.filter_item_icon{
+  flex: 0;
+
+}
+
+.filter_item_icon i{
+  padding: 10px;
+}
+.filter_item_title{
+  margin-bottom: -2px;
+  padding: 3px 0 0 44px;
+}
+
 
 
  /* IDs */
@@ -871,7 +913,7 @@ width: 55%;
 }
 
 #distance, #loc_filter{
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
 #distance{
@@ -881,11 +923,11 @@ width: 55%;
 #filter_form_groups{
   display: flex;
   flex-flow: row wrap;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 600px;
+  max-width: 100%;
+  gap: 20px;
+  padding-top: 10px;
 }
 
 
@@ -897,7 +939,11 @@ width: 55%;
 }
 
 #group_search_btn{
-  margin-top: 2px;
+  margin: 0;
+}
+
+#private_label{
+  margin-bottom: -4px;
 }
 
  /* Conditional */

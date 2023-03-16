@@ -1,56 +1,72 @@
 <%= turbo_frame_tag "content" do %>
  <div class="container" id="group_index">
 
- <div class = "filter_box container" id = "group_filter_box">
- <div class="filter_box_header" id="groups_filter_header" data-controller="expand">
- <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_less</i>
- </div>
- <div class = "filter_box">
+  <div class = "filter_box container" id = "group_filter_box">
+    <div class="filter_box_header" id="groups_filter_header" data-controller="expand">
+      <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_less</i>
+    </div>
+    <div class = "filter_content container">
  
-   <%= form_with url: groups_path, :id => "filter_form_groups", :method => :get, data:{controller: "filter", filter_target: "form", turbo_frame: "groups"} do |form| %>
-   <div class="container">
-    Show only my groups 
-    <div class="check_wrapper">
-    <%= form.check_box :my, :class => "check", :id => "my_groups_switch" %><label for = "my_groups_switch"></label>
-    </div>
-    </div>
+      <%= form_with url: groups_path, :id => "filter_form_groups", :method => :get, data:{turbo_frame: "groups"} do |form| %>
     
-    <div>Maximum distance from location:</div>
-  
-   
-    <div class="filter_section", :id = "form_section_loc_filter", data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
-     <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>  
-      
-    from
-        <%= form.text_field(:loc_filter,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
-        <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
-        <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
-      </div><!-- form_section_loc_filter -->
-    <input type="hidden" data-places-target="city" />
-    <input type="hidden" data-places-target="streetNumber" />
-    <input type="hidden" data-places-target="route" />
-    <input type="hidden" data-places-target="county" />
-    <input type="hidden" data-places-target="state" />
-    <input type="hidden" data-places-target="postalCode" />
-    <input type="hidden" data-places-target="country" />
-   Name:
-   <div class = "container" id="group_search_container">
-   <%= form.text_field :search_string, :placeholder => "Enter name", :id => "group_search_box" %>
-   <%= form.button nil, :class => "square_button strip_link", :id => "group_search_btn" do %>
-      <i class="icon">search</i>&nbsp;Search
-      </div>
-    <% end %><!-- search button -->
-    <% end %><!-- form -->
-    </div>
-   
-</div> <!-- group_filter_box -->
-  <div class="card_container_header">
- <div class="card_container_header_desc">
-    
-    </div><!-- card_container_header -->
-    <%= turbo_frame_tag :groups, :class => "t_frame" do %>
+        <div class="filter_item">
+          <div class="filter_item_title">
+            Show:
+          </div><!-- filter_item_title -->
+          <div class="filter_item_content">
+            <div class="filter_item_icon">
+              <i class="icon">group</i>
+            </div><!-- filter_item_icon (my/all groups)-->
+            <%= form.select :my, options_for_select(['All Groups','My Groups']) %>
+          </div><!-- filter_item_content (my/all groups)-->
+        </div><!--filter_item (my/all groups) -->
 
-    <%= render "list", groups: @groups %>
-    <% end %>
- 
-<% end %> <!-- content turbo_frame -->
+        <div class="filter_item">
+          <div class="filter_item_title">
+            Distance:   
+          </div><!-- filter_item_title -->
+          <div class="filter_item_content">
+            <div class="filter_item_icon">
+              <i class="icon">location_on</i>
+            </div><!-- filter_item_icon (location)-->
+            <div class="filter_section", :id = "form_section_loc_filter", data-controller="places" data-action="google-maps-callback@window->places#initAutocomplete">
+              <%= form.select :distance, options_for_select([['2 miles',2],['5 miles',5],['10 miles',10],['20 miles',20],['50 miles',50],['100 miles',100]]) %>  
+              from
+              <%= form.text_field(:loc_filter,  'data-action': "keydown->places#preventSubmit input->places#updateGeo", 'data-places-target': "address", placeholder:"Search a location", "autocomplete": "off") %>
+              <%= form.hidden_field(:longitude, 'data-places-target': "longitude") %>
+              <%= form.hidden_field(:latitude, 'data-places-target': "latitude") %>
+            </div><!-- form_section_loc_filter -->
+            <input type="hidden" data-places-target="city" />
+            <input type="hidden" data-places-target="streetNumber" />
+            <input type="hidden" data-places-target="route" />
+            <input type="hidden" data-places-target="county" />
+            <input type="hidden" data-places-target="state" />
+            <input type="hidden" data-places-target="postalCode" />
+            <input type="hidden" data-places-target="country" />
+          </div><!-- filter_item_content (location)-->
+        </div><!-- filter_item (location)-->
+      
+        <div class="filter_item">
+          <div class="filter_item_title">
+            Name:
+          </div><!-- filter_item_title -->
+          <div class=filter_item_content>
+            <div class="filter_item_icon">
+              <i class="icon">search</i>
+            </div><!-- filter_item_icon (search)-->
+            <%= form.text_field :search_string, :placeholder => "Enter name", :id => "group_search_box" %>
+          </div><!-- filter_item_content (search)-->
+        </div><!-- filter_item (search)-->
+
+        <%= form.button nil, :class => "square_button strip_link", :id => "group_search_btn" do %>
+          <i class="icon">filter_list</i>&nbsp;Filter
+        <% end %><!-- search button -->
+
+      <% end %><!-- form -->
+    </div><!--filter_content_container -->
+    </div> <!-- group_filter_box -->
+    <%= turbo_frame_tag :groups, :class => "t_frame" do %>
+      <%= render "list", groups: @groups %>
+    <% end %><!-- groups turbo_frame -->
+  </div><!-- group_index-->
+ <% end %> <!-- content turbo_frame -->

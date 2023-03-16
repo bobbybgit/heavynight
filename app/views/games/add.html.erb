@@ -1,11 +1,44 @@
-<h2>Add Game</h2>
+<%= turbo_frame_tag :content do %>
 
-<div class = "search_bar" id="games_search">
-<%= form_with url: new_game_path, :method => :get do |form| %>
-<%= form.text_field :search_string, :class => "search_input", :placeholder =>"Search..." %>
-<%= form.submit :class => "search_button strip_link square_button" do %>
- <i class="icon">search</i>
- <% end %>
+    <div class = "filter_box container" id = "games_filter_box">
+        <div class="filter_box_header" id="games_filter_header">
+            <h4>Add Game</h4>
+        </div>
+        
+        <div class = "filter_content container">
+            <%= form_with url: new_game_path, :id => "filter_form_groups", :method => :get, data:{turbo_frame: "bgg_search"} do |form| %>
+        
+                <div class="filter_item">
+                    <div class="filter_item_title">
+                        Search By BGG Collection:
+                    </div><!-- filter_item_title -->
+                    <div class="filter_item_content">
+                        <div class="filter_item_icon">
+                        <i class="icon">group</i>
+                        </div><!-- filter_item_icon (BGG User)-->
+                        <%= form.text_field :bgg_user, placeholder: "Bgg Username" %>
+                    </div><!-- filter_item_content (BGG User)-->
+                </div><!--filter_item (BGG User) -->
+
+                <div class="filter_item">
+                    <div class="filter_item_title">
+                        Search By Game Name:
+                    </div><!-- filter_item_title -->
+                    <div class="filter_item_content">
+                        <div class="filter_item_icon">
+                        <i class="icon">group</i>
+                        </div><!-- filter_item_icon (Game name)-->
+                        <%= form.text_field :bgg_game, placeholder: "Name" %>
+                    </div><!-- filter_item_content (Game name)-->
+                </div><!--filter_item (Game name) -->
+
+                <%= form.button nil, :class => "square_button strip_link", :id => "games_search_btn" do %>
+                    <i class="icon">search</i>&nbsp;Search
+                <% end %><!-- search button -->
+
+            <% end %>
+        </div>
+    </div>
+    <%= turbo_frame_tag :bgg_search do %>
+    <% end %>
 <% end %>
-
- </div>

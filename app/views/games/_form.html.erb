@@ -1,19 +1,24 @@
-<div class="container section_contents" id="new_game_container">
-    <div class="container search_results">
-        <% @search_results_games.each_with_index do |game, i| %>
-        <div class="game_card card">
-            <div class="game_image">
-                <%= image_tag game.game.image %>
-            </div>
-            <div class="container game_name">
-               <h5> <%= "#{game.name} (#{game.year_published})" %></h5>
-            </div>
-            <div class="game_year">
-            <%= button_to "Add Game", :class => "strip_link square_button" %>
-            </div>
-        </div>
+<div class="card_container container" id="new_games_content">
+<% if @error %>
+        <%= @error %>
+<% else %>
+        <% @search_results_games.each do |game| %>
+                <%= link_to rate_games_path(game_id:game["id"]), data:{turbo_frame: "modal"} do %>
+                        <div class="game_card card">
+                                <div class="container profile_image game_image">
+                                        <% if game["image"] %>
+                                                <%= image_tag("#{game["image"][0]}", :class => "image_150") %>
+                                        <% else %>
+                                                <%= image_tag "no_game.svg", :class => "image_150" %>
+                                        <% end %>
+                                </div>
+                                        <div class="container game_card_title">
+                                                <h4> <%= "#{game["name"][0]["value"]} (#{game["yearpublished"][0]["value"]})" %></h4>
+                                        </div>
+                        </div>
+                <% end %>
         <% end %>
-    </div>
+<% end %>
 </div>
 
  

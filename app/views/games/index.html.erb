@@ -1,15 +1,16 @@
 <%= turbo_frame_tag :content do %>
 
-<div id="games">
-  <% @games.each do |game| %>
-    <%= render game %>
-    <p>
-      <%= link_to "Show this game", game %>
-    </p>
-  <% end %>
-</div>
+  <div id="games">
+    <% @games.each do |game| %>
+      <%= render game %>
+      <p>
+        <%= link_to "Show this game", game %>
+      </p>
+    <% end %>
+  </div>
 
-<%= button_to "Add game", add_games_path, :class => "strip_link square_button", :method => :get %>
-</div>
+  <%= button_to add_games_path, :class => "new_button strip_link",  :id => "new_game_button", :method => :get, data:{turbo_frame: "content"} do %>
+    <i class="icon" id="new_game_icon">add</i>
+  <% end %>
 
 <% end %>

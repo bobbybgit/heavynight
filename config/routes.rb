@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :games do
     collection do
       get 'add'
+      get 'rate'
     end
   end
 

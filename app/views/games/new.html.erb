@@ -1,3 +1,5 @@
-<%= render "form", game: @game %>
+<%= turbo_frame_tag :bgg_search, style: "width: 100%;" do %>
+    <%= render "form", game: @game %>
+<% end %>
 
 
