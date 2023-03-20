@@ -1,6 +1,5 @@
 <%= turbo_frame_tag :content do %>
-
-<div class="section_contents container" id="groups_content">
+  <div class="section_contents container" id="groups_content">
     <% @groups.each do |group| %>
         <%= link_to group, :class => "strip_link" do %>
           <div class="card group_card">
@@ -17,5 +16,4 @@
 
 <%= button_to "Edit Profile", edit_user_registration_path, :class => "square_button", :method => :get %>
 <%= button_to "Log Out", destroy_user_session_path, :class => "square_button", :method => :delete %>
-
 <% end %>

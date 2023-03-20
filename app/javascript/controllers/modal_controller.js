@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   close(event) {
-    if (getComputedStyle(!this.modal).display == "flex") {
+    if (getComputedStyle(this.modal).display == "flex") {
       this.modal.style.display = "none";
     }
   }

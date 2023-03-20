@@ -13,6 +13,7 @@ require 'bigdecimal/util'
     if ((params[:loc_filter] != "") && params[:loc_filter])
       @groups = @groups.select{|group| (distance(group.latitude, group.longitude, params[:latitude].to_d, params[:longitude].to_d, "miles") <= params[:distance].to_d)} 
     end
+    @groups = @groups.sort_by{|group| group.name}
   end
 
   # GET /groups/1 or /groups/1.json

@@ -1,0 +1,54 @@
+<div class="table_container container" id="groups_search">
+
+
+  <% if @groups.empty? %>
+    No groups to show
+  <% else %>
+    <div class="table_header group_name_header table_cell">
+      Name
+    </div>
+    <div class="table_header group_loc_header table_cell">
+      Location
+    </div>
+    <div class="table_header group_count_header table_cell">
+      <i class=icon>person</i>
+    </div>
+
+  <% end %>
+
+ 
+ 
+ 
+    <% @groups.each_with_index do |group, i| %>
+    <% if i.even? %>
+        <div class="group_name_container container table_cell table_data even_row">
+          <h5 class="group_name"><%= group.name.upcase %></h5>
+        </div>
+        <div class="group_card_loc_container table_cell table_data even_row">
+          <i class="icon group_card_loc">place</i>
+          <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
+        </div><!-- group_card_loc_container -->
+        <div class="member_number_container container table_cell table_data even_row">
+          <%= group.member_count %>
+        </div><!-- member_number_container -->
+      <% else %>
+        <div class="group_name_container container table_cell table_data odd_row">
+          <h5 class="group_name"><%= group.name.upcase %></h5>
+        </div>
+        <div class="group_card_loc_container table_cell table_data odd_row">
+          <i class="icon group_card_loc">place</i>
+          <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
+        </div><!-- group_card_loc_container -->
+        <div class="member_number_container container table_cell table_data odd_row">
+          <%= group.member_count %>
+        </div><!-- member_number_container -->
+      <% end %>
+    <% end %><!-- groups.each do -->
+
+  </div><!--groups_search -->
+
+  <%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get, data:{turbo_frame: "content"} do %>
+    <i class="icon" id="new_group_icon">add</i>
+  <% end %>
+  </div>
+

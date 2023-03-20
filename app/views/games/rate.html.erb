@@ -1,3 +1,23 @@
 <%= turbo_frame_tag "modal" do %>
-  <%= image_tag @game.image %> 
+<div class="modal_card_horizontal container">
+  <% if !@game.image %>
+    <%= image_tag "no_game.svg" %>
+  <% else %>
+    <%= image_tag @game.image, class: "image_300", id: "modal_game_image" %> 
+  <% end %>
+  <div class="game_rate_content container">
+    <h3><%= @game.name %>&nbsp;(<%= @game.year_published %>)</h3>
+    <%= form_with url: add_rating_games_path, remote: true, data:{turbo_frame: "bgg_search"}, :id => "rating_card_form" do |form| %>
+      <%= form.label :rating %>
+      <%= form.select :rating, options_for_select(["Eager to Play", "Keen to Play", "Happy to Play", "Will Play", "Prefer to Avoid", "Will not Play" ]) %>
+      <div class="form_section" id="rate_check_section">
+        <%= form.label "Add to collection?" %>
+        <div class="check_wrapper">
+          <%= form.check_box :add, :class => "check", :id => "collection_add_switch" %><label for="collection_add_switch"></label>
+        </div>
+      </div>
+      <%= form.submit "Submit", :class => "strip_link square_button" %>
+    <% end %>
+  </div>
+</div>
 <% end %>

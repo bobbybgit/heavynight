@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get "groups/list", to: "groups#list", as: 'list'
+  get "groups/_table", to: "groups#table", as: 'table'
+  get "groups/_filter", to: "groups#filter", as: 'filter'
   
   resources :wall_messages
   resources :event_settings
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       get 'add'
       get 'rate'
+      get 'add_rating'
     end
   end
 
