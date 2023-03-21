@@ -29,8 +29,6 @@ require 'bigdecimal/util'
 
   # GET /groups/1/edit
   def edit
-  
-   
   end
 
   # POST /groups or /groups.json

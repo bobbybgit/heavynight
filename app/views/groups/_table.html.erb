@@ -1,4 +1,4 @@
-<div class="table_container container" id="groups_search">
+<div class="table_container container three_col" id="groups_search">
 
 
   <% if @groups.empty? %>
@@ -20,10 +20,12 @@
  
  
     <% @groups.each_with_index do |group, i| %>
-    <% if i.even? %>
-        <div class="group_name_container container table_cell table_data even_row">
-          <h5 class="group_name"><%= group.name.upcase %></h5>
-        </div>
+      <% if i.even? %>
+        <%= link_to group_path(group), :class => "strip_link table_link" do %>
+          <div class="group_name_container container table_cell table_data even_row">
+            <h5 class="group_name"><%= group.name.upcase %></h5>
+          </div>
+        <% end %>
         <div class="group_card_loc_container table_cell table_data even_row">
           <i class="icon group_card_loc">place</i>
           <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
@@ -32,9 +34,11 @@
           <%= group.member_count %>
         </div><!-- member_number_container -->
       <% else %>
-        <div class="group_name_container container table_cell table_data odd_row">
-          <h5 class="group_name"><%= group.name.upcase %></h5>
-        </div>
+        <%= link_to group_path(group), :class => "strip_link table_link" do %>
+          <div class="group_name_container container table_cell table_data odd_row">
+            <h5 class="group_name"><%= group.name.upcase %></h5>
+          </div>
+        <% end %>
         <div class="group_card_loc_container table_cell table_data odd_row">
           <i class="icon group_card_loc">place</i>
           <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
@@ -43,7 +47,7 @@
           <%= group.member_count %>
         </div><!-- member_number_container -->
       <% end %>
-    <% end %><!-- groups.each do -->
+  <% end %><!-- groups.each do -->
 
   </div><!--groups_search -->
 

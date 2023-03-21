@@ -1,0 +1,60 @@
+<div class="table_container container three_col" id="games_search">
+  <% if @error %>
+          <%= @error %>
+  <% else %>
+
+    <% if @games.empty? %>
+      No games to show
+    <% else %>
+      <div class="table_header games_name_header table_cell">
+        Name
+      </div>
+      <div class="table_header games_year_header table_cell">
+        Year
+      </div>
+      <div class="table_header games_owned_header table_cell">
+      </div>
+
+    <% end %>
+
+  
+  
+  
+      <% @games.each_with_index do |game, i| %>
+        <% if i.even? %>
+            <div class="game_name_container container table_cell table_data even_row" data-controller="panel" data-action="click->panel#open">
+              <h5 class="group_name"><%= game["name"][0]["value"].upcase %></h5>
+            </div>
+          <div class="game_year_container table_cell table_data even_row">
+            <h5 class="group_card_location_text"><%= game["yearpublished"][0]["value"] %></h5>
+          </div><!-- group_card_loc_container -->
+          <div class="game_image_container container table_cell table_data even_row">
+           <% if game["image"] %>
+              <%= image_tag("#{game["image"][0]}", :class => "image_75") %>
+            <% else %>
+              <%= image_tag "no_game.svg", :class => "image_75" %>
+            <% end %> 
+          </div><!-- member_number_container -->
+        <% else %>
+            <div class="game_name_container container table_cell table_data odd_row" data-controller="panel" data-action="click->panel#open">
+              <h5 class="group_name"><%= game["name"][0]["value"].upcase %></h5>
+            </div>
+          <div class="game_year_container table_cell table_data odd_row">
+            <h5 class="group_card_location_text"><%= game["yearpublished"][0]["value"] %></h5>
+          </div><!-- group_card_loc_container -->
+          <div class="game_image_container container table_cell table_data odd_row">
+            <% if game["image"] %>
+              <%= image_tag("#{game["image"][0]}", :class => "image_75") %>
+            <% else %>
+              <%= image_tag "no_game.svg", :class => "image_75" %>
+            <% end %> 
+          </div><!-- member_number_container -->
+        <% end %>
+        <div class = "games_panel">
+        Hiya!
+        </div>
+    <% end %><!-- groups.each do -->
+
+    </div><!--groups_search -->
+  <% end %>
+</div>

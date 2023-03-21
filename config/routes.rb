@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get "groups/_table", to: "groups#table", as: 'table'
   get "groups/_filter", to: "groups#filter", as: 'filter'
+  get "games/_games_filter", to: "games#filter", as: 'games_filter'
+  get "games/_games_table", to: "games#table", as: 'games_table'
   
   resources :wall_messages
   resources :event_settings

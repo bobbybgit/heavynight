@@ -113,6 +113,7 @@ textarea:focus{
   border: var(--secondary) solid 2px;
   font-size: 14px;
   font-family: 'Lato', sans-serif;
+  background-color: var(--main);
  }
 
  form{
@@ -160,22 +161,24 @@ textarea:focus{
  
  .table_container{
   display: grid;
-  grid-template-columns: 6fr 6fr 1fr;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0;
   border-bottom: var(--secondary) 3px solid;
   padding-bottom: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 90px;
   max-width: 100%;
-  width: 800px;
+  width: 1050px;
   
+ }
+
+ .three_col{
+  grid-template-columns: 6fr 6fr 1fr;
  }
 
  
  .table_header{
   background-color: var(--secondary);
   color: var(--main);
-  height: 35px;
  }
 
  .table_data{
@@ -342,6 +345,11 @@ textarea:focus{
   min-height: 250px;
  }
 
+ .notices{
+  padding: 0 6%;
+  color: var(--highlight)
+ }
+
 .square_button{
   padding: 10px 20px;
   margin: 10px 0;
@@ -481,8 +489,14 @@ width: 55%;
   min-height: 150px;
   max-height: 150px;
   flex: 0;
-  padding: 5px;
+ }
 
+ .image_75{
+  min-width: 75px;
+  max-width: 75px;
+  min-height: 75px;
+  max-height: 75px;
+  flex: 0;
  }
 
 
@@ -708,13 +722,18 @@ width: 55%;
   padding: 20px 16px;
 }
 
+.table_link{
+  padding: 0;
+  height: 100%;
+}
+
 .new_button{
   display:flex;
   justify-content: center;
   align-items: center;
   background-color: var(--highlight);
-  height: 60px;
-  width: 60px;
+  height: 75px;
+  width: 75px;
   border-radius: 50%;
   border: 0;
   padding: 10px;
@@ -726,6 +745,7 @@ width: 55%;
   bottom: 3.5rem;
   right: 3rem;
   cursor: pointer;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
 }
 
 .card_container_header{
@@ -808,6 +828,7 @@ width: 55%;
  }
 
  #content{
+  display: flex;
    padding: 0 6%;
    flex: 1;
    flex-direction: column;
@@ -932,7 +953,7 @@ width: 55%;
   background-color: black;
 }
 
-#group_index{
+#group_index, #games_index{
   flex-direction: column;
   width:100%;
   align-items: center;
@@ -951,11 +972,34 @@ width: 55%;
 
 }
 
+#groups, #games{
+  justify-content: center;
+  display: flex;
+}
+
+#games_search{
+  width: 1140px;
+}
+
+.games_year_header, .game_year_container{
+  justify-content: center;
+}
+
+.games_panel{
+  display: none;
+  grid-column: 1 / 4;
+}
+
+
 
 #loc_filter, #group_search_box{
   width:225px;
   flex: auto;
   max-width: 225px;
+}
+
+.filter_content{
+  justify-content: center;
 }
 
 #distance, #loc_filter{
@@ -966,7 +1010,7 @@ width: 55%;
   width: 80px;
 }
 
-#filter_form_groups{
+#filter_form_groups, #filter_form_games{
   display: flex;
   flex-flow: row wrap;
   align-items: center;

@@ -1,0 +1,53 @@
+<div class = "filter_box container" id = "games_filter_box">
+  
+  <div class="filter_box_header" id="games_filter_header" data-controller="expand">
+    <h4>Filters</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_less</i>
+  </div>
+  
+  <div class = "filter_content container">
+
+    <%= form_with url: games_path, :id => "filter_form_games", :method => :get, data:{turbo_frame: "games"} do |form| %>
+      <div class="filter_item">
+        <div class="filter_item_title">
+          Show:
+        </div><!-- filter_item_title -->
+        <div class="filter_item_content">
+          <div class="filter_item_icon">
+            <i class="icon">casino</i>
+          </div><!-- filter_item_icon (my/all groups)-->
+          <%= form.select :my, options_for_select(['All Games','My Owned Games', 'My Rated Games']) %>
+        </div><!-- filter_item_content (my/all games)-->
+      </div><!--filter_item (my/all games) -->
+    
+      <div class="filter_item">
+        <div class="filter_item_title">
+          BGG User:
+        </div><!-- filter_item_title -->
+        <div class=filter_item_content>
+          <div class="filter_item_icon">
+            <i class="icon">person</i>
+          </div><!-- filter_item_icon (User)-->
+          <%= form.text_field :bgg_user, :placeholder => "Search by BGG Username...", :id => "bgg_user_box" %>
+        </div><!-- filter_item_content (search)-->
+      </div><!-- filter_item (search)--><div class="filter_item">
+
+        <div class="filter_item_title">
+          Name:
+        </div><!-- filter_item_title -->
+        <div class=filter_item_content>
+          <div class="filter_item_icon">
+            <i class="icon">search</i>
+          </div><!-- filter_item_icon (search)-->
+          <%= form.text_field :bgg_game, :placeholder => "Search by game name...", :id => "games_search_box" %>
+        </div><!-- filter_item_content (search)-->
+      </div><!-- filter_item (search)-->
+
+      <%= form.button nil, :class => "square_button strip_link", :id => "games_search_btn" do %>
+        <i class="icon">search</i>&nbsp;Search
+      <% end %><!-- search button -->
+
+  <% end %><!-- form -->
+
+  </div><!--filter_content_container -->
+
+</div> <!-- group_filter_box -->

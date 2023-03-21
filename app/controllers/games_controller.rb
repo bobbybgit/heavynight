@@ -12,54 +12,67 @@ class GamesController < ApplicationController
 
   # GET /games or /games.json
   def index
-    @games = Game.all.where(user_id:current_user.id, owned:true)
+    @games = []
+    pp @games
+    search_results = []
+    @error = nil
+    game_ids = []
+    if params[:my] == "My Owned Games"
+      pp "Owned"
+      @games = Game.all.where(user_id:current_user.id, owned:true)
+    elsif params[:my] == "My Rated Games"
+      pp "rated"
+      @games = Game.all.where(user_id:current_user.id, owned:false)
+    else
+      pp "all"
+      if (params[:bgg_game] && (params[:bgg_game] != ""))
+        pp "game search"
+        search_results =  Bgg::Search.query(params[:bgg_game])
+        if (search_results.count < 1000) &&  (search_results.count > 1)
+          expansion_ids = search_results.select { |result| result.type != 'boardgame'}.map(&:id)
+          search_results.reverse_each do |result|
+            search_results.delete(result) if expansion_ids.include?(result.id)
+          end
+          game_ids = search_results.map(&:id)
+        elsif search_results.count == 1
+          pp search_results.count
+          pp search_results[0].id
+          game_ids.push(search_results[0].id)
+          pp game_ids
+        elsif search_results.count >= 1000
+          @error = "Too many results generated, please use a more specific search term"
+        else
+          @error = "No games found"
+        end
+      elsif (params[:bgg_user] && (params[:bgg_user] != ""))
+        collection = Bgg::Collection.find_by_username(params[:bgg_user])
+        owned = collection.owned
+        games = collection.boardgames
+        collection_array = owned & games
+        game_ids = collection_array.map(&:id)
+      end
+      if game_ids.count == 1
+        @games = BggApi.thing({id:"#{game_ids[0]}"})["item"]
+      elsif game_ids.count > 1
+        @games = BggApi.thing({id:"#{game_ids}"})["item"]
+      end
+    end
+    pp @games
   end
 
   # GET /games/1 or /games/1.json
   def show
   end
 
+  def filter
+  end
+
+  def table
+  end
+
   # GET /games/new
   def new
-    search_results = []
-    @error = nil
-    game_ids = []
-    if (params[:bgg_game] && (params[:bgg_game] != ""))
-      search_results =  Bgg::Search.query(params[:bgg_game])
-      if (search_results.count < 1000) &&  (search_results.count > 1)
-        expansion_ids = search_results.select { |result| result.type != 'boardgame'}.map(&:id)
-        search_results.reverse_each do |result|
-          search_results.delete(result) if expansion_ids.include?(result.id)
-        end
-        game_ids = search_results.map(&:id)
-      elsif search_results.count == 1
-        pp search_results.count
-        pp search_results[0].id
-        game_ids.push(search_results[0].id)
-        pp game_ids
-      elsif search_results.count >= 1000
-        @error = "Too many results generated, please use a more specific search term"
-      else
-         @error = "No games found"
-      end
-    elsif (params[:bgg_user] && (params[:bgg_user] != ""))
-      collection = Bgg::Collection.find_by_username(params[:bgg_user])
-      owned = collection.owned
-      games = collection.boardgames
-      collection_array = owned & games
-      game_ids = collection_array.map(&:id)
-    end
-    #@search_results_games = []
-    #id_list = "#{game_ids.each{|id| "#{id}, "}}"
-    #id_list = id_list[1..-2]
-    pp game_ids.class
-    if game_ids.count == 1
-      @search_results_games = BggApi.thing({id:"#{game_ids[0]}"})["item"]
-    else
-      @search_results_games = BggApi.thing({id:"#{game_ids}"})["item"]
-    end
-    pp @search_results_games
-
+    
 
   end
 
