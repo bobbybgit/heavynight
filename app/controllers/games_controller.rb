@@ -1,28 +1,41 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
   require 'bgg'
+  include PollCheck
 
 
   def add
+    if Game.all.mine(current_user.id,params[:bgg_id]) && (Game.all.mine(current_user.id,params[:bgg_id]) != [])
+      game = Game.all.mine(current_user.id,params[:bgg_id])
+      game.destroy
+    end
+@gan    @game = Game.new
+    @game[:bgg_id] = params[:bgg_id]
+    @game[:rating] = params[:rating]
+    @game[:min_player_count] = params[:min_player_count]
+    @game[:max_player_count] = params[:max_player_count]
+    @game[:min_rec_player_count] = params[:min_rec_player_count]
+    @game[:max_rec_player_count] = params[:max_rec_player_count]
+    @game[:image] = params[:image]
+    @game[:weight] = params[:weight]
+    @game[:description] = params[:description]
+    @game[:owned] = params[:owned]
+    @game.save
   end 
-
-  def rate 
-    @game = Bgg::Game.find_by_id(params[:game_id])
-  end
 
   # GET /games or /games.json
   def index
+    @my_games = Game.all.where(user_id:current_user.id, owned:true)
+    @my_rated_games = Game.all.where(user_id:current_user.id).where.not(rating: nil)
     @games = []
-    pp @games
     search_results = []
     @error = nil
     game_ids = []
     if params[:my] == "My Owned Games"
       pp "Owned"
-      @games = Game.all.where(user_id:current_user.id, owned:true)
+      @games = @my_games
     elsif params[:my] == "My Rated Games"
-      pp "rated"
-      @games = Game.all.where(user_id:current_user.id, owned:false)
+      @games = @my_rated_games
     else
       pp "all"
       if (params[:bgg_game] && (params[:bgg_game] != ""))
@@ -64,16 +77,15 @@ class GamesController < ApplicationController
   def show
   end
 
+ 
+
   def filter
   end
 
   def table
   end
 
-  # GET /games/new
-  def new
-    
-
+  def confirm
   end
 
   # GET /games/1/edit
@@ -82,15 +94,16 @@ class GamesController < ApplicationController
 
   # POST /games or /games.json
   def create
-    @game = Game.new(game_params)
+  
+    @game = Game.new
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
+        format.html { redirect_to confirm_game_path, :data => {:turbo-frame => "modal"} }
         format.json { render :show, status: :created, location: @game }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, :data => {:turbo-frame => "content"} }
+        format.json { render json: @game.errors, status: :unprocessable_entity, :data => {:turbo-frame => "content"}  }
       end
     end
   end
@@ -126,6 +139,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:bgg_id, :min_player_count, :max_player_count, :min_rec_player_count, :max_rec_player_count, :image, :weight, :rating, :description, :user_id, :venue_id)
+      params.require(:game).permit(:bgg_id, :min_player_count, :max_player_count, :min_rec_player_count, :max_rec_player_count, :image, :weight, :rating, :description, :user_id, :venue_id, :owned)
     end
 end

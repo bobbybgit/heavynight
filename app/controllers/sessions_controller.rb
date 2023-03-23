@@ -25,11 +25,11 @@ class SessionsController < ApplicationController
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to session_url(@session), notice: "Session was successfully created." }
-        format.json { render :show, status: :created, location: @session }
+        format.html { redirect_to session_url(@session), notice: "Session was successfully created.", data:{turbo-frame: "content"} }
+        format.json { render :show, status: :created, location: @session, data:{turbo-frame: "content"} }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, data:{turbo-frame: "content"} }
+        format.json { render json: @session.errors, status: :unprocessable_entity, data:{turbo-frame: "content"} }
       end
     end
   end
@@ -38,11 +38,11 @@ class SessionsController < ApplicationController
   def update
     respond_to do |format|
       if @session.update(session_params)
-        format.html { redirect_to session_url(@session), notice: "Session was successfully updated." }
-        format.json { render :show, status: :ok, location: @session }
+        format.html { redirect_to session_url(@session), notice: "Session was successfully updated.", data:{turbo-frame: "content"} }
+        format.json { render :show, status: :ok, location: @session, data:{turbo-frame: "content"} }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @session.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, data:{turbo-frame: "content"} }
+        format.json { render json: @session.errors, status: :unprocessable_entity, data:{turbo-frame: "content"} }
       end
     end
   end
@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
     @session.destroy
 
     respond_to do |format|
-      format.html { redirect_to sessions_url, notice: "Session was successfully destroyed." }
+      format.html { redirect_to sessions_url, notice: "You have been logged out", data:{turbo-frame: "content"} }
       format.json { head :no_content }
     end
   end

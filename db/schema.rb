@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_143130) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_083328) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -58,14 +58,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_143130) do
     t.integer "bgg_id"
     t.integer "min_player_count"
     t.integer "max_player_count"
-    t.integer "min_rec_player_count"
-    t.integer "max_rec_player_count"
+    t.string "min_rec_player_count"
+    t.string "max_rec_player_count"
     t.string "image"
     t.float "weight"
-    t.float "rating"
+    t.string "rating", default: "Not Rated"
     t.text "description"
-    t.integer "user_id", null: false
-    t.integer "venue_id", null: false
+    t.integer "user_id"
+    t.integer "venue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "owned"

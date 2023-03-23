@@ -15,9 +15,8 @@ Rails.application.routes.draw do
 
   resources :games do
     collection do
+      get 'confirm'
       get 'add'
-      get 'rate'
-      get 'add_rating'
     end
   end
 

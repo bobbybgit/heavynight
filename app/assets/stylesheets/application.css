@@ -257,8 +257,23 @@ textarea:focus{
 }
 
 #rating_card_form{
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 5px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.panel_form_section{
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-start;
+}
+
+.panel_form_section label, .panel_form_section .check_wrapper{
+  margin: 0;
 }
 
  /* Specific Classes */
@@ -347,7 +362,11 @@ textarea:focus{
 
  .notices{
   padding: 0 6%;
-  color: var(--highlight)
+  color: var(--highlight);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
  }
 
 .square_button{
@@ -381,6 +400,7 @@ textarea:focus{
 }
 
 #rate_check_section{
+  display: flex;
   flex-direction: row;
   align-items: center;
 }
@@ -492,10 +512,10 @@ width: 55%;
  }
 
  .image_75{
-  min-width: 75px;
-  max-width: 75px;
+  
   min-height: 75px;
   max-height: 75px;
+  width: auto;
   flex: 0;
  }
 
@@ -987,7 +1007,10 @@ width: 55%;
 
 .games_panel{
   display: none;
+  background-color: var(--tertiary);
   grid-column: 1 / 4;
+  font-size: 12px;
+  border-bottom: var(--secondary) 2px solid;
 }
 
 
@@ -1039,6 +1062,12 @@ width: 55%;
 #modal{
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.game_image_container{
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 
