@@ -7,23 +7,24 @@
   <div class="container" id="group_container">
   <div class="window_header">
   <h2 class ="item_header" id="group_item_header">
-    <%= group.name %>
+    <%= group.name.upcase %>
     </h2>
     </div><!-- window_header -->
-    <br>
-  <p class="location">
-    <%= group.location %>
-  </p>
-  <br>
+  
+ 
 
-  <p class="description">
+  <div class="description">
     <%= group.description %>
-  </p>
+  </div>
+
+  <div class="location">
+   <div class="icon group_card_loc">place</div> <%= group.location %>
+  </div>
   
   </div><!-- group_container -->
-  <div class="container calendar_window">
-    <%= render 'calendars/calendar', date: @date %>
-  </div>
+  <%= turbo_frame_tag :calendar, :class => "calendar_window container", :src => calendar_new_path(date: @date) do %>
+
+  <% end %>
 <div id="member_title">
 <h3>
   <%= group.member_count %>
@@ -60,10 +61,10 @@
   </div><!-- group ID -->
   <div class="flat_button_group" id="group_buttons">
     <% if (group.admin_status(current_user)) %>
-      <%= button_to edit_group_path, :class => "square_button strip_link",  :id => "edit_group_button", :method => :get do %>
+      <%= button_to edit_group_path, :class => "square_button strip_link", :method => :get do %>
         <i class="icon" id="edit_group_icon">mode_edit</i> Edit
       <% end %> 
-      <%= button_to group_path, :class => "square_button strip_link",  :id => "new_group_button", :method => :destroy do %>
+      <%= button_to group_path, :class => "square_button strip_link", :method => :delete do %>
         <i class="icon" id="delete_group_icon">delete</i> Delete
       <% end %>
     <% end %>

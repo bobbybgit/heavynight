@@ -23,10 +23,10 @@
     --mainLight: #FFFFFF;
     --secondary: #25283D;
     --secondaryhighlight: #25283D;
-    --tertiary: #EFEFEF;
-    --highlight: #FF703C;
+    --tertiary: #DCE3E5;
+    --highlight: #DB3A34;
     --highlightDark: #DD501A;
-    --highlightLight: #FFE1D6;
+    --highlightLight: #DCE3E5;
     --textMain: #000000;
     --textSecondary: #FFFFFF;
     --textHighlight: #FFFFFF;
@@ -62,9 +62,10 @@
 
  h1, h2, h3, h4, h5, h6{
   margin: 0;
-  color: var(--secondaryhighlight);
+  color: var(--highlight);
   user-select: none;
   font-weight: 400;
+  text-transform: uppercase;
  }
 
 
@@ -73,7 +74,7 @@
   color: var(--textHighlight);
  }
 
-  form input[type=email], form input[type=text], form input[type=password]{
+  form input[type=email], form input[type=text], form input[type=password], form input[type=date], form input[type=time]{
   outline:none;
   height: 2rem;
   border: solid var(--secondary) 2px;
@@ -83,8 +84,14 @@
   width: 300px;
  }
 
- form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus{
+
+ form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus, form input[type=date]:focus, form input[type=time]:focus{
   border: solid var(--highlight) 2px;
+ }
+
+ .new_form_section select{
+  width: 100%;
+  max-width: 100%;
  }
 
  textarea{
@@ -158,16 +165,18 @@ textarea:focus{
     align-items: center;
  }
 
- 
+ .filter_button_box{
+  padding-top: 14px;
+ }
  .table_container{
   display: grid;
   justify-content: center;
   gap: 0;
-  border-bottom: var(--secondary) 3px solid;
-  padding-bottom: 20px;
   margin-bottom: 90px;
-  max-width: 100%;
-  width: 1050px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 2px var(--secondary) solid;
   
  }
 
@@ -216,6 +225,7 @@ textarea:focus{
   flex: 0;
   padding:0;
   max-width: 100%;
+  user-select: none;
 }
 
 .modal{
@@ -272,7 +282,11 @@ textarea:focus{
   justify-content: flex-start;
 }
 
-.panel_form_section label, .panel_form_section .check_wrapper{
+.panel_form_section label {
+  padding-left: 3px;
+}
+
+.panel_form_section .check_wrapper{
   margin: 0;
 }
 
@@ -281,14 +295,58 @@ textarea:focus{
  
 
  .close_button{
+  display:flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--highlight);
-  color: var(--textHighlight);
-  border-radius: 50%;
   height: 40px;
   width: 40px;
-  border: none;
+  border-radius: 50%;
+  border: 0;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  color: var(--textHighlight);  
+  cursor: pointer;
   margin-top: 20px;
 
+ }
+
+ .description{
+  margin: 5px;
+  color: var(--secondary);
+  text-align: left;
+ }
+
+ #games_dash_search, #dash_groups_search, #dash_events{
+  margin-bottom: 10px;
+ }
+
+ .dash_buttons{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+ }
+
+ .location{
+  padding: 10px;
+  color: var(--mainDark);
+  font-size: 12px;
+  flex: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  border-top: 1px solid var(--mainDark);
+  width: 90%;
+ }
+ .location div{
+  color: var(--secondary);
+  display: block;
+  margin: 3px;
  }
  
 
@@ -300,6 +358,7 @@ textarea:focus{
 
  .group_card_loc{
   flex: 0;
+  font-size: 16px;
  }
 
  .bookend{
@@ -318,10 +377,12 @@ textarea:focus{
 
  .tab_bar{
   display: flex;
-  width: 80vw;
-  padding: 90px 0 40px 0;
+  width:  100%;
+  padding: 90px 10% 20px 10%;
   box-sizing: border-box;
   gap: 30px;
+  z-index: 2;
+  background-color: var(--main)
  }
 
  .tab{
@@ -372,7 +433,7 @@ textarea:focus{
 .square_button{
   padding: 10px 20px;
   margin: 10px 0;
-  height: 48px;
+  height: 2rem;
   border: none;
   display: flex;
   align-items: center;
@@ -385,8 +446,27 @@ textarea:focus{
 
  }
 
+ .filter_button{
+  height: 2rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  background-color: var(--highlight);
+  color: var(--textHighlight);
+  border-radius: 3px;
+ }
+
  .square_button:hover, .new_button:hover{
   background-color: var(--highlightDark);
+}
+
+.new_form_section{
+  width: 100%;
+  max-width: 100%;
+  padding: 5px 0;
 }
 
 .form_section{
@@ -486,6 +566,8 @@ width: 55%;
   margin: 5px 0;
   font-weight: 300px;
   max-width: 300px;
+  color: var(--mainDark);
+  font-size: 12px;
   
  }
 
@@ -553,6 +635,7 @@ width: 55%;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  gap: 10px;
 }
 
 
@@ -571,8 +654,8 @@ width: 55%;
   background-color: var(--highlight);
   display: flex;
   justify-content: space-evenly;
-  margin: -11px -11px 0 -11px;
-  padding: 11px;
+  padding: 10px;
+  width: 100%;
 }
 
 .calendar_title{
@@ -602,20 +685,19 @@ width: 55%;
 }
 
 .cal_days{
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
   min-height: 200px;
+  padding-top: 5px;
 }
 
 .cal_day, .non_day, .day_header{
-  min-height: 35px;
-  max-height: 35px;
-  min-width: 35px;
-  max-width: 35px;
+  min-height: 30px;
+  max-height: 30px;
+  min-width: 30px;
+  max-width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -666,6 +748,30 @@ width: 55%;
   z-index: 1;
 }
 
+.dash_header{
+  min-width: 100%;
+  background-color: var(--highlight);
+  color: var(--textHighlight);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.dash_header_container{
+  min-width: 100%;
+  display: none;
+  background-color: var(--main);
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.dash_header h4{
+  color: var(--textHighlight);
+}
+
 .filter_box_header .icon{
   position: relative;
   top: 3px; 
@@ -678,7 +784,6 @@ width: 55%;
 }
 
 .calendar_window{
-  padding: 10px;
   border: 2px solid var(--highlight);
   display: flex;
   flex-direction: column;
@@ -783,7 +888,7 @@ width: 55%;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: 5px 0;
+  margin: 0;
   padding: 2px 20px 10px 10px;
   border-radius: 3px;
   font-size: 12px;
@@ -792,7 +897,7 @@ width: 55%;
 }
 
 .filter_item_content select{
-  margin: 5px 0;
+  margin: 2px 0;
 }
 
 
@@ -800,6 +905,7 @@ width: 55%;
   display: flex;
   align-items: center;
   max-width: 100%;
+  gap: 10px;
 }
 
 
@@ -813,7 +919,7 @@ width: 55%;
 }
 .filter_item_title{
   margin-bottom: -2px;
-  padding: 3px 0 0 44px;
+  padding: 3px;
 }
 
 
@@ -827,7 +933,7 @@ width: 55%;
    right: 0;
    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
    justify-content: space-between;
-   z-index: 2;
+   z-index: 3;
  }
 
  #logo{
@@ -853,7 +959,7 @@ width: 55%;
    flex: 1;
    flex-direction: column;
    align-items: center;
-   max-width: 100%;
+   max-width: 1000px;
    width: 100%;
  }
 
@@ -913,18 +1019,16 @@ width: 55%;
  }
 
  #group_container{
-  padding: 15px;
   border: 2px solid var(--highlight);
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  flex: 0;
   max-width: 300px;
   min-width: 300px;
   max-height: 300px;
   min-height: 300px;
   flex: 0;
-  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
   user-select: none;
 }
 
@@ -973,7 +1077,8 @@ width: 55%;
   background-color: black;
 }
 
-#group_index, #games_index{
+
+#group_index, #games_index, #events_index{
   flex-direction: column;
   width:100%;
   align-items: center;
@@ -992,25 +1097,45 @@ width: 55%;
 
 }
 
-#groups, #games{
-  justify-content: center;
+.t_frame{
+  justify-content: flex-start;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#games_search{
-  width: 1140px;
-}
 
 .games_year_header, .game_year_container{
   justify-content: center;
 }
 
+.games_panel, .panel_frame, .full_span{
+ 
+ 
+  grid-column: 1 / 4;
+  font-size: 12px;
+ 
+  
+}
+
+@keyframes blink{
+  0%{
+    color: var(--main)
+  }
+  100%{
+    color: var(--textMain)
+  }
+}
+
+.update{
+  animation: blink 0.5s linear 0s 1 ;
+}
+
 .games_panel{
   display: none;
   background-color: var(--tertiary);
-  grid-column: 1 / 4;
-  font-size: 12px;
-  border-bottom: var(--secondary) 2px solid;
+  padding: 5px;
+  
 }
 
 
@@ -1021,10 +1146,6 @@ width: 55%;
   max-width: 225px;
 }
 
-.filter_content{
-  justify-content: center;
-}
-
 #distance, #loc_filter{
   margin: 3px 0;
 }
@@ -1033,14 +1154,18 @@ width: 55%;
   width: 80px;
 }
 
-#filter_form_groups, #filter_form_games{
+#filter_form_groups, #filter_form_games, #filter_form_events{
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
-  gap: 20px;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 10px;
+  row-gap: 10px;
+  border-radius: 3px;
   padding-top: 10px;
+  background-color: var(--main);
+
 }
 
 
@@ -1063,6 +1188,15 @@ width: 55%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction:column;
+  gap: 20px;
+  background-color: var(--main);
+  max-width: 90%;
+  width: fit-content;
+  padding: 40px;
+  border-radius: 5px;
+  border: solid var(--secondary) 2px;
+
 }
 
 .game_image_container{
@@ -1082,3 +1216,45 @@ width: 55%;
     min-height: 175px;
   }
 }
+
+#hidden{
+  display: none;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-top: 30px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--highlight) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

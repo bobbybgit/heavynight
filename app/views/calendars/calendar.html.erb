@@ -1,7 +1,8 @@
-<% @date = date %>
-
+<%= turbo_frame_tag :calendar, :class => "calendar_window" do %>
 <div class="window_header">
+    <%= link_to calendar_new_path(date: @date << 1), :class => "strip_link" do %>
     <div class="icon container cal_prev">chevron_left</div>
+    <% end %>
     <div class="container calendar_title">
         <h3 class ="item_header" id="calendar_header">
             <%= Date::MONTHNAMES[@date.month] %>
@@ -10,7 +11,9 @@
             <%= @date.year %>
         </h4>
     </div>
+    <%= link_to calendar_new_path(date: @date >> 1), :class => "strip_link" do %>
     <div class="icon container cal_next">chevron_right</div>
+    <% end %>
 
 </div>
 <div class="cal_days">
@@ -36,4 +39,5 @@
 </div>
 <% end %>
 </div>
+<% end %>
 

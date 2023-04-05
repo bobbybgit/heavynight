@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "modal" do %>
+
+<%= @status %>
+
+<%= button_to games_path, :class => "close_button strip_link", :method => :get, data:{turbo_frame: "content"} do %><i class = "icon">close</i><% end %>
+
+<% end %>

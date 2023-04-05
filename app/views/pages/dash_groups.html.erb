@@ -1,9 +1,9 @@
-<div class="table_container container three_col" id="groups_search">
-
-
+<%= turbo_frame_tag :dash_groups do %>
   <% if @groups.empty? %>
-    No groups to show
+      No groups to show
   <% else %>
+  <div class="table_container container three_col" id="dash_groups_search">
+
     <div class="table_header group_name_header table_cell">
       Name
     </div>
@@ -14,11 +14,6 @@
       <i class=icon>person</i>
     </div>
 
-  <% end %>
-
- 
- 
- 
     <% @groups.each_with_index do |group, i| %>
       <% if i.even? %>
         <%= link_to group_path(group), :class => "strip_link table_link" do %>
@@ -46,13 +41,14 @@
         <div class="member_number_container container table_cell table_data odd_row">
           <%= group.member_count %>
         </div><!-- member_number_container -->
-      <% end %>
-  <% end %><!-- groups.each do -->
+        <% end %>
+      <% end %><!-- groups.each do -->
 
-  </div><!--groups_search -->
+    </div><!--groups_search -->
 
-  <%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get, data:{turbo_frame: "content"} do %>
-    <i class="icon" id="new_group_icon">add</i>
-  <% end %>
-  </div>
+  <% end %>    
+        
 
+
+
+<% end %>

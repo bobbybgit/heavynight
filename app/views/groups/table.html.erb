@@ -1,0 +1,6 @@
+<%= turbo_frame_tag :groups, :class => "t_frame" do %>
+  <%= turbo_frame_tag :groups_table, src: groups_results_path(longitude: params[:longitude], latitude: params[:latitude], my: params[:my], distance: params[:distance], search_string: params[:search_string], loc_filter: params[:loc_filter], button: @button), :class => "t_frame" do %>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  <% end %>
+<% end %>
+

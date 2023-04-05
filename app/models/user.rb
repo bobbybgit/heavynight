@@ -6,12 +6,16 @@ class User < ApplicationRecord
 
   mount_uploader :user_image, UserImageUploader
 
+  
+
 
   validates_presence_of :first_name
   validates_presence_of :surname
 
   has_many :memberships
   has_many :groups, :through => :memberships
+
+  scope :members, -> (group){joins(:groups).where(groups:{id: group})}
 
   def member?(group)
     groups.exists?(group.id)

@@ -9,9 +9,13 @@ static targets = [];
     
   }
 
-  open(){
-    console.log(this.element.nextElementSibling)
-    let expandee = this.element.nextElementSibling;
+  open(event){
+    console.log(event.target)
+    let expandee = event.target
+    if (!expandee.classList.contains("table_cell")){
+      expandee = expandee.parentElement
+    }
+    expandee = expandee.nextElementSibling;
     while (true){
       if (expandee.getAttribute("class") == "games_panel"){
         break;

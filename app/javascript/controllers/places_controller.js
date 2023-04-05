@@ -5,7 +5,7 @@ export default class extends PlacesAutocomplete {
   
   connect() {
     super.connect()
-    console.log('Do what you want here.')
+    console.log('Places controller connected.')
 
     // The google.maps.places.Autocomplete instance.
     this.autocomplete
@@ -21,22 +21,17 @@ export default class extends PlacesAutocomplete {
   placeChanged() {
     super.placeChanged()
     let place = this.autocomplete.getPlace()
-    this.longitudeTarget.value = place.geometry.location.lng()
-    this.latitudeTarget.value = place.geometry.location.lat()
-  }
-
-  updateGeo(){
-    let place = this.autocomplete.getPlace()
-    if (typeof place !== 'undefined'){
-    console.log(place.geometry.location.lng())
-    this.longitudeTarget.value = place.geometry.location.lng()
-    this.latitudeTarget.value = place.geometry.location.lat()
+    console.log(place.address_components)
+    if (place.address_components){
+      this.longitudeTarget.value = place.geometry.location.lng()
+      this.latitudeTarget.value = place.geometry.location.lat()
     }else{
       this.longitudeTarget.value = null
       this.latitudeTarget.value = null
     }
-
   }
+
+  
 
   // You can set the Autocomplete options in this getter.
   get autocompleteOptions() {

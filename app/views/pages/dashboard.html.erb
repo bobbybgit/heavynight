@@ -1,19 +1,28 @@
 <%= turbo_frame_tag :content do %>
-  <div class="section_contents container" id="groups_content">
-    <% @groups.each do |group| %>
-        <%= link_to group, :class => "strip_link" do %>
-          <div class="card group_card">
-            <div class="container profile_image group_profile_image"><%= image_tag(group.image_url.to_s, :class => "image_100") %></div>
-            <div class="container group_card_details">
-              <h4 class="group_name"><%= group.name.upcase %></h4>
-              <h5><%= group.location.length < 25 ? group.location : group.location[0,26]+"..." %></h5>
-              <p><%= group.description.length < 50 ? group.description: group.description[0,51]+" ..." %></p> 
-            </div><!-- group_card_details -->  
-          </div><!-- group_card -->
-        <% end %><!-- link_to do -->
-    <% end %><!-- groups.each do -->
-  </div><!--groups_content -->
 
-<%= button_to "Edit Profile", edit_user_registration_path, :class => "square_button", :method => :get %>
-<%= button_to "Log Out", destroy_user_session_path, :class => "square_button", :method => :delete %>
+  <div class="dash_header" id="groups_dash_header" data-controller="expand">
+    <h4 data-action= "click->expand#expandText">My Groups</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_more</i>
+  </div>
+  <%= turbo_frame_tag :dash_groups, :src => dash_groups_path, :class => "dash_header_container" do %>
+    <%= render 'loading' %>
+  <% end %>
+
+  <div class="dash_header" id="games_dash_header" data-controller="expand">
+      <h4 data-action= "click->expand#expandText">My Games</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_more</i>
+  </div>
+  <%= turbo_frame_tag :dash_games, :src => dash_games_path, :class => "dash_header_container" do %>
+    <%= render 'loading' %>
+  <% end %>
+
+  <div class="dash_header" id="events_dash_header" data-controller="expand">
+    <h4 data-action= "click->expand#expandText">My Events</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_more</i>
+  </div>
+  <%= turbo_frame_tag :dash_events, :src => dash_events_path, :class => "dash_header_container" do %>
+    <%= render 'loading' %>
+  <% end %>
+  <div class="dash_buttons">
+  <%= button_to destroy_user_session_path, :method => :delete, :class => "square_button strip_link" do %><i class="icon">logout</i>&nbsp;Log Out<% end %>
+  <%= button_to edit_user_registration_path, :method => :get, :class => "square_button strip_link" do %><i class="icon">edit</i>&nbsp;Edit Profile<% end %>
+  </div>
+
 <% end %>

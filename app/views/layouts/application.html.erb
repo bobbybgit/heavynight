@@ -39,7 +39,9 @@
       <%= link_to groups_path, :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link", 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "groups", 'data-tabs-target' => "tab" do %>
         Groups
       <% end %>
-      <div class="tab tab_3" id="layout_tab_3" data-action="click->tabs#tabSelect" data-tabs-tab-param="events"  data-tabs-target="tab">Events</div>
+      <%= link_to events_path, :class => "tab tab_3 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "events", 'data-tabs-target' => "tab" do %>
+        Events
+      <% end %>
       <%= link_to games_path, :class => "tab tab_4 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "games", 'data-tabs-target' => "tab" do %>
         Games
       <% end %>
@@ -65,6 +67,8 @@
     <div class="modal" id="main_modal" tabindex="-1" data-controller="modal" data-action="turbo:frame-render->modal#open turbo:submit-end->modal#close">
       <%= turbo_frame_tag "modal" do %>
       <% end %>
-      <button data-action="click->modal#close" class="close_button"><i class="icon">close</i></button>
+    </div>
+    <%= turbo_frame_tag :hidden do %>
+    <% end %>
   </body>
 </html>

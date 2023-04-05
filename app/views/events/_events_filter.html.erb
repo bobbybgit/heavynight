@@ -1,22 +1,20 @@
-
-
-<div class = "filter_box container" id = "group_filter_box">
+<div class = "filter_box container" id = "events_filter_box">
   
-  <div class="filter_box_header" id="groups_filter_header" data-controller="expand">
-    <h4>Filters</h4><i class="icon" id="expand_group_filters" data-action= "click->expand#expand">expand_less</i>
+  <div class="filter_box_header" id="events_filter_header" data-controller="expand">
+    <h4>Filters</h4><i class="icon" id="expand_events_filters" data-action= "click->expand#expand">expand_less</i>
   </div>
   
   <div class = "filter_content container">
 
-    <%= form_with url: groups_table_path, :id => "filter_form_groups", :method => :get, data:{turbo_frame: "groups"} do |form| %>
+    <%= form_with url: events_table_path, :id => "filter_form_events", :method => :get, data:{turbo_frame: "events"} do |form| %>
       <div class="filter_item">
         <div class="filter_item_title">
           Show:
         </div><!-- filter_item_title -->
         <div class="filter_item_content">
-          <%= form.select :my, options_for_select(['All Groups','My Groups']) %>
-        </div><!-- filter_item_content (my/all groups)-->
-      </div><!--filter_item (my/all groups) -->
+          <%= form.select :my, options_for_select(['All Events',"Events I'm Attending","Events I'm Running"]) %>
+        </div><!-- filter_item_content (my/all events)-->
+      </div><!--filter_item (my/all events) -->
 
       <div class="filter_item">
         <div class="filter_item_title">
@@ -42,10 +40,10 @@
     
       <div class="filter_item">
         <div class="filter_item_title">
-          Name:
+          Event/Group Name:
         </div><!-- filter_item_title -->
         <div class=filter_item_content>
-          <%= form.text_field :search_string, :placeholder => "Enter name", :id => "group_search_box" %>
+          <%= form.text_field :search_string, :placeholder => "Enter name", :id => "events_search_box" %>
         </div><!-- filter_item_content (search)-->
       </div><!-- filter_item (search)-->
 

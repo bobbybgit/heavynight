@@ -6,16 +6,14 @@
   
   <div class = "filter_content container">
 
-    <%= form_with url: games_path, :id => "filter_form_games", :method => :get, data:{turbo_frame: "games"} do |form| %>
+    <%= form_with url: games_table_path, :id => "filter_form_games", :method => :get, data:{turbo_frame: "games"} do |form| %>
       <div class="filter_item">
         <div class="filter_item_title">
           Show:
         </div><!-- filter_item_title -->
         <div class="filter_item_content">
-          <div class="filter_item_icon">
-            <i class="icon">casino</i>
-          </div><!-- filter_item_icon (my/all groups)-->
           <%= form.select :my, options_for_select(['All Games','My Owned Games', 'My Rated Games']) %>
+          <%= form.button nil, :class => "filter_button", :name => "my_button" do %><i class = "icon">filter_list</i><% end %>
         </div><!-- filter_item_content (my/all games)-->
       </div><!--filter_item (my/all games) -->
     
@@ -24,27 +22,30 @@
           BGG User:
         </div><!-- filter_item_title -->
         <div class=filter_item_content>
-          <div class="filter_item_icon">
-            <i class="icon">person</i>
-          </div><!-- filter_item_icon (User)-->
           <%= form.text_field :bgg_user, :placeholder => "Search by BGG Username...", :id => "bgg_user_box" %>
+          <%= form.button nil, :class => "filter_button", :name => "bgg_user_button" do %><i class = "icon">filter_list</i><% end %>
         </div><!-- filter_item_content (search)-->
+      </div><!-- filter_item (search)-->
+
+      <div class="filter_item">
+        <div class="filter_item_title">
+          Group:
+        </div><!-- filter_item_title -->
+        <div class=filter_item_content>
+          <%= form.collection_select :group_name, @my_groups, :id, :name %>
+          <%= form.button nil, :class => "filter_button", :name => "hn_group_button" do %><i class = "icon">filter_list</i><% end %>
+        </div><!-- filter_item_content (groups)-->
       </div><!-- filter_item (search)--><div class="filter_item">
 
         <div class="filter_item_title">
           Name:
         </div><!-- filter_item_title -->
         <div class=filter_item_content>
-          <div class="filter_item_icon">
-            <i class="icon">search</i>
-          </div><!-- filter_item_icon (search)-->
           <%= form.text_field :bgg_game, :placeholder => "Search by game name...", :id => "games_search_box" %>
+          <%= form.button nil, :class => "filter_button", :name => "bgg_game_button" do %><i class = "icon">filter_list</i><% end %>
         </div><!-- filter_item_content (search)-->
       </div><!-- filter_item (search)-->
 
-      <%= form.button nil, :class => "square_button strip_link", :id => "games_search_btn" do %>
-        <i class="icon">search</i>&nbsp;Search
-      <% end %><!-- search button -->
 
   <% end %><!-- form -->
 

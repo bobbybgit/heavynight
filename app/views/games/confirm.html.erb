@@ -1,6 +1,7 @@
-<%= turbo_frame_tag :modal do %>
+<%= turbo_frame_tag @frame_id do %>
 
-Game Updated
-<button data-action="click->modal#close"><i class="icon">tick</i>&nbsp;Confirm</button>
+<h3 class="update">Game updated</h3>
 
 <% end %>
+
+

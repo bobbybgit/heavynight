@@ -8,12 +8,7 @@ require 'bigdecimal/util'
   
   # GET /groups or /groups.json
   def index
-    @groups = Group.name_search(params[:search_string])
-    @groups = @groups.joins(:users).where(users:{id: current_user.id}) if params[:my] == "My Groups"
-    if ((params[:loc_filter] != "") && params[:loc_filter])
-      @groups = @groups.select{|group| (distance(group.latitude, group.longitude, params[:latitude].to_d, params[:longitude].to_d, "miles") <= params[:distance].to_d)} 
-    end
-    @groups = @groups.sort_by{|group| group.name}
+    
   end
 
   # GET /groups/1 or /groups/1.json
@@ -65,7 +60,8 @@ require 'bigdecimal/util'
 
   # DELETE /groups/1 or /groups/1.json
   def destroy
-
+    memberships = Membership.all.where(group_id: @group.id)
+    memberships.delete_all
     @group.destroy
 
     respond_to do |format|
@@ -74,6 +70,33 @@ require 'bigdecimal/util'
     end
     
   end
+
+  def table
+    @button = "my" if params[:my_button]
+    @button = "distance" if params[:distance_button]
+    @button = "bgg_game" if params[:bgg_game_button]
+    @button = "hn_group" if params[:hn_group_button]
+    @groups = Group.all.sort_by{|group| group.name}
+   
+  end
+
+  def results
+    @groups = Group.name_search(params[:search_string])
+    @groups = @groups.joins(:users).where(users:{id: current_user.id}) if params[:my] == "My Groups"
+    if ((params[:loc_filter] != "") && params[:loc_filter])
+      if !PresenceCheck.string(params[:longitude].to_s)
+        @error = "Location not found, please use location matching autocomplete"
+        return
+      end
+      @groups = @groups.select{|group| (distance(group.latitude, group.longitude, params[:latitude].to_d, params[:longitude].to_d, "miles") <= params[:distance].to_d)} 
+    end
+    @groups = @groups.sort_by{|group| group.name}
+  end
+
+
+  def filter
+  end
+
 
    private
     # Use callbacks to share common setup or constraints between actions.

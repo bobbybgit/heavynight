@@ -7,7 +7,19 @@
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz#e3de23623b0c52c247aba4cd5d530d257008676b"
   integrity sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 stimulus-places-autocomplete@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/stimulus-places-autocomplete/-/stimulus-places-autocomplete-0.5.0.tgz#a18603ee629ec0944c4adae6b76b3fed515e1e1a"
   integrity sha512-9cVHWDXlkewELruJlbkNjLm4izybkOnLKQLUX/5F18ht5Dev+4/p+venaTfcHOkX9lyVj1qDz/SAiAjZnLx7tQ==
+
+stimulus-rails-autosave@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/stimulus-rails-autosave/-/stimulus-rails-autosave-4.1.1.tgz#c92968e2ce6311f87e727772d5792c47bd725b0d"
+  integrity sha512-cvmaPG19rKHLGsmOVcDjS683Get+0gSZ2n0btXJaN/Lkh/9zkvvVMfLWKIUBnoDUeHrmcJ/mSMECTjEvv+6b7g==
+  dependencies:
+    lodash.debounce "^4.0.8"

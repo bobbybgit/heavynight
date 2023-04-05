@@ -1,12 +1,19 @@
 module PollCheck
     def self.players(game)
         polls = game["poll"]
-        poll_position = 0
+        poll_position = "X"
         polls.each_with_index do |poll, i|
             poll_position = i if poll["name"] == "suggested_numplayers"
         end
-        playervotes = polls[poll_position]["results"]
+        
+        playercounts = [game["minplayers"][0]["value"],game["maxplayers"][0]["value"]]
+
+        return playercounts if poll_position.class != Integer || polls[poll_position]["results"]
+
         playercounts = []
+            
+        playervotes = polls[poll_position]["results"]
+        
         upvotes = downvotes = 0
         playervotes.each do |playercount|
             playercount["result"].each do |result|

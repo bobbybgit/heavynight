@@ -1,8 +1,7 @@
 <%= turbo_frame_tag "content" do %>
   <div class="container" id="group_index">
     <%= render 'filter' %>
-    <%= turbo_frame_tag :groups, :class => "t_frame" do %>
-      <%= render "table", groups: @groups %>
+    <%= turbo_frame_tag :groups, :class => "t_frame", :src => groups_table_path do %>
     <% end %><!-- groups turbo_frame -->
   </div><!-- group_index-->
 <% end %> <!-- content turbo_frame -->

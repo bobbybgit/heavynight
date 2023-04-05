@@ -2,7 +2,7 @@
   <div class="container" id="games_index">
     <%= render 'games_filter' %>
     <%= turbo_frame_tag :games, :class => "t_frame" do %>
-      <%= render "games_table", games: @games %>
+      
     <% end %><!-- games turbo_frame -->
   </div><!-- group_index-->
 

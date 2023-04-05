@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @admin_of = Group.all.admin_of(current_user.id)
   end
 
   # GET /events/1/edit
@@ -55,6 +56,15 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def table
+  end
+
+  def results
+  end
+
+  def filter
   end
 
   private
