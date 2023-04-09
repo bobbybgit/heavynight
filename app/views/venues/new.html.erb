@@ -1,3 +1,4 @@
+<%= turbo_frame_tag :modal do %>
 <h1>New venue</h1>
 
 <%= render "form", venue: @venue %>
@@ -7,3 +8,4 @@
 <div>
   <%= link_to "Back to venues", venues_path %>
 </div>
+<% end %>

@@ -43,8 +43,8 @@ class GamesController < ApplicationController
   def multi_add
     bgg_user = params[:bgg_user]
     collection = Bgg::Collection.find_by_username(params[:bgg_user])
-    game_ids = (collection.boardgames & collection.owned).sort{ |a,b| a.name <=> b.name }.map(&:id) - Game.all.owned_by_user(current_user.id).map(&:bgg_id)
-    games_obj_to_add = BggApi.thing({id:"#{game_ids[0]},#{game_ids}"})["item"]
+    @game_ids = (collection.boardgames & collection.owned).sort{ |a,b| a.name <=> b.name }.map(&:id) - Game.all.owned_by_user(current_user.id).map(&:bgg_id)
+    games_obj_to_add = BggApi.thing({id:"#{@game_ids[0]},#{@game_ids}"})["item"]
     games_to_add = []
     already_owned = Game.all.mine(current_user.id)
     if PresenceCheck.array(games_obj_to_add)
@@ -89,45 +89,16 @@ class GamesController < ApplicationController
     @games = []
     search_results = []
     @error = nil
-    game_ids = []
+    @game_ids = []
     @button = params[:button]
-    case @button
-    when "my"
-      pp "my button"
-      case params[:my]
-      when "My Owned Games"
-        game_ids = @my_games.sort { |a,b| a.name <=> b.name }.map(&:bgg_id)
-      when "My Rated Games"
-        game_ids = @my_rated_games.sort { |a,b| a.name <=> b.name }.map(&:bgg_id)
-      when "All Games"
-        @error = "Please use submit button of relevant filter"
-      end
-    when "bgg_game"
-      pp "bgg game button"
-      if (params[:bgg_game] && (params[:bgg_game] != ""))
-        pp "game search"
-        search_results =  Bgg::Search.query(params[:bgg_game])
-        if (search_results.count < 1000) &&  (search_results.count > 1)
-          expansion_ids = search_results.select { |result| result.type != 'boardgame'}.map(&:id)
-          search_results.reverse_each do |result|
-            search_results.delete(result) if expansion_ids.include?(result.id)
-          end
-          search_results.sort! { |a,b| a.name <=> b.name }
-          game_ids = search_results.map(&:id)
-        elsif search_results.count == 1
-          game_ids.push(search_results[0].id)
-        elsif search_results.count >= 1000
-          @error = "Too many results generated, please use a more specific search term"
-          return
-        end
-      end
-    when "bgg_user"
+    def bgg_user_init
       if (PresenceCheck.string(params[:bgg_user]))
         collection = Bgg::Collection.find_by_username(params[:bgg_user])
         @bgg_user = params[:bgg_user]
         pp @bgg_user
+        pp collection
         if PresenceCheck.array(collection)
-          game_ids = (collection.boardgames & collection.owned).sort{ |a,b| a.name <=> b.name }.map(&:id)
+          @game_ids = (collection.boardgames & collection.owned).sort{ |a,b| a.name <=> b.name }.map(&:id)
         else
           @error = "BGG User does not exist"
           return
@@ -136,12 +107,54 @@ class GamesController < ApplicationController
         @error = "BGG User does not exist"
         return
       end
+    end
+
+    def bgg_search_init
+      if PresenceCheck.string(params[:bgg_game])
+        pp "game search"
+        search_results =  Bgg::Search.query(params[:bgg_game])
+        if (search_results.count < 1000) &&  (search_results.count > 1)
+          expansion_ids = search_results.select { |result| result.type != 'boardgame'}.map(&:id)
+          search_results.reverse_each do |result|
+            search_results.delete(result) if expansion_ids.include?(result.id)
+          end
+          search_results.sort! { |a,b| a.name <=> b.name }
+          @game_ids = search_results.map(&:id)
+        elsif search_results.count == 1
+          @game_ids.push(search_results[0].id)
+        elsif search_results.count >= 1000
+          @error = "Too many results generated, please use a more specific search term"
+          return
+        end
+      end
+    end
+
+    case @button
+    when "my"
+      pp "my button"
+      case params[:my]
+      when "My Owned Games"
+        @game_ids = @my_games.sort { |a,b| a.name <=> b.name }.map(&:bgg_id)
+      when "My Rated Games"
+        @game_ids = @my_rated_games.sort { |a,b| a.name <=> b.name }.map(&:bgg_id)
+      when "All Games"
+        if PresenceCheck.string(params[:bgg_user])
+          bgg_user_init
+        elsif PresenceCheck.string(params[:bgg_game])
+          bgg_search_init
+        end
+      end
+    when "bgg_game"
+      pp "bgg game button"
+      bgg_search_init
+    when "bgg_user"
+      bgg_user_init
     when "hn_group"
       user_ids = User.all.members(params[:group]).map(&:id)
-      game_ids = Game.all.owned_by_user(user_ids).map(&:bgg_id)
-      pp game_ids
+      @game_ids = Game.all.owned_by_user(user_ids).map(&:bgg_id)
+      pp @game_ids
     end
-      game_ids.count > 0 ? @games = BggApi.thing({id:"#{game_ids[0]},#{game_ids}"})["item"] : @error = "No Games Found"
+      @game_ids.count > 0 ? @games = BggApi.thing({id:"#{@game_ids[0]},#{@game_ids}"})["item"] : @error = "No Games Found"
   end
 
   # GET /games/1 or /games/1.json

@@ -1,21 +1,21 @@
 <%= turbo_frame_tag :content do %>
 
   <div class="dash_header" id="groups_dash_header" data-controller="expand">
-    <h4 data-action= "click->expand#expandText">My Groups</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_more</i>
+    <h4 data-action= "click->expand#expandText">My Groups</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_less</i>
   </div>
   <%= turbo_frame_tag :dash_groups, :src => dash_groups_path, :class => "dash_header_container" do %>
     <%= render 'loading' %>
   <% end %>
 
   <div class="dash_header" id="games_dash_header" data-controller="expand">
-      <h4 data-action= "click->expand#expandText">My Games</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_more</i>
+      <h4 data-action= "click->expand#expandText">My Games</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_less</i>
   </div>
   <%= turbo_frame_tag :dash_games, :src => dash_games_path, :class => "dash_header_container" do %>
     <%= render 'loading' %>
   <% end %>
 
   <div class="dash_header" id="events_dash_header" data-controller="expand">
-    <h4 data-action= "click->expand#expandText">My Events</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_more</i>
+    <h4 data-action= "click->expand#expandText">My Events</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_less</i>
   </div>
   <%= turbo_frame_tag :dash_events, :src => dash_events_path, :class => "dash_header_container" do %>
     <%= render 'loading' %>

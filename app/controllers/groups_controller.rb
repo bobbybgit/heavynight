@@ -35,10 +35,10 @@ require 'bigdecimal/util'
         membership = current_user.memberships.new(:group_id => @group.id)
         @group.users.count == 0? membership[:admin] = true : membership[:admin] = false
         membership.save
-        format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
+        format.html { redirect_to group_url(@group), notice: "Group was successfully created.", data:{:turbo_frame => :content} }
         format.json { render :show, status: :created, location: @group }
       else 
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, data:{:turbo_frame => :content} }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
 

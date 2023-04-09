@@ -25,7 +25,7 @@
     --secondaryhighlight: #25283D;
     --tertiary: #DCE3E5;
     --highlight: #DB3A34;
-    --highlightDark: #DD501A;
+    --highlightDark: #B91812;
     --highlightLight: #DCE3E5;
     --textMain: #000000;
     --textSecondary: #FFFFFF;
@@ -62,7 +62,7 @@
 
  h1, h2, h3, h4, h5, h6{
   margin: 0;
-  color: var(--highlight);
+  color: var(--secondary);
   user-select: none;
   font-weight: 400;
   text-transform: uppercase;
@@ -361,6 +361,15 @@ textarea:focus{
   font-size: 16px;
  }
 
+ form h2{
+  font-size: 12px;
+  text-transform: none;
+  border-radius: 3px;
+  background-color: var(--tertiary);
+  padding: 10px;
+  margin-top: 10px;
+ }
+
  .bookend{
    background-color: var(--secondary);
    color: var(--textSecondary);
@@ -443,6 +452,8 @@ textarea:focus{
   background-color: var(--highlight);
   color: var(--textHighlight);
   border-radius: 3px;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
 
  }
 
@@ -762,7 +773,7 @@ width: 55%;
 
 .dash_header_container{
   min-width: 100%;
-  display: none;
+  display: flex;
   background-color: var(--main);
   justify-content: center;
   margin-top: 5px;
@@ -1194,8 +1205,9 @@ width: 55%;
   max-width: 90%;
   width: fit-content;
   padding: 40px;
-  border-radius: 5px;
-  border: solid var(--secondary) 2px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 
 }
 
@@ -1220,6 +1232,7 @@ width: 55%;
 #hidden{
   display: none;
 }
+
 
 .lds-ring {
   display: inline-block;

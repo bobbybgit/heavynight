@@ -23,7 +23,7 @@
     
         <% @groups.each_with_index do |group, i| %>
           <% if i.even? %>
-            <%= link_to group_path(group), :class => "strip_link table_link" do %>
+            <%= link_to group_path(group), :turbo_frame => :content, :class => "strip_link table_link" do %>
               <div class="group_name_container container table_cell table_data even_row">
                 <h5 class="group_name"><%= group.name.upcase %></h5>
               </div>
@@ -55,9 +55,7 @@
 
     <% end %>
 
-    <%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get, data:{turbo_frame: "content"} do %>
-      <i class="icon" id="new_group_icon">add</i>
-    <% end %>
+    
     </div>
   <% end %>
 

@@ -4,4 +4,7 @@
     <%= turbo_frame_tag :groups, :class => "t_frame", :src => groups_table_path do %>
     <% end %><!-- groups turbo_frame -->
   </div><!-- group_index-->
+  <%= button_to new_group_path, :class => "new_button strip_link",  :id => "new_group_button", :method => :get, data:{turbo_frame: "content"} do %>
+      <i class="icon" id="new_group_icon">add</i>
+    <% end %>
 <% end %> <!-- content turbo_frame -->
