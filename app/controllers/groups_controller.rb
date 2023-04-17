@@ -49,7 +49,7 @@ require 'bigdecimal/util'
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to group_url(@group), notice: "Group was successfully updated." }
+        format.html { redirect_to group_url(@group), data:{turbo_frame: "content"}, notice: "Group was successfully updated."}
         format.json { render :show, status: :ok, location: @group }
       else 
         format.html { render :new, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ require 'bigdecimal/util'
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: "Group was successfully destroyed." }
+      format.html { redirect_to groups_url, data:{turbo_frame: "content"}, notice: "Group was successfully destroyed." }
       format.json { head :no_content }
     end
     
