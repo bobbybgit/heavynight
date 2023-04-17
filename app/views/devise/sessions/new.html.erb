@@ -1,3 +1,4 @@
+<%= turbo_frame_tag "content" do %>
 <div class="login_window">
 
 <h3>Log in</h3>
@@ -24,9 +25,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in", :class => "square_button strip_link button_on_highlight" %>
+    <%= f.submit "Log in", :class => "square_button strip_link" %>
   </div>
 <% end %>
 </div>
 
 <%= render "devise/shared/links" %>
+<% end %>

@@ -1,11 +1,11 @@
 <%= turbo_frame_tag :dash_games do %>
 
-  <div class="table_container container three_col" id="games_dash_search" data-controller="panel">
-      <% if !PresenceCheck.array(@games) %>
-              <div class="full_span">
-                <%= No Games Added %>
-              </div>
+<% if !PresenceCheck.array(@games) %>
+                No games added
       <% else %>
+
+  <div class="table_container container three_col" id="games_dash_search" data-controller="panel">
+      
 
         <div class="table_header games_name_header table_cell">
           Name

@@ -22,7 +22,7 @@
   <% end %>
   <div class="dash_buttons">
   <%= button_to destroy_user_session_path, :method => :delete, :class => "square_button strip_link" do %><i class="icon">logout</i>&nbsp;Log Out<% end %>
-  <%= button_to edit_user_registration_path, :method => :get, :class => "square_button strip_link" do %><i class="icon">edit</i>&nbsp;Edit Profile<% end %>
+  <%= button_to edit_user_registration_path, :method => :get, :class => "square_button strip_link", data: {turbo_frame: "content"} do %><i class="icon">edit</i>&nbsp;Edit Profile<% end %>
   </div>
 
 <% end %>
