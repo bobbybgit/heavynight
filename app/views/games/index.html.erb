@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "content" do %>
+ <%= render 'pages/notices' %>
   <div class="container" id="games_index">
     <%= render 'games_filter' %>
     <%= turbo_frame_tag :games, :class => "t_frame" do %>

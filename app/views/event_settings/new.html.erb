@@ -1,9 +1,13 @@
-<h1>New event setting</h1>
+<%= turbo_frame_tag "content" %>
+ <%= render 'pages/notices' %>
 
-<%= render "form", event_setting: @event_setting %>
+  <h1>New event setting</h1>
 
-<br>
+  <%= render "form", event_setting: @event_setting %>
 
-<div>
-  <%= link_to "Back to event settings", event_settings_path %>
-</div>
+  <br>
+
+  <div>
+    <%= link_to "Back to event settings", event_settings_path %>
+  </div>
+<% end %>

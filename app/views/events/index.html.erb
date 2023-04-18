@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "content" do %>
+ <%= render 'pages/notices' %>
   <div class="container" id="events_index">
     <%= render 'events_filter' %>
     <%= turbo_frame_tag :events, :class => "t_frame", :src => events_table_path do %>

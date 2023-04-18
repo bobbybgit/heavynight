@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "content" do %>
+  <%= render 'pages/notices' %>
   <div class="container" id="group_index">
     <%= render 'filter' %>
     <%= turbo_frame_tag :groups, :class => "t_frame", :src => groups_table_path do %>

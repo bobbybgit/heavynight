@@ -1,3 +1,7 @@
+<%= turbo_frame_tag "content" do %>
+
+ <%= render 'pages/notices' %>
+
 <h2>Edit Group</h2>
 
 <%= render "form", group: @group %>
@@ -8,3 +12,5 @@
   <%= link_to "Show this group", @group %> |
   <%= link_to "Back to groups", groups_path %>
 </div>
+
+<% end %>
