@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "games/_games_filter", to: "games#filter", as: 'games_filter'
   get "games/table", to: "games#table", as: 'games_table'
   get "pages/_loading", to: "pages#loading", as: "loading"
+  get "pages/_notices", to: "pages#notices", as: "notices"
   get "games/results", to: "games#results", as: "games_results"
   get "groups/results", to: "groups#results", as: "groups_results"
   get "events/results", to: "events#results", as: "events_results"

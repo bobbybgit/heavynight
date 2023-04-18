@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :games, :class => "t_frame" do %>
 <%= turbo_frame_tag :table, src: games_results_path(group: params[:group_name], my: params[:my], bgg_user: params[:bgg_user], bgg_game: params[:bgg_game], button: @button), :class => "t_frame" do %>
-  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  <%= render 'pages/loading' %>
   <% end %>
 <% end %>

@@ -46,19 +46,10 @@
         Games
       <% end %>
     </div><!-- layout_tab_bar -->
-    <div class="container notices">
-            <% if notice %>
-              <p class="alert alert-success"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-              <p class="alert alert-danger"><%= alert %></p>
-            <% end %>
-          </div><!-- notices -->
-          <%= yield %>
           
     
         
-          <%= turbo_frame_tag "content" do %>
+          <%= turbo_frame_tag "content", :src => pages_dashboard_path do %>
           <% end %> <!-- content turbo frame -->
         
       

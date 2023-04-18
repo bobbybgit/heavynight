@@ -1,5 +1,7 @@
 <%= turbo_frame_tag :content do %>
 
+  <%= render 'notices' %>
+
   <div class="dash_header" id="groups_dash_header" data-controller="expand">
     <h4 data-action= "click->expand#expandText">My Groups</h4><i class="icon" id="expand_games_filters" data-action= "click->expand#expand">expand_less</i>
   </div>
