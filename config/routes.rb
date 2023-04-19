@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   get "events/results", to: "events#results", as: "events_results"
   get "events/table", to: "events#table", as: 'events_table'
   get "events/_filter", to: "events#filter", as: 'events_filter'
+  get '/calendars/calendar', to: 'calendars#calendar', as: 'calendar_new'
+  get "pages/dashboard", to: "pages#dashboard"
+  get "pages/dash_groups", to: "pages#dash_groups", as: "dash_groups"
+  get "pages/dash_games", to: "pages#dash_games", as: "dash_games"
+  get "pages/dash_events", to: "pages#dash_events", as: "dash_events"
+  get "groups/memberships/:id/remove_admin", to: 'memberships#remove_admin', as: 'remove_admin'
+  get "groups/memberships/:id/add_admin", to: 'memberships#add_admin', as: 'add_admin'
 
   
   resources :wall_messages
@@ -44,19 +51,7 @@ Rails.application.routes.draw do
 
   
 
-  get '/calendars/calendar', to: 'calendars#calendar', as: 'calendar_new'
-   
-  get "pages/dashboard", to: "pages#dashboard"
-
-  get "pages/dash_groups", to: "pages#dash_groups", as: "dash_groups"
-
-  get "pages/dash_games", to: "pages#dash_games", as: "dash_games"
-
-  get "pages/dash_events", to: "pages#dash_events", as: "dash_events"
-
-  get "groups/memberships/:id/remove_admin", to: 'memberships#remove_admin', as: 'remove_admin'
-
-  get "groups/memberships/:id/add_admin", to: 'memberships#add_admin', as: 'add_admin'
+ 
 
   root "pages#dashboard"
 

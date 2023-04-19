@@ -50,8 +50,8 @@
           
           
     
-        
-          <%= turbo_frame_tag "content", :src => pages_dashboard_path do %>
+        <%= yield %>
+          <%= turbo_frame_tag "content" do %>
           <% end %> <!-- content turbo frame -->
         
       
