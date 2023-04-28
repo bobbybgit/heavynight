@@ -74,7 +74,7 @@
   color: var(--textHighlight);
  }
 
-  form input[type=email], form input[type=text], form input[type=password], form input[type=date], form input[type=time]{
+  form input[type=email], form input[type=number], form input[type=text], form input[type=password], form input[type=date], form input[type=time]{
   outline:none;
   height: 2rem;
   border: solid var(--secondary) 2px;
@@ -85,7 +85,7 @@
  }
 
 
- form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus, form input[type=date]:focus, form input[type=time]:focus{
+ form input[type=email]:focus, form input[type=number]:focus, form input[type=text]:focus, form input[type=password]:focus, form input[type=date]:focus, form input[type=time]:focus{
   border: solid var(--highlight) 2px;
  }
 
@@ -150,8 +150,12 @@ textarea:focus{
   color: inherit;
  }
 
+ .strip_link_table{
+  text-decoration: none;
+ }
+
  .colour{
-  color: var(--secondaryhighlight);
+  color: var(--highlight);
   font-style: normal;
  }
 
@@ -204,7 +208,11 @@ textarea:focus{
  }
 
  .even_row{
-  background-color: var(--highlightLight);
+  background-color: var(--main);
+ }
+
+ .odd_row{
+  background-color: var(--tertiary);
  }
 
 
@@ -669,6 +677,15 @@ width: 55%;
   width: 100%;
 }
 
+.group_window_header{
+  background-color: var(--highlight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
 .calendar_title{
   display: flex;
   flex-direction: column;
@@ -704,7 +721,7 @@ width: 55%;
   padding-top: 5px;
 }
 
-.cal_day, .non_day, .day_header{
+.cal_day, .cal_day_event, .non_day, .day_header{
   min-height: 30px;
   max-height: 30px;
   min-width: 30px;
@@ -712,6 +729,16 @@ width: 55%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cal_day_event{
+  background-color: var(--secondary);
+  color: var(--textSecondary);
+}
+
+.cal_day{
+  background-color: var(--main);
+  color: var(--textMain);
 }
 
 .user_card{
@@ -1066,7 +1093,7 @@ width: 55%;
 #group_item_header, #calendar_header, #calendar_year{
   background-color: var(--highlight);
   color: var(--textHighlight);
-  align-self: center;
+  text-align: center;
 }
 
 

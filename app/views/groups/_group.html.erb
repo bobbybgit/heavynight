@@ -1,7 +1,7 @@
   <div class="group_display">
   <%= image_tag(group.image_url.to_s, :class => "image_300") %>
   <div class="container" id="group_container">
-  <div class="window_header">
+  <div class="group_window_header">
   <h2 class ="item_header" id="group_item_header">
     <%= group.name.upcase %>
     </h2>
@@ -18,7 +18,7 @@
   </div>
   
   </div><!-- group_container -->
-  <%= turbo_frame_tag :calendar, :class => "calendar_window container", :src => calendar_new_path(date: @date) do %>
+  <%= turbo_frame_tag :calendar, :class => "calendar_window container", :src => calendar_new_path(date: @date, group: @group) do %>
 
   <% end %>
 <div id="member_title">

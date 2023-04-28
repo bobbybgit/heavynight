@@ -1,11 +1,11 @@
 <%= turbo_frame_tag :groups_table, :class => "t_frame" do %>
-  <div class="table_container container three_col" id="groups_search">
-
+  
     <% if PresenceCheck.string(@error) %>
       <%= @error %>
     <% elsif @groups.empty? %>
       No groups to show
     <% else %>
+    <div class="table_container container three_col" id="groups_search">
         <div class="table_header group_name_header table_cell">
           Name
         </div>

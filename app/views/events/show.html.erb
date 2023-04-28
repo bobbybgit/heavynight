@@ -1,3 +1,5 @@
+<%= turbo_frame_tag :content do %>
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @event %>
@@ -8,3 +10,4 @@
 
   <%= button_to "Destroy this event", @event, method: :delete %>
 </div>
+<% end %>

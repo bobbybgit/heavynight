@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  include GeoDistance
 
   # GET /events or /events.json
   def index
@@ -26,10 +27,13 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+        attendance = current_user.attendance.new(:event_id => @event.id)
+        attendance.save
+        format.html { redirect_to group_url(@event.group_id), data:{:turbo_frame => "content"}, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        @admin_of = Group.all.admin_of(current_user.id)
+        format.html { render :new, data:{:turbo_frame => "content"}, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -59,9 +63,27 @@ class EventsController < ApplicationController
   end
 
   def table
+    
   end
 
   def results
+    
+    params[:archived] ? @events = Event.group_name_search(params[:search_string]) : @events = Event.group_name_search(params[:search_string]).upcoming
+    
+    pp @events
+    if params[:my] == "Events I'm Attending"
+      @events = @events.joins(:users).where(users:{id: current_user.id})
+    elsif params[:my] == "Events I'm Running"
+      @events = @events.joins(:group).select{|event| event.group.admin_status(current_user)}
+    end
+    if (PresenceCheck.string(params[:loc_filter]))
+      if !PresenceCheck.string(params[:longitude].to_s)
+        @error = "Location not found, please use location matching autocomplete"
+        return
+      end
+      @events = @events.select{|event| distance(event.group.latitude, event.group.longitude, params[:latitude].to_d, params[:longitude].to_d, "miles") <= params[:distance].to_d} 
+    end
+    @events = @events.sort_by{|event| event.date}
   end
 
   def filter
@@ -75,6 +97,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :group_id, :venue_id, :date, :start_time, :end_time, :event_setting_id, :session_id)
+      params.require(:event).permit(:name, :group_id, :venue_id, :date, :start_time, :duration, :event_setting_id, :session_id)
     end
 end

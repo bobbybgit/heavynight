@@ -1,3 +1,5 @@
+<%= turbo_frame_tag :content do %>
+
 <h2>New event</h2>
 
 <%= render "form", event: @event %>
@@ -7,3 +9,5 @@
 <div>
   <%= link_to "Back to events", events_path %>
 </div>
+
+<% end %>

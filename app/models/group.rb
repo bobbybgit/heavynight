@@ -5,6 +5,7 @@ class Group < ApplicationRecord
   belongs_to :event_setting, optional:true
   has_many :memberships
   has_many :users, :through => :memberships
+  has_many :events
 
   validates :name, presence:true
   validates :location, presence:true
@@ -39,6 +40,15 @@ class Group < ApplicationRecord
 
   def member_count
     member_count = memberships.count
+  end
+
+  def has_event(date)
+    events.each do |e| 
+      if e.date.strftime("%D%M%Y") == date.strftime("%D%M%Y")
+        return e
+      end
+    end
+    return false
   end
 
 end

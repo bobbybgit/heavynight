@@ -72,12 +72,7 @@ require 'bigdecimal/util'
   end
 
   def table
-    @button = "my" if params[:my_button]
-    @button = "distance" if params[:distance_button]
-    @button = "bgg_game" if params[:bgg_game_button]
-    @button = "hn_group" if params[:hn_group_button]
-    @groups = Group.all.sort_by{|group| group.name}
-   
+      
   end
 
   def results
@@ -97,12 +92,18 @@ require 'bigdecimal/util'
   def filter
   end
 
+  
+
 
    private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
     end
+
+   
+          
+        
 
     # Only allow a list of trusted parameters through.
     def group_params

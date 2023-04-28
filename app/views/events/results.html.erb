@@ -1,0 +1,70 @@
+<%= turbo_frame_tag :events_table, :class => "t_frame" do %>
+
+
+    <% if PresenceCheck.string(@error) %>
+      <%= @error %>
+    <% elsif @events.empty? %>
+      No events to show
+    <% else %>
+    <div class="table_container container three_col" id="events_search">
+        <div class="table_header events_name_header table_cell">
+          Name
+        </div>
+        <div class="table_header events_loc_header table_cell">
+          Location
+        </div>
+        <div class="table_header events_count_header table_cell">
+          <i class=icon>person</i>
+        </div>
+
+      
+
+    
+    
+    
+        <% @events.each_with_index do |event, i| %>
+          <% if i.even? %>
+            <%= link_to group_path(event.group_id), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
+              <div class="event_name_container container table_cell table_data even_row">
+                <h5 class="event_name"><i class="colour"><%= event.group.name.upcase %>:</i> &nbsp;<%= event.name.upcase %></h5>
+              </div>
+            <% end %>
+            <%= link_to group_path(event.group_id), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
+              <div class="group_card_loc_container table_cell table_data even_row">
+                <i class="icon group_card_loc">place</i>
+                <h5 class="group_card_location_text"><%= event.group.location.length < 20 ? event.group.location : event.group.location[0,21]+"..." %></h5>
+              </div><!-- group_card_loc_container -->
+            <% end %>
+            <%= link_to group_path(event.group_id), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
+              <div class="member_number_container container table_cell table_data even_row">
+                <%= event.date.strftime("%d %B %Y") %>
+              </div><!-- member_number_container -->
+            <% end %>
+          <% else %>
+            <%= link_to group_path(event.group_id), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
+              <div class="event_name_container container table_cell table_data odd_row">
+                <h5 class="event_name"><i class="colour"><%= event.group.name.upcase %>:</i> &nbsp;<%= event.name.upcase %></h5>
+              </div>
+            <% end %>
+            <%= link_to group_path(event.group_id), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
+              <div class="group_card_loc_container table_cell table_data odd_row">
+                <i class="icon group_card_loc">place</i>
+                <h5 class="group_card_location_text"><%= event.group.location.length < 20 ? event.group.location : event.group.location[0,21]+"..." %></h5>
+              </div><!-- group_card_loc_container -->
+            <% end %>
+            <%= link_to group_path(event.group_id), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
+              <div class="member_number_container container table_cell table_data odd_row">
+                <%= event.date.strftime("%d %B %Y") %>
+              </div><!-- member_number_container -->
+            <% end %>
+          <% end %>
+      <% end %><!-- events.each do -->
+
+      </div><!--events_search -->
+
+    <% end %>
+
+    
+    </div>
+  <% end %>
+

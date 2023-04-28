@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :events, :class => "t_frame" do %>
+  <%= turbo_frame_tag :events_table, src: events_results_path(longitude: params[:longitude], latitude: params[:latitude], my: params[:my], distance: params[:distance], group_id: params[:group_id], loc_filter: params[:loc_filter], search_string: params[:search_string]), :class => "t_frame" do %>
+    <%= render 'pages/loading' %>
+  <% end %>
+<% end %>

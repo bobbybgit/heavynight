@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :calendar, :class => "calendar_window" do %>
 <div class="window_header">
-    <%= link_to calendar_new_path(date: @date << 1), :class => "strip_link" do %>
+    <%= link_to calendar_new_path(date: @date << 1, group: @group), :class => "strip_link" do %>
     <div class="icon container cal_prev">chevron_left</div>
     <% end %>
     <div class="container calendar_title">
@@ -11,7 +11,7 @@
             <%= @date.year %>
         </h4>
     </div>
-    <%= link_to calendar_new_path(date: @date >> 1), :class => "strip_link" do %>
+    <%= link_to calendar_new_path(date: @date >> 1, group: @group), :class => "strip_link" do %>
     <div class="icon container cal_next">chevron_right</div>
     <% end %>
 
@@ -30,9 +30,17 @@
 </div>
 <% end %>
 <% (@date.beginning_of_month..@date.end_of_month).each do | day | %>
-<div class = "cal_day">
-    <%= day.day %>
-</div>
+    <% if @group.has_event(day) %>
+    <%= link_to event_path(@group.has_event(day)), :class => "strip_link", data:{turbo_frame: "content"} do %>
+            <div class = "cal_day_event">
+                <%= day.day %>
+            </div>
+        <% end %>
+    <% else %>
+        <div class = "cal_day">
+            <%= day.day %>
+        </div>
+    <% end %>
 <% end %>
 <% (@date.end_of_month.wday..7).each do | nonDay | %>
 <div class="non_day">
