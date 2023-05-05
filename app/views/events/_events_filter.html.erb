@@ -47,6 +47,18 @@
         </div><!-- filter_item_content (search)-->
       </div><!-- filter_item (search)-->
 
+      <div class="filter_item">
+        <div class="filter_item_title">
+          Show Historic Events:
+        </div><!-- filter_item_title -->
+        <div class=filter_item_content>
+          <div class="check_wrapper">
+            <%= form.check_box :historic, :id => "historic_check", :class => "check" %>
+            <label for="historic_check"></label>
+          </div>
+        </div><!-- filter_item_content (search)-->
+      </div><!-- filter_item (search)-->
+
       <div class="filter_button_box">
         <%= form.button nil, :class => "square_button", :name => "my_button" do %><i class = "icon">filter_list</i>&nbsp;Filter<% end %>
       </div>

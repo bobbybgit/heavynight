@@ -18,34 +18,24 @@
   </head>
 
   <body>
-    <div class="bookend" id="header">
+    <div class="sidebar" data-controller="tabs">
       <%= link_to root_path, :class => "strip_link" do %>
-        <h1 id="logo">HEAVY NIGHT</h1>
+        <%= image_tag "hn-logo.svg", size: "200x200", :class => "logo" %>
       <% end %>
-      <div class="container" id="user_header">
-        <%= image_tag "pp_icon.gif", :id => "pp_icon" %>
-        <% if user_signed_in? %>
-        <h1><nobr>
-        <%= "#{current_user.first_name.capitalize()[0]}#{current_user.surname.capitalize()[0]}" %>
-        </nobr></h1>
-        <% end %>
-      </div> <!-- user_header -->
-    </div> <!-- header -->
-
-    <div class="tab_bar" id="layout_tab_bar" data-controller="tabs">
-    <%= link_to pages_dashboard_path, data: {turbo_frame: "content"}, :class => "tab tab_1 strip_link", 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "home", 'data-tabs-target' => "tab" do %>
-        Home
+      <%= link_to pages_dashboard_path, data: {turbo_frame: "content"}, :class => "tab tab_1 strip_link", 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "home", 'data-tabs-target' => "tab" do %>
+        <div class="tab_text">Home</div>
       <% end %>
       <%= link_to groups_path, :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link", 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "groups", 'data-tabs-target' => "tab" do %>
-        Groups
+        <div class="tab_text">Groups</div>
       <% end %>
       <%= link_to events_path, :class => "tab tab_3 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "events", 'data-tabs-target' => "tab" do %>
-        Events
+        <div class="tab_text">Events</div>
       <% end %>
       <%= link_to games_path, :class => "tab tab_4 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "games", 'data-tabs-target' => "tab" do %>
-        Games
+        <div class="tab_text">Games</div>
       <% end %>
-    </div><!-- layout_tab_bar -->
+    </div> <!-- header -->
+
 
           
           
@@ -56,7 +46,7 @@
         
       
       </div>
-    <div class="bookend" id="footer">Contact us</div> <!-- footer -->
+    
     <div class="modal" id="main_modal" tabindex="-1" data-controller="modal" data-action="turbo:frame-render->modal#open turbo:submit-end->modal#close">
       <%= turbo_frame_tag "modal" do %>
       <% end %>
