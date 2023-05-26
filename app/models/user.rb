@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :groups, :through => :memberships
+  has_many :attendances
+  has_many :events, :through => :attendances
 
   scope :members, -> (group){joins(:groups).where(groups:{id: group})}
 

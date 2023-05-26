@@ -1,54 +1,22 @@
-<%= turbo_frame_tag :dash_groups do %>
+<%= turbo_frame_tag :dash_window do %>
   <% if @groups.empty? %>
       No groups to show
   <% else %>
-  <div class="table_container container three_col" id="dash_groups_search">
-
-    <div class="table_header group_name_header table_cell">
-      Name
-    </div>
-    <div class="table_header group_loc_header table_cell">
-      Location
-    </div>
-    <div class="table_header group_count_header table_cell">
-      <i class=icon>person</i>
-    </div>
-
-    <% @groups.each_with_index do |group, i| %>
-      <% if i.even? %>
-        <%= link_to group_path(group), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
-          <div class="group_name_container container table_cell table_data even_row">
-            <h5 class="group_name"><%= group.name.upcase %></h5>
-          </div>
+    <table class="dash_table">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th><i class=icon>person</i></th>
+      </tr>
+      <% @groups.each do |group| %>
+        <%= link_to group_path(group), data:{:turbo_frame => "content"}, :class => "strip_link" do %>
+          <tr onclick="location.href='<%= group_path(group) %>'">
+            <td><h5 class="group_name"><%= group.name.upcase %></h5></td>
+            <td><h5 class="group_card_location_text"><i class="icon">place</i><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5></td>
+            <td class="center_cell"><%= group.member_count %></td>
+          </tr>
         <% end %>
-        <div class="group_card_loc_container table_cell table_data even_row">
-          <i class="icon group_card_loc">place</i>
-          <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
-        </div><!-- group_card_loc_container -->
-        <div class="member_number_container container table_cell table_data even_row">
-          <%= group.member_count %>
-        </div><!-- member_number_container -->
-      <% else %>
-        <%= link_to group_path(group), data:{:turbo_frame => "content"}, :class => "strip_link table_link" do %>
-          <div class="group_name_container container table_cell table_data odd_row">
-            <h5 class="group_name"><%= group.name.upcase %></h5>
-          </div>
-        <% end %>
-        <div class="group_card_loc_container table_cell table_data odd_row">
-          <i class="icon group_card_loc">place</i>
-          <h5 class="group_card_location_text"><%= group.location.length < 20 ? group.location : group.location[0,21]+"..." %></h5>
-        </div><!-- group_card_loc_container -->
-        <div class="member_number_container container table_cell table_data odd_row">
-          <%= group.member_count %>
-        </div><!-- member_number_container -->
-        <% end %>
-      <% end %><!-- groups.each do -->
-
-    </div><!--groups_search -->
-
-  <% end %>    
-        
-
-
-
+      <% end %>
+    </table>
+  <% end %>
 <% end %>

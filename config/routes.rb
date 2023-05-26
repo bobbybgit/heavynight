@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get "pages/dash_events", to: "pages#dash_events", as: "dash_events"
   get "groups/memberships/:id/remove_admin", to: 'memberships#remove_admin', as: 'remove_admin'
   get "groups/memberships/:id/add_admin", to: 'memberships#add_admin', as: 'add_admin'
+  get "pages/search", to: "pages#search", as: 'search_page'
+  get "pages/dash_select", to: "pages#dash_select", as: "dash_select"
 
   
   resources :wall_messages

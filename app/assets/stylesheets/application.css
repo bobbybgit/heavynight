@@ -18,23 +18,25 @@
  /* Colour variables */
 
  :root {
-    --main: #FFFFFF;
-    --mainDark: #7d7d7d;
+    --main: #E6E6E6;
+    --mainDark: #D5D5D5;
     --mainLight: #FFFFFF;
     --secondary: #25283D;
-    --secondaryhighlight: #25283D;
-    --tertiary: #DCE3E5;
-    --highlight: #DB3A34;
-    --highlightDark: #B91812;
-    --highlightLight: #DCE3E5;
-    --textMain: #000000;
-    --textSecondary: #FFFFFF;
-    --textHighlight: #FFFFFF;
-    --textTertiary: #000000;
+    --secondaryhighlight: #0075A2;
+    --tertiary: #F2EFEA;
+    --highlight: #FF8552;
+    --highlightDark: #EE7441;
+    --highlightLight: #FF9663;
+    --textMain: #25283D;
+    --textSecondary: #E6E6E6;
+    --textHighlight: #E6E6E6;
+    --textTertiary: #25283D;
   }
 
   *{
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
     /* border: solid 2px red; */
   }
 
@@ -77,17 +79,19 @@
 
   form input[type=email], form input[type=number], form input[type=text], form input[type=password], form input[type=date], form input[type=time]{
   outline:none;
-  height: 2rem;
-  border: solid var(--secondary) 2px;
+  height: 1.7rem;
+  border: none;
   max-width: 100%;
-  background-color: var(--main);
-  margin: 3px 0;
+  background-color: var(--mainDark);
+  margin: 1px 0 5px 0;
   width: 300px;
+  border-radius: 20px;
+  padding: 0 10px;
  }
 
 
  form input[type=email]:focus, form input[type=number]:focus, form input[type=text]:focus, form input[type=password]:focus, form input[type=date]:focus, form input[type=time]:focus{
-  border: solid var(--highlight) 2px;
+  border: solid var(--secondary) 2px;
  }
 
  .new_form_section select{
@@ -116,13 +120,7 @@ textarea:focus{
   user-select: none;
  }
 
- select{
-  height: 2rem;
-  border: var(--secondary) solid 2px;
-  font-size: 14px;
-  font-family: 'Lato', sans-serif;
-  background-color: var(--main);
- }
+
 
  form{
   display: flex;
@@ -160,14 +158,20 @@ textarea:focus{
   font-style: normal;
  }
 
- .window, .card, .container, #groups{
-    padding:0;
-    background-color: inherit;
-    display: flex;
-    user-select: none;
-    margin: 0;
-    width: 100%;
-    align-items: center;
+ select[name=dash_option]{
+  color: var(--text);
+  background-color: var(--mainDark);
+ }
+ select[name=dash_option]:active, select[name=dash_option]:focus, select[name=dash_option]:focus-visible{
+  border:none;
+  outline: none;
+ }
+
+
+ .dash_form{
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
  }
 
  .filter_button_box{
@@ -217,6 +221,15 @@ textarea:focus{
  }
 
 
+ select{
+    background-color: var(--mainDark);
+    border: none;
+      font-size: 16px;
+      font-family: 'Lato', sans-serif;
+      padding: 3px 5px;
+      border-radius: 20px;
+ }
+
 
  .icon{
   font-family: 'Material Icons';
@@ -235,6 +248,19 @@ textarea:focus{
   padding:0;
   max-width: 100%;
   user-select: none;
+}
+
+td .icon{
+  font-size: 16px;
+}
+
+tr:not(:first-child){
+  background-color: var(--mainDark);
+  cursor: pointer;
+}
+
+tr:not(:first-child):hover{
+  background-color: var(--secondaryhighlight);
 }
 
 .modal{
@@ -365,6 +391,11 @@ textarea:focus{
   align-items: left;
  }
 
+ .group_card_location_text{
+  display: flex;
+  align-items: center;
+ }
+
  .group_card_loc{
   flex: 0;
   font-size: 16px;
@@ -449,20 +480,19 @@ textarea:focus{
  }
 
 .square_button{
-  padding: 0 20px;
-  margin: 10px 0;
-  height: 2rem;
-  border: none;
-  display: flex;
-  align-items: center;
   font-size: 16px;
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
+  padding: 5px 10px;
   background-color: var(--highlight);
+  text-decoration: none;
   color: var(--textHighlight);
-  border-radius: 3px;
+  border: none;
+  flex: 0;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  align-items: center;
+  margin: 5px 0;
+  border-radius: 3px;
 
  }
 
@@ -548,6 +578,15 @@ transform: translateX(-100%);
 width: 55%;
 }
 
+.actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+}
+
 .item_card{
   width: 150px;
   flex-direction: column;
@@ -564,6 +603,77 @@ width: 55%;
   height: 275px;
   
 }
+
+.main_window{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 80vh;
+}
+
+.header_bar{
+  width: 100%;
+  background-color: var(--main);
+  color: var(--mainText);
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex: auto;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 15px;
+}
+
+.header_search_form .header_search{
+  border: none;
+  background-color: var(--mainDark);
+  border-radius: 20px;
+  height: 1.75rem;
+  width: 300px;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.search_end{
+  height: 1.5rem;
+  border-radius: 0 20px 20px 0;
+  background-color: var(--mainDark);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  padding-right: 5px;
+  margin-right: 2px;
+  color: var(--mainText);
+  position:absolute;
+  right: 0;
+  border:none;
+}
+
+.header_search_form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.search_container{
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex: 0;
+  border: none;
+}
+
 
 .member_number_container, .group_count_header {
   display: flex;
@@ -582,8 +692,30 @@ width: 55%;
   max-width: 80vw;
  }
 
+ .dash_table{
+  width: 100%;
+ }
+
+ .center_cell{
+  text-align: center;
+ }
+
+ th{
+  background-color: var(--secondary);
+  color: var(--textSecondary);
+  margin: 1px;
+ }
+
+ td{
+  align-items: center;
+  justify-content: flex-start;
+  background-color: inherit;
+  margin: 1px;
+  padding: 0 5px;
+ }
+
  .explanation{
-  margin: 5px 0;
+  margin: 0 0 5px 0;
   font-weight: 300px;
   max-width: 300px;
   color: var(--mainDark);
@@ -662,12 +794,10 @@ width: 55%;
 .login_window{
   background-color: var(--main);
   color: var(--text);
-  padding: 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
 }
 
 .window_header{
@@ -784,18 +914,20 @@ width: 55%;
   position: relative;
   top: 0;
   left: 0;
-  z-index: 1;
+}
+
+table{
+  padding-bottom: 10px;
 }
 
 .dash_header{
   min-width: 100%;
-  background-color: var(--highlight);
-  color: var(--textHighlight);
+  background-color: var(--main);
+  color: var(--text);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 5px;
-  padding: 5px;
+  padding: 5px 10px;
   margin: 5px;
 }
 
@@ -814,7 +946,6 @@ width: 55%;
 .filter_box_header .icon{
   position: relative;
   top: 3px; 
-  z-index: 1;
 }
 
 .filter_box_header h4{
@@ -912,6 +1043,13 @@ width: 55%;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
 }
 
+.card{
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1);
+  background-color: var(--tertiary);
+  padding: 30px 50px;
+
+}
+
 .card_container_header{
   width: 100%;
   display: flex;
@@ -966,17 +1104,18 @@ width: 55%;
  /* IDs */
 
  .sidebar{
-  position: absolute;
+  z-index: 1;
+  position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   min-width: 300px;
   max-width: 300px;
-  min-height: 100%;
-  max-height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
   background-color: var(--secondary) ;
   flex: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -997,13 +1136,29 @@ width: 55%;
   padding: 20px;
  }
 
+ .mobile_header{
+  flex: auto;
+  padding: 10px;
+  min-width: 100%;
+  max-width: 100%;
+  background-color: var(--secondary);
+  color: var(--textSecondary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+ }
+
  #content{
   display: flex;
-   padding: 20px;
+  padding: 40px;
    flex: 1;
    flex-direction: column;
    align-items: center;
-   max-width: 1100px;
    width: 100%;
  }
 
@@ -1265,6 +1420,19 @@ width: 55%;
 @media only screen and (min-width: 600px) {
   #content{
     margin-left: 300px;
+    width: calc(100% - 300px);
+    padding: 100px;
+  }
+  .sidebar{
+    display: flex;
+    left: 0;
+  }
+  .mobile_header{
+    display: none;
+  }
+
+  .header_bar{
+    display: flex;
   }
 }
 

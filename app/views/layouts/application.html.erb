@@ -18,34 +18,47 @@
   </head>
 
   <body>
-    <div class="sidebar" data-controller="tabs">
-      <%= link_to root_path, :class => "strip_link" do %>
+    <div class="sidebar" id="mobile_menu" data-controller="tabs mobile">
+      <%= link_to root_path, :class => "strip_link", "data-action" => "click->mobile#menuClose" do %>
         <%= image_tag "hn-logo.svg", size: "200x200", :class => "logo" %>
       <% end %>
-      <%= link_to pages_dashboard_path, data: {turbo_frame: "content"}, :class => "tab tab_1 strip_link", 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "home", 'data-tabs-target' => "tab" do %>
+      <%= link_to pages_dashboard_path, data: {turbo_frame: "content"}, :class => "tab tab_1 strip_link", 'data-action' => "click->tabs#tabSelect click->mobile#menuClose", 'data-tabs-tab-param' => "home", 'data-tabs-target' => "tab" do %>
         <div class="tab_text">Home</div>
       <% end %>
-      <%= link_to groups_path, :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link", 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "groups", 'data-tabs-target' => "tab" do %>
+      <%= link_to groups_path, :method => :get, data: {turbo_frame: "content"}, :class => "tab tab_2 strip_link", 'data-action' => "click->tabs#tabSelect click->mobile#menuClose", 'data-tabs-tab-param' => "groups", 'data-tabs-target' => "tab" do %>
         <div class="tab_text">Groups</div>
       <% end %>
-      <%= link_to events_path, :class => "tab tab_3 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "events", 'data-tabs-target' => "tab" do %>
+      <%= link_to events_path, :class => "tab tab_3 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect click->mobile#menuClose", 'data-tabs-tab-param' => "events", 'data-tabs-target' => "tab" do %>
         <div class="tab_text">Events</div>
       <% end %>
-      <%= link_to games_path, :class => "tab tab_4 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect", 'data-tabs-tab-param' => "games", 'data-tabs-target' => "tab" do %>
+      <%= link_to games_path, :class => "tab tab_4 strip_link", data: {turbo_frame: "content"}, 'data-action' => "click->tabs#tabSelect click->mobile#menuClose", 'data-tabs-tab-param' => "games", 'data-tabs-target' => "tab" do %>
         <div class="tab_text">Games</div>
       <% end %>
-    </div> <!-- header -->
+    </div> <!-- sidebar -->
 
 
           
           
     
-        <%= yield %>
-          <%= turbo_frame_tag "content" do %>
-          <% end %> <!-- content turbo frame -->
+        
+        <div class="main_window">
+          <div class="mobile_header" id="mobile_header" data-controller="mobile">
+            <i class="icon" data-action="click->mobile#menuClick">menu</i>
+            <%= link_to "HEAVY NIGHT", root_path, :class => "strip_link header_title" %>
+          </div>
+          <div class="header_bar">
+            <div class="search_container">
+              <%= form_with url: search_page_path, :class => "header_search_form" do |f| %>
+               <%= f.select :search_option, options_for_select(['Groups','Games','Events','Bgg User']) %>
+                <%= f.text_field :search_string, :class => "header_search", :autocomplete => "spec_search" %>
+                <div class="icon search_end">search</div>
+              <% end %>
+            </div>
+          </div>
+          <%= yield %>
+        </div>
         
       
-      </div>
     
     <div class="modal" id="main_modal" tabindex="-1" data-controller="modal" data-action="turbo:frame-render->modal#open turbo:submit-end->modal#close">
       <%= turbo_frame_tag "modal" do %>

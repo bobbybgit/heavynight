@@ -2,6 +2,20 @@ class PagesController < ApplicationController
     def dashboard
     end
 
+    def search
+    end
+
+    def dash_select
+        case params[:dash_option]
+        when "My Events"
+            redirect_to dash_events_path, data:{turbo_frame: "dash_window"}
+        when "My Games"
+            redirect_to dash_games_path, data:{turbo_frame: "dash_window"}
+        else "My Groups"
+            redirect_to dash_groups_path, data:{turbo_frame: "dash_window"}
+        end
+    end
+
     def loading
     end
 

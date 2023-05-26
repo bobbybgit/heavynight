@@ -27,7 +27,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        attendance = current_user.attendance.new(:event_id => @event.id)
+        attendance = current_user.attendances.new(:event_id => @event.id)
         attendance.save
         format.html { redirect_to group_url(@event.group_id), data:{:turbo_frame => "content"}, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }

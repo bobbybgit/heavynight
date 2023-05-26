@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "content" do %>
+<div class="login_window card">
  <%= render 'pages/notices' %>
 
 <h2>Edit Profile</h2>
@@ -6,7 +7,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
- <div class ="login_window" id="form_window">
+ <div  id="form_window">
 
   <div class="form_section">
     <%= f.label :email, style: "display: block" %>
@@ -46,7 +47,7 @@
   </div>
   
   <div class="form_section">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %> <p class="explanation">(we need your current password to confirm your changes)</p>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
@@ -59,4 +60,5 @@
 
 <%= button_to "Delete Profile", registration_path(resource_name), :id => "delete_profile_button", :class => "square_button strip_link", data: { confirm: "Are you sure?" }, method: :delete %></p>
 
+</div>
 <% end %>

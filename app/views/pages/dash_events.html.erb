@@ -1,3 +1,22 @@
-<%= turbo_frame_tag :dash_events do %>
- 
+<%= turbo_frame_tag :dash_window do %>
+  <% if @events.empty? %>
+      No upcoming events
+  <% else %>
+    <table class="dash_table">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+      </tr>
+      <% @events.each do |event| %>
+        <%= link_to event_path(event), data:{:turbo_frame => "content"}, :class => "strip_link" do %>
+          <tr onclick="location.href='<%= event_path(event) %>'">
+            <td><h5 class="event_name"><i class="colour"><%= event.group.name.upcase %>:</i> &nbsp;<%= event.name.upcase %></h5></td>
+            <td><h5 class="group_card_location_text"><%= event.group.location.length < 20 ? event.group.location : event.group.location[0,21]+"..." %></td>
+            <td class="center_cell"><%= event.date.strftime("%d %B %Y") %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
 <% end %>
